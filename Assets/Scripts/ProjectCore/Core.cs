@@ -11,5 +11,6 @@
         _monoCore = monoCore;
         firstPlayerData = new PlayerData();
         secondPlayerData = new PlayerData();
+        currentLocation = new CurrentLocation();
     }
 }

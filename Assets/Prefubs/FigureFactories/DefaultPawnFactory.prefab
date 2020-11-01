@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6061211406136662816}
-  - component: {fileID: 1828805952936243119}
+  - component: {fileID: 2154610536864838946}
   m_Layer: 0
   m_Name: DefaultPawnFactory
   m_TagString: Untagged
@@ -31,7 +31,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1828805952936243119
+--- !u!114 &2154610536864838946
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -40,7 +40,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5718825715976061894}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe9053fd466f64d41bfc0875adc04559, type: 3}
+  m_Script: {fileID: 11500000, guid: 06b3eb41076291f4da6440a819967b57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _mainFieldFigurePrefub: {fileID: 1449421170924203759, guid: 79c7c740b787d394ca729e6ebb322858,

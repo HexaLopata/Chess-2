@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &6502416099585571834
+--- !u!1 &4358236853784107847
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,42 +8,43 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 3689062318175290048}
-  - component: {fileID: 5480422221514473181}
+  - component: {fileID: 2186433928388230118}
+  - component: {fileID: 4206600587673712538}
   m_Layer: 0
-  m_Name: DefaultKingFactory
+  m_Name: DefaultFieldFactory
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &3689062318175290048
+--- !u!4 &2186433928388230118
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6502416099585571834}
+  m_GameObject: {fileID: 4358236853784107847}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.1656408, y: -0.49610943, z: -0.6816406}
+  m_LocalPosition: {x: 2.9249487, y: 0.030337814, z: -6.409232}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5480422221514473181
+--- !u!114 &4206600587673712538
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6502416099585571834}
+  m_GameObject: {fileID: 4358236853784107847}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 06b3eb41076291f4da6440a819967b57, type: 3}
+  m_Script: {fileID: 11500000, guid: 77d4e975eb0bcd34ebba40717e5515ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _mainFieldFigurePrefub: {fileID: 5231885336368332788, guid: 2fedcc0b3b9674249aa68d1ae92ade38,
+  _whiteCell: {fileID: 3198914586772740574, guid: 23ccf75f796274644ba3cb84661d9014,
     type: 3}
-  _battleFieldFigurePrefub: {fileID: 8309836914495139138, guid: ebe9a8cd53b41c14590ef0b82981f656,
+  _blackCell: {fileID: 2524589839725303674, guid: 5767ef85a8a0bba43853517197d06554,
     type: 3}
+  _additionalCells: []

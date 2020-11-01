@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3278848580331212965}
-  - component: {fileID: 5760503238924237558}
+  - component: {fileID: 683817188272000680}
   m_Layer: 0
   m_Name: DefaultBishopFactory
   m_TagString: Untagged
@@ -31,7 +31,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5760503238924237558
+--- !u!114 &683817188272000680
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -40,7 +40,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8237450365835640555}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3feeddf9dd73e5c4396b91444f6b46ff, type: 3}
+  m_Script: {fileID: 11500000, guid: 06b3eb41076291f4da6440a819967b57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _mainFieldFigurePrefub: {fileID: 6264686938067422531, guid: 28a31da6525d5294d9cae4e10cd3feda,

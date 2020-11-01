@@ -1,9 +1,12 @@
 ﻿using UnityEngine;
 
-public abstract class FigureFactory : MonoBehaviour
+public class FigureFactory : MonoBehaviour
 {
     [SerializeField] protected GameObject _mainFieldFigurePrefub;
     [SerializeField] protected GameObject _battleFieldFigurePrefub;
 
-    abstract public Figure GetFigure();
+    public FigureData GetFigure(Team team)
+    {
+        return new FigureData(_mainFieldFigurePrefub, _battleFieldFigurePrefub, team);
+    }
 }

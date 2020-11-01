@@ -43,15 +43,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa8779296fc83e24d99701af24632233, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _pawnFactory: {fileID: 1828805952936243119, guid: f0621c408b918d74b892a40037800d72,
+  _pawnFactory: {fileID: 2154610536864838946, guid: f0621c408b918d74b892a40037800d72,
     type: 3}
-  _kingFactory: {fileID: -3550825192000782074, guid: 7ae241f629566ed4fbb94a83b3ccc668,
+  _kingFactory: {fileID: 5480422221514473181, guid: 7ae241f629566ed4fbb94a83b3ccc668,
     type: 3}
-  _queenFactory: {fileID: 3465020349987637657, guid: 29070c1220972544bb0beb7b5ca6d7a5,
+  _queenFactory: {fileID: 6149468006116513826, guid: 29070c1220972544bb0beb7b5ca6d7a5,
     type: 3}
-  _bishopFactory: {fileID: 5760503238924237558, guid: a4fd477ce2367934e9db053e929a0bcb,
+  _bishopFactory: {fileID: 683817188272000680, guid: a4fd477ce2367934e9db053e929a0bcb,
     type: 3}
-  _rookFactory: {fileID: 521617646987854270, guid: a8c98754284b73b42ab00db0f535638e,
+  _rookFactory: {fileID: 9222303927163709884, guid: a8c98754284b73b42ab00db0f535638e,
     type: 3}
-  _horseFactory: {fileID: 9151352377748591804, guid: a8954d5bfddec5940ada303456e64d95,
+  _horseFactory: {fileID: 5030880139328532581, guid: a8954d5bfddec5940ada303456e64d95,
     type: 3}

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 public class CurrentLocation
 {
-    private GameObject _whiteCell;
-    private GameObject _blackCell;
-    private readonly List<GameObject> _additionalCells = new List<GameObject>();
+    public GameObject WhiteCell { get; set; }
+    public GameObject BlackCell { get; set; }
+    public List<GameObject> AdditionalCells { get; set; } = new List<GameObject>();
 }

@@ -13,22 +13,22 @@ public class DeckInitializer : MonoBehaviour
     {
         Core.firstPlayerData.Deck = new Deck()
         {
-            Pawn = _pawnFactory.GetFigure(),
-            King = _kingFactory.GetFigure(),
-            Queen = _queenFactory.GetFigure(),
-            Bishop = _bishopFactory.GetFigure(),
-            Rook = _rookFactory.GetFigure(),
-            Horse = _horseFactory.GetFigure()
+            Pawn = _pawnFactory.GetFigure(Team.White),
+            King = _kingFactory.GetFigure(Team.White),
+            Queen = _queenFactory.GetFigure(Team.White),
+            Bishop = _bishopFactory.GetFigure(Team.White),
+            Rook = _rookFactory.GetFigure(Team.White),
+            Horse = _horseFactory.GetFigure(Team.White)
         };
 
         Core.secondPlayerData.Deck = new Deck()
         {
-            Pawn = _pawnFactory.GetFigure(),
-            King = _kingFactory.GetFigure(),
-            Queen = _queenFactory.GetFigure(),
-            Bishop = _bishopFactory.GetFigure(),
-            Rook = _rookFactory.GetFigure(),
-            Horse = _horseFactory.GetFigure()
+            Pawn = _pawnFactory.GetFigure(Team.Black),
+            King = _kingFactory.GetFigure(Team.Black),
+            Queen = _queenFactory.GetFigure(Team.Black),
+            Bishop = _bishopFactory.GetFigure(Team.Black),
+            Rook = _rookFactory.GetFigure(Team.Black),
+            Horse = _horseFactory.GetFigure(Team.Black)
         };
     }
 }
