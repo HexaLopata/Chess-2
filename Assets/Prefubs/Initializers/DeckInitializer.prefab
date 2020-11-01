@@ -1,0 +1,57 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1474782314882730980
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1099355405119509961}
+  - component: {fileID: 4251546590968637878}
+  m_Layer: 0
+  m_Name: DeckInitializer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1099355405119509961
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1474782314882730980}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.81839484, y: -0.045334335, z: -0.41701317}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4251546590968637878
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1474782314882730980}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa8779296fc83e24d99701af24632233, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _pawnFactory: {fileID: 1828805952936243119, guid: f0621c408b918d74b892a40037800d72,
+    type: 3}
+  _kingFactory: {fileID: -3550825192000782074, guid: 7ae241f629566ed4fbb94a83b3ccc668,
+    type: 3}
+  _queenFactory: {fileID: 3465020349987637657, guid: 29070c1220972544bb0beb7b5ca6d7a5,
+    type: 3}
+  _bishopFactory: {fileID: 5760503238924237558, guid: a4fd477ce2367934e9db053e929a0bcb,
+    type: 3}
+  _rookFactory: {fileID: 521617646987854270, guid: a8c98754284b73b42ab00db0f535638e,
+    type: 3}
+  _horseFactory: {fileID: 9151352377748591804, guid: a8954d5bfddec5940ada303456e64d95,
+    type: 3}
