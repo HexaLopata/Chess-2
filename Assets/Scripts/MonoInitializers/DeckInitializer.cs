@@ -9,7 +9,7 @@ public class DeckInitializer : MonoBehaviour
     [SerializeField] private FigureFactory _rookFactory;
     [SerializeField] private FigureFactory _horseFactory;
 
-    public void Start()
+    private void Start()
     {
         Core.firstPlayerData.Deck = new Deck()
         {

@@ -43,7 +43,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06b3eb41076291f4da6440a819967b57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _mainFieldFigurePrefub: {fileID: 8213960727013163430, guid: 2bdbc12bce1231c4094aa641ca6499a7,
+  _mainFieldFigurePrefub: {fileID: 6888356445000418148, guid: 2bdbc12bce1231c4094aa641ca6499a7,
     type: 3}
-  _battleFieldFigurePrefub: {fileID: 956727642000646371, guid: 14cf057023dce304d9bb03b540370f23,
+  _battleFieldFigurePrefub: {fileID: -6643803416252502472, guid: 14cf057023dce304d9bb03b540370f23,
     type: 3}

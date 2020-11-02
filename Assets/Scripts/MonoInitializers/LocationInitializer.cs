@@ -4,7 +4,7 @@ public class LocationInitializer : MonoBehaviour
 {
     [SerializeField] private LocationFactory _locationFactory;
 
-    public void Start()
+    private void Start()
     {
         Core.currentLocation.WhiteCell = _locationFactory.GetFirstCell();
         Core.currentLocation.BlackCell = _locationFactory.GetSecondCell();

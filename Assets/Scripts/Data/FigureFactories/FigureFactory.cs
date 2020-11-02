@@ -2,8 +2,8 @@
 
 public class FigureFactory : MonoBehaviour
 {
-    [SerializeField] protected GameObject _mainFieldFigurePrefub;
-    [SerializeField] protected GameObject _battleFieldFigurePrefub;
+    [SerializeField] protected MainFieldFigure _mainFieldFigurePrefub;
+    [SerializeField] protected BattleFieldFigure _battleFieldFigurePrefub;
 
     public FigureData GetFigure(Team team)
     {

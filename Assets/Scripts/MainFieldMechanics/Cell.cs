@@ -1,30 +1,45 @@
 ﻿using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
-public class Cell : MonoBehaviour
+public class Cell : MonoBehaviour, IPointerClickHandler
 {
-    private MainFieldFigure _currentFigure;
-    private CellState state = CellState.NotActive;
+    public MainFieldFigure Figure { get; set; }
+    public Vector2 OnBoardPosition { get; set; }
+    public CellState State { get; set; } = CellState.NotActive;
+    public RectTransform RectTransform { get; private set; }
 
-    // OnClick {
-    // field = GetParentComponent<Field>()
-    // if state == active && field.currentFigure != null
-    // {
-    //      if currentFigure != null
-    //      {
-    //          field.currentFigure.cell.figure = null
-    //          field.currentFigure.cell = this
-    //          ... Обновление информации о бое в Core и переход на сцену битвы
-    //          ... Берем информацию о битве и ставим победителя на эту клетку
-    //          currentFigure = [winner]
-    //          [winner].data.
-    //          field.currentFigure = null;
-    //          
-    //      }
-    //      else
-    //      {
-    //          
-    //      
-    //
+    private Color _color;
+
+    private void Awake()
+    {
+        RectTransform = GetComponent<RectTransform>();
+        _color = GetComponent<Image>().color;
+    }
+
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        var field = GetComponentInParent<Field>();
+        field.TurnManager.OnCellClick(this);
+    }
+
+    /// <summary>
+    /// Делает клетку активной для совершения хода на нее текущей фигурой
+    /// </summary>
+    public void Activate()
+    {
+        State = CellState.Active;
+        GetComponent<Image>().color = Color.green;
+    }
+
+    /// <summary>
+    /// Делает клетку не активной для совершения хода на нее текущей фигурой
+    /// </summary>
+    public void Deactivate()
+    {
+        State = CellState.NotActive;
+        GetComponent<Image>().color = _color;
+    }
 }
 
 public enum CellState
