@@ -9,12 +9,18 @@ public class Cell : MonoBehaviour, IPointerClickHandler
     public CellState State { get; set; } = CellState.NotActive;
     public RectTransform RectTransform { get; private set; }
 
-    private Color _color;
+    [SerializeField] private Sprite _normal;
+    [SerializeField] private Sprite _active;
+    [SerializeField] private Sprite _enemy;
+    private Image _image;
+    private Field _field;
 
     private void Awake()
     {
+        _field = GetComponentInParent<Field>();
         RectTransform = GetComponent<RectTransform>();
-        _color = GetComponent<Image>().color;
+        _image = GetComponent<Image>();
+        _image.sprite = _normal;
     }
 
     public void OnPointerClick(PointerEventData eventData)
@@ -29,7 +35,16 @@ public class Cell : MonoBehaviour, IPointerClickHandler
     public void Activate()
     {
         State = CellState.Active;
-        GetComponent<Image>().color = Color.green;
+        if (_field.TurnManager.SelectedFigure != Figure)
+        {
+            if (Figure != null)
+            {
+                if (_field.TurnManager.CurrentTurn != Figure.Data.Team)
+                    _image.sprite = _enemy;
+            }
+            else
+                _image.sprite = _active;
+        }
     }
 
     /// <summary>
@@ -38,7 +53,7 @@ public class Cell : MonoBehaviour, IPointerClickHandler
     public void Deactivate()
     {
         State = CellState.NotActive;
-        GetComponent<Image>().color = _color;
+        _image.sprite = _normal;
     }
 }
 

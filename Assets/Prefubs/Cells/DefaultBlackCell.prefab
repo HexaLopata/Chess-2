@@ -59,7 +59,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.24528301, g: 0.24528301, b: 0.24528301, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -87,3 +87,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5e4dfd9142f8a84dbe2fa48b36c46fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _normal: {fileID: 21300000, guid: d4c1ede2b702b9d49ac3eb0650ac3367, type: 3}
+  _active: {fileID: 21300000, guid: 42ed233da2c1a1043b777897809fa7bb, type: 3}
+  _enemy: {fileID: 21300000, guid: b0ac88752b0d7dc4b9ddc359bbd77a18, type: 3}

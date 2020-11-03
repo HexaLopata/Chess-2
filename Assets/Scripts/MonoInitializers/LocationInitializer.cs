@@ -6,8 +6,8 @@ public class LocationInitializer : MonoBehaviour
 
     private void Start()
     {
-        Core.currentLocation.WhiteCell = _locationFactory.GetFirstCell();
-        Core.currentLocation.BlackCell = _locationFactory.GetSecondCell();
-        Core.currentLocation.AdditionalCells = _locationFactory.GetAdditionalCells();
+        Core.CurrentLocation.WhiteCell = _locationFactory.GetFirstCell();
+        Core.CurrentLocation.BlackCell = _locationFactory.GetSecondCell();
+        Core.CurrentLocation.AdditionalCells = _locationFactory.GetAdditionalCells();
     }
 }

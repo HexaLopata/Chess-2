@@ -11,7 +11,7 @@ public class DeckInitializer : MonoBehaviour
 
     private void Start()
     {
-        Core.firstPlayerData.Deck = new Deck()
+        Core.FirstPlayerData.Deck = new Deck()
         {
             Pawn = _pawnFactory.GetFigure(Team.White),
             King = _kingFactory.GetFigure(Team.White),
@@ -21,7 +21,7 @@ public class DeckInitializer : MonoBehaviour
             Horse = _horseFactory.GetFigure(Team.White)
         };
 
-        Core.secondPlayerData.Deck = new Deck()
+        Core.SecondPlayerData.Deck = new Deck()
         {
             Pawn = _pawnFactory.GetFigure(Team.Black),
             King = _kingFactory.GetFigure(Team.Black),

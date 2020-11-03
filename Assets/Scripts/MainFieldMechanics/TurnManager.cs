@@ -57,8 +57,17 @@ public class TurnManager
             // 2. Начать битву, если выбранная фигура уже есть и клетка, на которой стоит нажатая фигура активна
             if (SelectedFigure != null && figure.Cell.State == CellState.Active)
             {
-                // ToDo Реализовать переход в режим битвы
-                Debug.Log("Battle");
+                if (Core.GameMode == GameMode.Normal)
+                {
+                    var newCell = figure.Cell;
+                    figure.DestroyThisFigure();
+                    SelectedFigure.MoveToAnotherCell(newCell);
+                }
+                else
+                {
+                    // ToDo Реализовать переход в режим битвы
+                    Debug.Log("Battle");
+                }
                 SwitchTurn();
             }
         }

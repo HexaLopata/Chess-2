@@ -87,3 +87,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5e4dfd9142f8a84dbe2fa48b36c46fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _normal: {fileID: 21300000, guid: bfc60cd32aa0d004cb1b33f9563f3bb7, type: 3}
+  _active: {fileID: 21300000, guid: 036c84cc3c259e049a103c08f8c814aa, type: 3}
+  _enemy: {fileID: 21300000, guid: 5db38d8759bb6f3469f4bb72a8ba4c9f, type: 3}
