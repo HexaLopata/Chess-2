@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4473234848367087964}
   - component: {fileID: 2394465854624825971}
   - component: {fileID: 4451480984220920779}
-  - component: {fileID: 3709228448645315353}
+  - component: {fileID: 8926868282549845125}
   m_Layer: 5
   m_Name: MainFieldBishop
   m_TagString: Untagged
@@ -75,7 +75,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &3709228448645315353
+--- !u!114 &8926868282549845125
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -84,7 +84,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2913716869277117333}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5a30bbc85fe2d1c4b8a760731fbe64d1, type: 3}
+  m_Script: {fileID: 11500000, guid: 0abd49e02048d1d48a55eb80c5bd6971, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _whiteSkin: {fileID: 21300000, guid: 62a1e7d6f572d964f936889a442482d7, type: 3}

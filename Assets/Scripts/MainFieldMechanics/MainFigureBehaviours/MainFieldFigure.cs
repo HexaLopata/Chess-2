@@ -28,7 +28,7 @@ public class MainFieldFigure : MonoBehaviour, IPointerClickHandler
     }  
 
     public Cell Cell { get; set; }
-    public Vector2 OnBoardPosition { get; set; }
+    public Vector2Int OnBoardPosition { get; set; }
 
     [SerializeField] private Sprite _whiteSkin;
     [SerializeField] private Sprite _blackSkin;
@@ -48,7 +48,7 @@ public class MainFieldFigure : MonoBehaviour, IPointerClickHandler
         field.TurnManager.OnFigureClick(this);
     }
 
-    public void MoveToAnotherCell(Cell cell)
+    public virtual void MoveToAnotherCell(Cell cell)
     {
         if (Cell != null)
             Cell.Figure = null;
@@ -69,8 +69,8 @@ public class MainFieldFigure : MonoBehaviour, IPointerClickHandler
         Destroy(gameObject);
     }
 
-    public virtual Cell[,] GetRelevantTurn(Cell[,] cells)
+    public virtual Cell[] GetRelevantTurn(Cell[,] cells)
     {
-        return cells;
+        return new Cell[0];
     }
 }

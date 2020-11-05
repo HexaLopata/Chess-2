@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7900204323515686887}
   - component: {fileID: 476835614830719525}
   - component: {fileID: 7648656955545014590}
-  - component: {fileID: 8793140266809584451}
+  - component: {fileID: 8384773592410704896}
   m_Layer: 5
   m_Name: MainFieldQueen
   m_TagString: Untagged
@@ -75,7 +75,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &8793140266809584451
+--- !u!114 &8384773592410704896
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -84,7 +84,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1285346982873398855}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5a30bbc85fe2d1c4b8a760731fbe64d1, type: 3}
+  m_Script: {fileID: 11500000, guid: 8f5027de81d572e3fb45c0a53433be2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _whiteSkin: {fileID: 21300000, guid: 7cc8b4c9f6600fa46981f8d72f4b82d4, type: 3}

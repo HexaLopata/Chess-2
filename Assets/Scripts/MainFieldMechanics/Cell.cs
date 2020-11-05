@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class Cell : MonoBehaviour, IPointerClickHandler
 {
     public MainFieldFigure Figure { get; set; }
-    public Vector2 OnBoardPosition { get; set; }
+    public Vector2Int OnBoardPosition { get; set; }
     public CellState State { get; set; } = CellState.NotActive;
     public RectTransform RectTransform { get; private set; }
 

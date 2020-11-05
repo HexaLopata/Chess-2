@@ -45,7 +45,7 @@ public class Field : MonoBehaviour
         figuresForInit.Add(new KeyValuePair<Vector2Int, FigureData>(new Vector2Int(4, 0), Core.FirstPlayerData.Deck.King));
         figuresForInit.Add(new KeyValuePair<Vector2Int, FigureData>(new Vector2Int(5, 0), Core.FirstPlayerData.Deck.Bishop));
         figuresForInit.Add(new KeyValuePair<Vector2Int, FigureData>(new Vector2Int(6, 0), Core.FirstPlayerData.Deck.Horse));
-        figuresForInit.Add(new KeyValuePair<Vector2Int, FigureData>(new Vector2Int(7, 0), Core.FirstPlayerData.Deck.Pawn));
+        figuresForInit.Add(new KeyValuePair<Vector2Int, FigureData>(new Vector2Int(7, 0), Core.FirstPlayerData.Deck.Rook));
         figuresForInit.Add(new KeyValuePair<Vector2Int, FigureData>(new Vector2Int(0, 1), Core.FirstPlayerData.Deck.Pawn));
         figuresForInit.Add(new KeyValuePair<Vector2Int, FigureData>(new Vector2Int(1, 1), Core.FirstPlayerData.Deck.Pawn));
         figuresForInit.Add(new KeyValuePair<Vector2Int, FigureData>(new Vector2Int(2, 1), Core.FirstPlayerData.Deck.Pawn));
@@ -57,8 +57,8 @@ public class Field : MonoBehaviour
         figuresForInit.Add(new KeyValuePair<Vector2Int, FigureData>(new Vector2Int(0, 7), Core.SecondPlayerData.Deck.Rook));
         figuresForInit.Add(new KeyValuePair<Vector2Int, FigureData>(new Vector2Int(1, 7), Core.SecondPlayerData.Deck.Horse));
         figuresForInit.Add(new KeyValuePair<Vector2Int, FigureData>(new Vector2Int(2, 7), Core.SecondPlayerData.Deck.Bishop));
-        figuresForInit.Add(new KeyValuePair<Vector2Int, FigureData>(new Vector2Int(3, 7), Core.SecondPlayerData.Deck.King));
-        figuresForInit.Add(new KeyValuePair<Vector2Int, FigureData>(new Vector2Int(4, 7), Core.SecondPlayerData.Deck.Queen));
+        figuresForInit.Add(new KeyValuePair<Vector2Int, FigureData>(new Vector2Int(3, 7), Core.SecondPlayerData.Deck.Queen));
+        figuresForInit.Add(new KeyValuePair<Vector2Int, FigureData>(new Vector2Int(4, 7), Core.SecondPlayerData.Deck.King));
         figuresForInit.Add(new KeyValuePair<Vector2Int, FigureData>(new Vector2Int(5, 7), Core.SecondPlayerData.Deck.Bishop));
         figuresForInit.Add(new KeyValuePair<Vector2Int, FigureData>(new Vector2Int(6, 7), Core.SecondPlayerData.Deck.Horse));
         figuresForInit.Add(new KeyValuePair<Vector2Int, FigureData>(new Vector2Int(7, 7), Core.SecondPlayerData.Deck.Rook));
@@ -78,7 +78,13 @@ public class Field : MonoBehaviour
         MainFieldFigure figure = Instantiate(data.MainFieldFigure, transform);
         figure.Data = data;
         if (figureAndPosition.Key.x < Cells.GetLength(0) && figureAndPosition.Key.y < Cells.GetLength(1))
+        {
             figure.MoveToAnotherCell(Cells[figureAndPosition.Key.x, figureAndPosition.Key.y]);
+            if(figure is MainFieldPawn)
+            {
+                ((MainFieldPawn)figure).IsFirstTurn = true;
+            }
+        }
         else
             throw new System.Exception("Фигура не может выходить за границы поля");
     }
@@ -102,7 +108,7 @@ public class Field : MonoBehaviour
                 cell.transform.localPosition = new Vector2((x - _width / 2) * _cellWidth,
                                                            (y - _height / 2) * _cellHeight);
                 Cells[x, y] = cell.GetComponent<Cell>();
-                cell.GetComponent<Cell>().OnBoardPosition = new Vector2(x, y);
+                cell.GetComponent<Cell>().OnBoardPosition = new Vector2Int(x, y);
             }
         }
     }
@@ -111,16 +117,13 @@ public class Field : MonoBehaviour
     /// Делает все переданные клетки активными
     /// </summary>
     /// <param name="cells"></param>
-    public void ActivateCells(Cell[,] cells)
+    public void ActivateCells(Cell[] cells)
     {
         DeactivateAllCells();
 
         for (int x = 0; x < cells.GetLength(0); x++)
         {
-            for (int y = 0; y < cells.GetLength(1); y++)
-            {
-                cells[x, y].Activate();
-            }
+            cells[x].Activate();
         }
     }
 

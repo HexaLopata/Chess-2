@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4360577911190615524}
   - component: {fileID: 7971235671482734260}
   - component: {fileID: 4076576434001537800}
-  - component: {fileID: 1894385952755155767}
+  - component: {fileID: -695108906768192768}
   m_Layer: 5
   m_Name: MainFieldHorse
   m_TagString: Untagged
@@ -75,7 +75,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &1894385952755155767
+--- !u!114 &-695108906768192768
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -84,7 +84,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 33131794296542120}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5a30bbc85fe2d1c4b8a760731fbe64d1, type: 3}
+  m_Script: {fileID: 11500000, guid: 46b43efa6df4bc4f7ab937b4ea532e03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _whiteSkin: {fileID: 21300000, guid: 276409fdc7c0bbe46b0ea7b7bd535e8d, type: 3}
