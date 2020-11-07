@@ -23,6 +23,7 @@ public class MainFieldFigure : MonoBehaviour, IPointerClickHandler
                 _image.sprite = _whiteSkin;
                 _rectTransform.rotation = new Quaternion(0, 0, 0, 0);
             }
+            
             _data = value;
         } 
     }  
@@ -59,7 +60,7 @@ public class MainFieldFigure : MonoBehaviour, IPointerClickHandler
         // Переносим и выравниваем
         Vector2 newPosition = new Vector2(cellPosition.x + Cell.RectTransform.rect.width / 2,
                                           cellPosition.y + Cell.RectTransform.rect.height / 2);
-        _rectTransform.localPosition = newPosition;
+        GetComponent<RectTransform>().localPosition = newPosition;
     }
 
     public void DestroyThisFigure()

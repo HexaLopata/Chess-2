@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-
-public enum Team
+﻿public enum Team
 {
     White,
     Black
@@ -13,25 +11,26 @@ public interface IFigureDataPrototype
 
 public class FigureData : IFigureDataPrototype
 {
-    public BattleFieldFigure BattleFieldFigure => _battleFieldFigurePrefub;
-    public MainFieldFigure MainFieldFigure => _mainFieldFigurePrefub;
+    public BattleFieldFigure BattleFieldFigurePrefub => _battleFieldFigurePrefubPrefub;
+    public MainFieldFigure MainFieldFigurePrefub => _mainFieldFigurePrefubPrefub;
+    public MainFieldFigure MainFieldFigureInstance { get; set; }
 
     public Team Team => _team;
 
-    private MainFieldFigure _mainFieldFigurePrefub;
-    private BattleFieldFigure _battleFieldFigurePrefub;
+    private readonly MainFieldFigure _mainFieldFigurePrefubPrefub;
+    private readonly BattleFieldFigure _battleFieldFigurePrefubPrefub;
     private Team _team;
-    private int health = 100;
+    public int Health { get; set; } = 100;
 
-    public FigureData(MainFieldFigure mainFieldFigurePrefub, BattleFieldFigure battleFieldFigurePrefub, Team team)
+    public FigureData(MainFieldFigure mainFieldFigurePrefubPrefub, BattleFieldFigure battleFieldFigurePrefubPrefub, Team team)
     {
-        _mainFieldFigurePrefub = mainFieldFigurePrefub;
-        _battleFieldFigurePrefub = battleFieldFigurePrefub;
+        _mainFieldFigurePrefubPrefub = mainFieldFigurePrefubPrefub;
+        _battleFieldFigurePrefubPrefub = battleFieldFigurePrefubPrefub;
         _team = team;
     }
 
     public FigureData Clone()
     {
-        return new FigureData(_mainFieldFigurePrefub, _battleFieldFigurePrefub, Team);
+        return new FigureData(_mainFieldFigurePrefubPrefub, _battleFieldFigurePrefubPrefub, Team);
     }
 }

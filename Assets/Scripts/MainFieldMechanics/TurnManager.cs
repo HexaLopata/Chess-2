@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class TurnManager
 {
@@ -12,6 +13,9 @@ public class TurnManager
         _field = field;
     }
 
+    /// <summary>
+    /// Деактивирует все клетки и передает ход другой команде
+    /// </summary>
     public void SwitchTurn()
     {
         if (CurrentTurn == Team.Black)
@@ -22,6 +26,10 @@ public class TurnManager
         _field.DeactivateAllCells();
     }
 
+    /// <summary>
+    /// Этот метод нужен, чтобы менеджер ходов определял нажатия на клетки и принимал соответствующие действия
+    /// </summary>
+    /// <param name="cell"></param>
     public void OnCellClick(Cell cell)
     {
         // Если на клетке есть фигура, то нет смысла взаимодействовать именно с ней
@@ -31,7 +39,7 @@ public class TurnManager
         }
         else
         {
-            // Если клекта считается активной для хода, то произвести ход
+            // Если клетка считается активной для хода, то произвести ход
             if (cell.State == CellState.Active)
             {
                 SelectedFigure.MoveToAnotherCell(cell);
@@ -40,6 +48,10 @@ public class TurnManager
         }
     }
 
+    /// <summary>
+    /// Этот метод нужен, чтобы менеджер ходов определял нажатия на фигуры и принимал соответствующие действия
+    /// </summary>
+    /// <param name="figure"></param>
     public void OnFigureClick(MainFieldFigure figure)
     {
         // Если эта фигура не выбрана, то либо:
@@ -65,11 +77,30 @@ public class TurnManager
                 }
                 else
                 {
-                    // ToDo Реализовать переход в режим битвы
-                    Debug.Log("Battle");
+                    // Инициализируем и начинаем бой между фигурами
+                    Core.BattleInfo.SetAllInitialInfo(SelectedFigure.Data, figure.Data, figure.Cell);
+                    StartBattle();
                 }
                 SwitchTurn();
             }
         }
+    }
+
+    private void StartBattle()
+    {
+        Camera.main.GetComponent<AudioListener>().enabled = false;
+        SceneManager.LoadSceneAsync(3, LoadSceneMode.Additive);
+        Core.BattleInfo.BattleEnd += EndBattle;
+    }
+
+    /// <summary>
+    /// Применяет все изменения полученные в результате битвы фигур
+    /// </summary>
+    public void EndBattle()
+    {
+        Core.BattleInfo.BattleEnd -= EndBattle;
+        Core.BattleInfo.Loser.MainFieldFigureInstance.DestroyThisFigure();
+        var cell = Core.BattleInfo.CellFightingFor;
+        Core.BattleInfo.Winner.MainFieldFigureInstance.MoveToAnotherCell(cell);
     }
 }

@@ -75,8 +75,9 @@ public class Field : MonoBehaviour
     private void CreateFigure(KeyValuePair<Vector2Int, FigureData> figureAndPosition)
     {
         var data = figureAndPosition.Value.Clone();
-        MainFieldFigure figure = Instantiate(data.MainFieldFigure, transform);
+        MainFieldFigure figure = Instantiate(data.MainFieldFigurePrefub, transform);
         figure.Data = data;
+        figure.Data.MainFieldFigureInstance = figure;
         if (figureAndPosition.Key.x < Cells.GetLength(0) && figureAndPosition.Key.y < Cells.GetLength(1))
         {
             figure.MoveToAnotherCell(Cells[figureAndPosition.Key.x, figureAndPosition.Key.y]);

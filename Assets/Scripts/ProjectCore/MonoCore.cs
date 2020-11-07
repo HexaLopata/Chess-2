@@ -13,7 +13,7 @@ public class MonoCore : MonoBehaviour
     private void Start()
     {
         var loadOperation = SceneManager.LoadSceneAsync(1, LoadSceneMode.Additive);
-        Scene menuScene = SceneManager.GetSceneAt(1);
+        Scene menuScene = SceneManager.GetSceneByBuildIndex(1);
         loadOperation.allowSceneActivation = true;
         loadOperation.completed += (operation) => SceneManager.SetActiveScene(menuScene);
     }
