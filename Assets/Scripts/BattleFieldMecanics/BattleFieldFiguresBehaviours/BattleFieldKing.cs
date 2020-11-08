@@ -14,10 +14,6 @@ public class BattleFieldKing : BattleFieldFigure
         {
             if (battleFieldCells[x + cellX, y + cellY].BattleFieldFigure == null)
             {
-                turns.Add(battleFieldCells[x + cellX, y + cellY]);
-            }
-            else
-            {
                 if (battleFieldCells[x + cellX, y + cellY].BattleFieldObject == null)
                 {
                     turns.Add(battleFieldCells[x + cellX, y + cellY]);

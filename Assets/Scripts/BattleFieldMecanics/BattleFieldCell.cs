@@ -40,7 +40,6 @@ public class BattleFieldCell : Cell
 
     public override void OnPointerClick(PointerEventData eventData)
     {
-        Debug.Log(OnBoardPosition);
         _battleField.BattleController.OnCellClick(this);
     }
 

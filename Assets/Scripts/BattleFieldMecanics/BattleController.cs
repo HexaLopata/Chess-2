@@ -52,8 +52,8 @@ public class BattleController : MonoBehaviour
         {
             _currentFigure.MoveToAnotherCell(battleFieldCell);
             LaunchAnAttack(_currentFigure.GetRelevantAttackMoves(_field.BattleFieldCells), _currentFigure);
+            SwitchTurn();
         }
-        SwitchTurn();
     }
 
     public void LaunchAnAttack(BattleFieldCell[] battleFieldCells, BattleFieldFigure attacker)
