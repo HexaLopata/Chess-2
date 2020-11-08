@@ -82,6 +82,7 @@ public class BattleFieldHorse : BattleFieldFigure
             CheckAllCellsAndAdd(-2, -1);
         if (y > 0 && battleFieldCells.GetLength(0) > x + 2)
             CheckAllCellsAndAdd(2, -1);
+        
         return turns.ToArray();
     }
     protected override void SetDamageAndDefence()

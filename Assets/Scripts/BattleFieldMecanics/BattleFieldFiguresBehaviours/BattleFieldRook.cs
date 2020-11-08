@@ -49,6 +49,10 @@ public class BattleFieldRook : BattleFieldFigure
                             break;
                     }
                 }
+                else
+                {
+                    break;
+                }
 
                 localX += cellX;
                 localY += cellY;

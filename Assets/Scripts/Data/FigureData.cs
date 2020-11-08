@@ -11,27 +11,27 @@ public interface IFigureDataPrototype
 
 public class FigureData : IFigureDataPrototype
 {
-    public BattleFieldFigure BattleFieldFigurePrefub => _battleFieldFigurePrefubPrefub;
-    public MainFieldFigure MainFieldFigurePrefub => _mainFieldFigurePrefubPrefub;
+    public BattleFieldFigure BattleFieldFigurePrefub => _battleFieldFigurePrefub;
+    public MainFieldFigure MainFieldFigurePrefub => _mainFieldFigurePrefub;
     public MainFieldFigure MainFieldFigureInstance { get; set; }
     public BattleFieldFigure BattleFieldFigureInstance { get; set; }
 
     public Team Team => _team;
 
-    private readonly MainFieldFigure _mainFieldFigurePrefubPrefub;
-    private readonly BattleFieldFigure _battleFieldFigurePrefubPrefub;
+    private readonly MainFieldFigure _mainFieldFigurePrefub;
+    private readonly BattleFieldFigure _battleFieldFigurePrefub;
     private Team _team;
     public int Health { get; set; } = 100;
 
-    public FigureData(MainFieldFigure mainFieldFigurePrefubPrefub, BattleFieldFigure battleFieldFigurePrefubPrefub, Team team)
+    public FigureData(MainFieldFigure mainFieldFigurePrefub, BattleFieldFigure battleFieldFigurePrefub, Team team)
     {
-        _mainFieldFigurePrefubPrefub = mainFieldFigurePrefubPrefub;
-        _battleFieldFigurePrefubPrefub = battleFieldFigurePrefubPrefub;
+        _mainFieldFigurePrefub = mainFieldFigurePrefub;
+        _battleFieldFigurePrefub = battleFieldFigurePrefub;
         _team = team;
     }
 
     public FigureData Clone()
     {
-        return new FigureData(_mainFieldFigurePrefubPrefub, _battleFieldFigurePrefubPrefub, Team);
+        return new FigureData(_mainFieldFigurePrefub, _battleFieldFigurePrefub, Team);
     }
 }

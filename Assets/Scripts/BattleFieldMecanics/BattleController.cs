@@ -2,11 +2,14 @@ using System;
 using System.Diagnostics;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class BattleController : MonoBehaviour
 {
     public event Action BattleEnd;
     private BattleInfo _battleInfo;
+    [SerializeField] private Image _firstHealthBar;
+    [SerializeField] private Image _secondHealthBar;
     [SerializeField] private BattleField _field;
     public Team CurrentTurn { get; private set; } = Team.White;
     private BattleFieldFigure _currentFigure;
@@ -28,7 +31,14 @@ public class BattleController : MonoBehaviour
             CurrentTurn = Team.White;
             _currentFigure = _field.FirstFigure;
         }
-        _field.ActivateAllCells(_currentFigure.GetRelevantMoves(_field.BattleFieldCells));
+        var turns = _currentFigure.GetRelevantMoves(_field.BattleFieldCells);
+        if(turns.Length == 0)
+            SwitchTurn();
+        else
+            _field.ActivateAllCells(turns);
+        
+        _firstHealthBar.fillAmount = (float)_field.FirstFigure.Health / 100;
+        _secondHealthBar.fillAmount = (float)_field.SecondFigure.Health / 100;
     }
     
     public void SwitchTurn()
@@ -43,7 +53,14 @@ public class BattleController : MonoBehaviour
             CurrentTurn = Team.Black;
             _currentFigure = _field.SecondFigure;
         }
-        _field.ActivateAllCells(_currentFigure.GetRelevantMoves(_field.BattleFieldCells));
+        var turns = _currentFigure.GetRelevantMoves(_field.BattleFieldCells);
+        if(turns.Length == 0)
+            SwitchTurn();
+        else
+            _field.ActivateAllCells(turns);
+        
+        _firstHealthBar.fillAmount = (float)_field.FirstFigure.Health / 100;
+        _secondHealthBar.fillAmount = (float)_field.SecondFigure.Health / 100;
     }
 
     public void OnCellClick(BattleFieldCell battleFieldCell)
@@ -66,7 +83,8 @@ public class BattleController : MonoBehaviour
 
     public void SetBattleResult(Team team)
     {
-        _field.FirstFigure.Data.Health = _field.FirstFigure.Health;
+        _battleInfo.FirstFigure.Health = _field.FirstFigure.Health;
+        _battleInfo.SecondFigure.Health = _field.SecondFigure.Health;
         if (_field.FirstFigure.Data.Team == team)
         {
             _field.SecondFigure.Data.Health = _field.SecondFigure.Health;

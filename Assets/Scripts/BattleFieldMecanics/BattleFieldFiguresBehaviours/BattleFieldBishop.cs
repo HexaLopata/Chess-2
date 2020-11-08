@@ -45,6 +45,10 @@ public class BattleFieldBishop : BattleFieldFigure
                             break;
                     }
                 }
+                else
+                {
+                    break;
+                }
 
                 localX += cellX;
                 localY += cellY;
