@@ -12,7 +12,7 @@ public class BattleFieldHorse : BattleFieldFigure
         
         void CheckAllCellsAndAdd(int cellX, int cellY)
         {
-            if (battleFieldCells[x + cellX, y + cellY].BattleFieldFigure != null)
+            if (battleFieldCells[x + cellX, y + cellY].BattleFieldFigure == null)
             {
                 if (battleFieldCells[x + cellX, y + cellY].BattleFieldObject == null)
                 {
