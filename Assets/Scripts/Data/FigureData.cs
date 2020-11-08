@@ -14,6 +14,7 @@ public class FigureData : IFigureDataPrototype
     public BattleFieldFigure BattleFieldFigurePrefub => _battleFieldFigurePrefubPrefub;
     public MainFieldFigure MainFieldFigurePrefub => _mainFieldFigurePrefubPrefub;
     public MainFieldFigure MainFieldFigureInstance { get; set; }
+    public BattleFieldFigure BattleFieldFigureInstance { get; set; }
 
     public Team Team => _team;
 

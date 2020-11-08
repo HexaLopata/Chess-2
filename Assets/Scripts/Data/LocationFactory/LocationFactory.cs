@@ -3,18 +3,31 @@ using UnityEngine;
 
 public class LocationFactory : MonoBehaviour
 {
-    [SerializeField] private GameObject _whiteCell;
-    [SerializeField] private GameObject _blackCell;
+    [SerializeField] private GameObject _mainFieldWhiteCell;
+    [SerializeField] private GameObject _mainFieldBlackCell;
+    [SerializeField] private GameObject _battleFieldWhiteCell;
+    [SerializeField] private GameObject _battleFieldBlackCell;
+    
     [SerializeField] private List<GameObject> _additionalCells = new List<GameObject>();
 
-    public GameObject GetFirstCell()
+    public GameObject GetFirstMainCell()
     {
-        return _whiteCell;
+        return _mainFieldWhiteCell;
     }
 
-    public GameObject GetSecondCell()
+    public GameObject GetSecondMainCell()
     {
-        return _blackCell;
+        return _mainFieldBlackCell;
+    }
+    
+    public GameObject GetFirstBattleCell()
+    {
+        return _battleFieldWhiteCell;
+    }
+
+    public GameObject GetSecondBattleCell()
+    {
+        return _battleFieldBlackCell;
     }
 
     public List<GameObject> GetAdditionalCells()

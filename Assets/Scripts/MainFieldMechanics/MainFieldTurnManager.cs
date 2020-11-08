@@ -1,16 +1,16 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class TurnManager
+public class MainFieldTurnManager
 {
     public MainFieldFigure SelectedFigure { get; set; }
     public Team CurrentTurn { get; private set; } = Team.White;
 
-    private Field _field;
+    private MainField _mainField;
 
-    public TurnManager(Field field)
+    public MainFieldTurnManager(MainField mainField)
     {
-        _field = field;
+        _mainField = mainField;
     }
 
     /// <summary>
@@ -23,7 +23,7 @@ public class TurnManager
         else
             CurrentTurn = Team.Black;
         SelectedFigure = null;
-        _field.DeactivateAllCells();
+        _mainField.DeactivateAllCells();
     }
 
     /// <summary>
@@ -35,7 +35,7 @@ public class TurnManager
         // Если на клетке есть фигура, то нет смысла взаимодействовать именно с ней
         if (cell.Figure != null)
         {
-            OnFigureClick(cell.Figure);
+            OnFigureClick(cell.Figure.MainFieldFigureInstance);
         }
         else
         {
@@ -61,8 +61,8 @@ public class TurnManager
             if (CurrentTurn == figure.Data.Team)
             {
                 SelectedFigure = figure;
-                var turns = figure.GetRelevantTurn(_field.Cells);
-                _field.ActivateCells(turns);
+                var turns = figure.GetRelevantTurn(_mainField.Cells);
+                _mainField.ActivateCells(turns);
                 return;
             }
 

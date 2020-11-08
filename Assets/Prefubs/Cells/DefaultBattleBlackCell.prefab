@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 6806513660793193627}
   - component: {fileID: 4947131408221973223}
   - component: {fileID: 8536686361514536332}
-  - component: {fileID: -3390865353090422700}
+  - component: {fileID: 1058656933859933440}
   m_Layer: 5
-  m_Name: DefaultBlackCell
+  m_Name: DefaultBattleBlackCell
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -75,7 +75,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &-3390865353090422700
+--- !u!114 &1058656933859933440
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -84,7 +84,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2524589839725303674}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e5e4dfd9142f8a84dbe2fa48b36c46fd, type: 3}
+  m_Script: {fileID: 11500000, guid: af8fdc81881f45a6bffd1df939118dcb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _normal: {fileID: 21300000, guid: d4c1ede2b702b9d49ac3eb0650ac3367, type: 3}

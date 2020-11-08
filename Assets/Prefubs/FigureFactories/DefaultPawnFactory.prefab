@@ -45,5 +45,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _mainFieldFigurePrefub: {fileID: -5876291417895560603, guid: 79c7c740b787d394ca729e6ebb322858,
     type: 3}
-  _battleFieldFigurePrefub: {fileID: -7628261352051072952, guid: b2010d86734c0c349a78e420e1f27020,
+  _battleFieldFigurePrefub: {fileID: -3502329668506912011, guid: b2010d86734c0c349a78e420e1f27020,
     type: 3}

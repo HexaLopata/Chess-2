@@ -43,8 +43,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77d4e975eb0bcd34ebba40717e5515ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _whiteCell: {fileID: 3198914586772740574, guid: 23ccf75f796274644ba3cb84661d9014,
+  _mainFieldWhiteCell: {fileID: 3198914586772740574, guid: 23ccf75f796274644ba3cb84661d9014,
     type: 3}
-  _blackCell: {fileID: 2524589839725303674, guid: 5767ef85a8a0bba43853517197d06554,
+  _mainFieldBlackCell: {fileID: 2524589839725303674, guid: 5767ef85a8a0bba43853517197d06554,
+    type: 3}
+  _battleFieldWhiteCell: {fileID: 2524589839725303674, guid: bff5bc2c56b659700a775ea46d747ab1,
+    type: 3}
+  _battleFieldBlackCell: {fileID: 2524589839725303674, guid: a95eba521f9d7dcdcaadb46b59b7f49d,
     type: 3}
   _additionalCells: []
