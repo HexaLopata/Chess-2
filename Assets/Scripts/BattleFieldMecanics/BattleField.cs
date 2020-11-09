@@ -43,10 +43,22 @@ public class BattleField : FieldBase
             FirstFigure.Data = _battleInfo.SecondFigure;
             firstTurn = Team.Black;
         }
-        FirstFigure.MoveToAnotherCell(Cells[Width - 1, 0]);
+
+        if (Width % 2 == 0 && Height % 2 == 1)
+        {
+            FirstFigure.MoveToAnotherCell(Cells[0, 0]);
+        }
+        else if(Width % 2 == 1 && Height % 2 == 0)
+        {
+            FirstFigure.MoveToAnotherCell(Cells[Width - 1, Height - 1]);
+        }
+        else
+        {
+            FirstFigure.MoveToAnotherCell(Cells[Width - 1, 0]);
+        }
+
         SecondFigure.MoveToAnotherCell(Cells[0, Height - 1]);
-      
-        
+
         BattleFieldCells = new BattleFieldCell[Cells.GetLength(0), Cells.GetLength(1)];
         for (int x = 0; x < BattleFieldCells.GetLength(0); x++)
         {
