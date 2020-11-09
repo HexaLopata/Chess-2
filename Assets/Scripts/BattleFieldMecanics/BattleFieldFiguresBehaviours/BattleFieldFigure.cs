@@ -70,6 +70,7 @@ public abstract class BattleFieldFigure : MonoFigure
     {
         StartCoroutine(DamageAnimation());
         Health -= (damage - Defence);
+        Data.Health = Health;
         if (Health <= 0)
         {
             if(Data.Team == Team.Black)

@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Diagnostics;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -11,6 +12,8 @@ public class BattleController : MonoBehaviour
     [SerializeField] private Image _firstHealthBar;
     [SerializeField] private Image _secondHealthBar;
     [SerializeField] private BattleField _field;
+    [SerializeField] private Image _yourTurnImage1;
+    [SerializeField] private Image _yourTurnImage2;
     public Team CurrentTurn { get; private set; } = Team.White;
     private BattleFieldFigure _currentFigure;
 
@@ -37,8 +40,7 @@ public class BattleController : MonoBehaviour
         else
             _field.ActivateAllCells(turns);
         
-        _firstHealthBar.fillAmount = (float)_field.FirstFigure.Health / 100;
-        _secondHealthBar.fillAmount = (float)_field.SecondFigure.Health / 100;
+        UpdateUI();
     }
     
     public void SwitchTurn()
@@ -58,10 +60,34 @@ public class BattleController : MonoBehaviour
             SwitchTurn();
         else
             _field.ActivateAllCells(turns);
-        
-        _firstHealthBar.fillAmount = (float)_field.FirstFigure.Health / 100;
-        _secondHealthBar.fillAmount = (float)_field.SecondFigure.Health / 100;
+        UpdateUI();
     }
+
+    private void UpdateUI()
+    {
+        StartCoroutine(HPDecreaseAnimation(_firstHealthBar, (float)_field.FirstFigure.Health / 100));
+        StartCoroutine(HPDecreaseAnimation(_secondHealthBar, (float)_field.SecondFigure.Health / 100));
+        if (CurrentTurn == Team.Black)
+        {
+            _yourTurnImage1.enabled = false;
+            _yourTurnImage2.enabled = true;
+        }
+        else
+        {
+            _yourTurnImage1.enabled = true;
+            _yourTurnImage2.enabled = false;
+        }
+    }
+
+    public IEnumerator HPDecreaseAnimation(Image healthBar, float targetHP)
+    {
+        while (healthBar.fillAmount > targetHP)
+        {
+            healthBar.fillAmount -= 0.01f;
+            yield return new WaitForSeconds(0.03f);
+        }
+    }
+
 
     public void OnCellClick(BattleFieldCell battleFieldCell)
     {
@@ -83,8 +109,6 @@ public class BattleController : MonoBehaviour
 
     public void SetBattleResult(Team team)
     {
-        _battleInfo.FirstFigure.Health = _field.FirstFigure.Health;
-        _battleInfo.SecondFigure.Health = _field.SecondFigure.Health;
         if (_field.FirstFigure.Data.Team == team)
         {
             _field.SecondFigure.Data.Health = _field.SecondFigure.Health;

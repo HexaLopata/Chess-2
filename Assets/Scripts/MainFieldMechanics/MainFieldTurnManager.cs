@@ -19,9 +19,18 @@ public class MainFieldTurnManager
     public void SwitchTurn()
     {
         if (CurrentTurn == Team.Black)
+        {
             CurrentTurn = Team.White;
+            _mainField.YourTurn1.enabled = true;
+            _mainField.YourTurn2.enabled = false;
+        }
         else
+        {
             CurrentTurn = Team.Black;
+            _mainField.YourTurn1.enabled = false;
+            _mainField.YourTurn2.enabled = true;
+        }
+
         SelectedFigure = null;
         _mainField.DeactivateAllCells();
     }

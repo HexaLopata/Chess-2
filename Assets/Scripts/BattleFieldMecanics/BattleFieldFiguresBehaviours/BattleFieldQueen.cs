@@ -49,6 +49,8 @@ public class BattleFieldQueen : BattleFieldFigure
                             break;
                     }
                 }
+                else 
+                        break;
 
                 localX += cellX;
                 localY += cellY;
