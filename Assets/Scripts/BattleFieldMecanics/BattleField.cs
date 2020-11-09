@@ -17,8 +17,8 @@ public class BattleField : FieldBase
         _whiteCell = Core.CurrentLocation.BattleFieldWhiteCell;
         _blackCell = Core.CurrentLocation.BattleFieldBlackCell;
         _additionalCells = new List<GameObject>();
-        Width = 4;
-        Height = 4;
+        Width = Random.Range(4, 7);
+        Height = Random.Range(4, 7);
     }
 
     protected override void AdditionalStartInit()
@@ -43,8 +43,8 @@ public class BattleField : FieldBase
             FirstFigure.Data = _battleInfo.SecondFigure;
             firstTurn = Team.Black;
         }
-        FirstFigure.MoveToAnotherCell(Cells[3, 0]);
-        SecondFigure.MoveToAnotherCell(Cells[0, 3]);
+        FirstFigure.MoveToAnotherCell(Cells[Width - 1, 0]);
+        SecondFigure.MoveToAnotherCell(Cells[0, Height - 1]);
       
         
         BattleFieldCells = new BattleFieldCell[Cells.GetLength(0), Cells.GetLength(1)];

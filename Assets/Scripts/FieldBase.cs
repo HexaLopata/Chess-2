@@ -56,5 +56,14 @@ public abstract class FieldBase : MonoBehaviour
                                 cell.GetComponent<Cell>().OnBoardPosition = new Vector2Int(x, y);
                         }
                 }
+
+                if (Width % 2 == 1)
+                {
+                        GetComponent<RectTransform>().localPosition = new Vector2(GetComponent<RectTransform>().localPosition.x - _cellWidth / 2, GetComponent<RectTransform>().localPosition.y);
+                }
+                if (Height % 2 == 1)
+                {
+                        GetComponent<RectTransform>().localPosition = new Vector2(GetComponent<RectTransform>().localPosition.x, GetComponent<RectTransform>().localPosition.y -  _cellHeight / 2);
+                }
         }
 }
