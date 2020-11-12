@@ -1,13 +1,23 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections;
 using UnityEngine;
-using UnityEngine.EventSystems;
+using UnityEngine.Events;
 
 public abstract class BattleFieldFigure : MonoFigure
 {
+    public UnityEvent onTakeDamage;
     protected BattleField _battleField;
-    public int Health { get; set; } = -1;
+    public int Health
+    {
+        get => _health;
+        set
+        {
+            _health = value;
+            if(Data != null)
+                Data.Health = value;
+        }
+    }
+
+    private int _health = -1;
     public int Defence { get; set; } = 0;
     public int Damage { get; protected set; } = 0;
 
@@ -53,9 +63,13 @@ public abstract class BattleFieldFigure : MonoFigure
         return result;
     }
 
-    public override void OnPointerClick(PointerEventData eventData)
+    public virtual void LaunchAnAttack()
     {
-        Debug.Log($"Class: {GetType().Name}, Team: {Data.Team}, Health: {Data.Health}");
+        var cells = GetRelevantAttackMoves(_battleField.BattleFieldCells);
+        foreach (var cell in cells)
+        {
+            cell.TakeDamage(this);
+        }
     }
 
     private void Start()
@@ -70,7 +84,7 @@ public abstract class BattleFieldFigure : MonoFigure
     {
         StartCoroutine(DamageAnimation());
         Health -= (damage - Defence);
-        Data.Health = Health;
+        onTakeDamage.Invoke();
         if (Health <= 0)
         {
             if(Data.Team == Team.Black)

@@ -40,7 +40,13 @@ public class BattleFieldCell : Cell
 
     public override void OnPointerClick(PointerEventData eventData)
     {
-        _battleField.BattleController.OnCellClick(this);
+        if (State == CellState.Active)
+        {
+            var currentFigure = _battleField.BattleController.CurrentFigure;
+            currentFigure.MoveToAnotherCell(this);
+            currentFigure.LaunchAnAttack();
+            _battleField.BattleController.SwitchTurn();
+        }
     }
 
     /// <summary>

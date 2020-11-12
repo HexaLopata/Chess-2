@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public abstract class MonoFigure : MonoBehaviour, IPointerClickHandler
+public abstract class MonoFigure : MonoBehaviour
 {
     public virtual FigureData Data
     {
@@ -41,8 +41,6 @@ public abstract class MonoFigure : MonoBehaviour, IPointerClickHandler
         _image = GetComponent<Image>();
         _rectTransform = GetComponent<RectTransform>();
     }
-
-    public abstract void OnPointerClick(PointerEventData eventData);
 
     public virtual void MoveToAnotherCell(Cell cell)
     {

@@ -1,17 +1,10 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 // Напоминание: слева снизу черная клетка, само поле 8х8
 public class MainField : FieldBase
 {
     private readonly List<KeyValuePair<Vector2Int, FigureData>> _figuresForInit = new List<KeyValuePair<Vector2Int, FigureData>>();
-    [SerializeField]private Image _yourTurnImage1;
-    [SerializeField]private Image _yourTurnImage2;
-
-    public Image YourTurn1 => _yourTurnImage1;
-    public Image YourTurn2 => _yourTurnImage2;
-
     public MainFieldTurnManager MainFieldTurnManager { get; private set; }
     
     protected override void AdditionalStartInit()
@@ -32,8 +25,7 @@ public class MainField : FieldBase
         MainFieldTurnManager = new MainFieldTurnManager(this);
         InitAllFiguresDictionary();
     }
-        
-
+    
     private void InitAllFiguresDictionary()
     {
         _figuresForInit.Add(new KeyValuePair<Vector2Int, FigureData>(new Vector2Int(0, 0), Core.FirstPlayerData.Deck.Rook));

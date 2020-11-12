@@ -1,8 +1,10 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class MainFieldTurnManager
 {
+    public Action OnSwitchTurn;
     public MainFieldFigure SelectedFigure { get; set; }
     public Team CurrentTurn { get; private set; } = Team.White;
 
@@ -21,18 +23,15 @@ public class MainFieldTurnManager
         if (CurrentTurn == Team.Black)
         {
             CurrentTurn = Team.White;
-            _mainField.YourTurn1.enabled = true;
-            _mainField.YourTurn2.enabled = false;
         }
         else
         {
             CurrentTurn = Team.Black;
-            _mainField.YourTurn1.enabled = false;
-            _mainField.YourTurn2.enabled = true;
         }
 
         SelectedFigure = null;
         _mainField.DeactivateAllCells();
+        OnSwitchTurn?.Invoke();
     }
 
     /// <summary>

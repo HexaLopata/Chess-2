@@ -31,7 +31,7 @@ public class BattleInfo
     /// <param name="cellFightingFor"></param>
     /// <param name="firstFigure"></param>
     /// <param name="secondFigure"></param>
-    public void SetAllInitialInfo( FigureData firstFigure, FigureData secondFigure, Cell cellFightingFor)
+    public void SetAllInitialInfo(FigureData firstFigure, FigureData secondFigure, Cell cellFightingFor)
     {
         Clear();
         _firstFigure = firstFigure;

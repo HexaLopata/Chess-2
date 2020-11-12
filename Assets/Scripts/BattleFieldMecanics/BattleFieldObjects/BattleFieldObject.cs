@@ -13,7 +13,9 @@ public abstract class BattleFieldObject : MonoBehaviour
     [SerializeField] private BarrierType _isItPossibleToCross;
 
     public virtual void Visit(BattleFieldFigure visitor) { }
-    
+
+    public abstract void Execute();
+
     public virtual void MoveToAnotherCell(BattleFieldCell cell)
     {
         if (Cell != null)
