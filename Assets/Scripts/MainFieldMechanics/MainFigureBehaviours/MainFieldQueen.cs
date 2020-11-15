@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class MainFieldQueen : MainFieldFigure
 {
-    public override Cell[] GetRelevantTurn(Cell[,] cells)
+    public override CellBase[] GetRelevantTurn(CellBase[,] cells)
     {
-        List<Cell> turns = new List<Cell>();
+        List<CellBase> turns = new List<CellBase>();
         var x = OnBoardPosition.x;
         var y = OnBoardPosition.y;
         while (cells.GetLength(0) > x + 1)

@@ -3,7 +3,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 [RequireComponent(typeof(Image), typeof(RectTransform)),]
-public abstract class Cell : MonoBehaviour, IPointerClickHandler
+public abstract class CellBase : MonoBehaviour, IPointerClickHandler
 {
     public virtual FigureData Figure { get; set; }
     public Vector2Int OnBoardPosition { get; set; }

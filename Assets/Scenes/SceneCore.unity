@@ -188,6 +188,35 @@ PrefabInstance:
       propertyPath: m_Name
       value: DeckInitializer
       objectReference: {fileID: 0}
+    - target: {fileID: 4251546590968637878, guid: 4b3c84ebee0fe78428bd6c56b937bc7e,
+        type: 3}
+      propertyPath: _skills.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4251546590968637878, guid: 4b3c84ebee0fe78428bd6c56b937bc7e,
+        type: 3}
+      propertyPath: _skill
+      value: 
+      objectReference: {fileID: -2341372308914507766, guid: 4eb0c763ca7dae66983824b106ca029a,
+        type: 3}
+    - target: {fileID: 4251546590968637878, guid: 4b3c84ebee0fe78428bd6c56b937bc7e,
+        type: 3}
+      propertyPath: _skills.Array.data[0]
+      value: 
+      objectReference: {fileID: -2341372308914507766, guid: aef8cb8d68573b03f8aef51281f204e8,
+        type: 3}
+    - target: {fileID: 4251546590968637878, guid: 4b3c84ebee0fe78428bd6c56b937bc7e,
+        type: 3}
+      propertyPath: _skills.Array.data[1]
+      value: 
+      objectReference: {fileID: -2341372308914507766, guid: 4eb0c763ca7dae66983824b106ca029a,
+        type: 3}
+    - target: {fileID: 4251546590968637878, guid: 4b3c84ebee0fe78428bd6c56b937bc7e,
+        type: 3}
+      propertyPath: _skills.Array.data[2]
+      value: 
+      objectReference: {fileID: -4723625920124010496, guid: 5a2c7c160fd372fa6b49b2560d3b17b1,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4b3c84ebee0fe78428bd6c56b937bc7e, type: 3}
 --- !u!1001 &1558496487

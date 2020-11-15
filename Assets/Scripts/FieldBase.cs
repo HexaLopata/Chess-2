@@ -5,7 +5,7 @@ using UnityEngine.Serialization;
 
 public abstract class FieldBase : MonoBehaviour
 {
-        public Cell[,] Cells { get; protected set; }
+        public CellBase[,] Cells { get; protected set; }
         
         protected GameObject _whiteCell;
         protected GameObject _blackCell;
@@ -25,7 +25,7 @@ public abstract class FieldBase : MonoBehaviour
                         throw new Exception("Клетки не были инициализированы в подклассе, задайте их в методе AdditionalAwakeInit");
                 if(Width == 0 || Height == 0)
                         throw new Exception("Размеры поля не были заданы, задайте их в методе AdditionalAwakeInit");
-                Cells = new Cell[Width, Height];
+                Cells = new CellBase[Width, Height];
         }
 
         private void Start()
@@ -52,8 +52,8 @@ public abstract class FieldBase : MonoBehaviour
                                 }
                                 cell.transform.localPosition = new Vector2((x - Width / 2) * _cellWidth,
                                         (y - Height / 2) * _cellHeight);
-                                Cells[x, y] = cell.GetComponent<Cell>();
-                                cell.GetComponent<Cell>().OnBoardPosition = new Vector2Int(x, y);
+                                Cells[x, y] = cell.GetComponent<CellBase>();
+                                cell.GetComponent<CellBase>().OnBoardPosition = new Vector2Int(x, y);
                         }
                 }
 

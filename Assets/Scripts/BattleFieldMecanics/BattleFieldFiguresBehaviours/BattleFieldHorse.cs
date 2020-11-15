@@ -1,10 +1,10 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.EventSystems;
 
 public class BattleFieldHorse : BattleFieldFigure
 {
+    #region public Methods
+
     public override BattleFieldCell[] GetRelevantMoves(BattleFieldCell[,] battleFieldCells)
     {
         List<BattleFieldCell> turns = new List<BattleFieldCell>();
@@ -21,9 +21,8 @@ public class BattleFieldHorse : BattleFieldFigure
                 }
                 else
                 {
-                    if (battleFieldCells[x + cellX, y + cellY].BattleFieldObject.IssItPossibleToAttackThrough !=
-                        BarrierType.Impassable) ;
-                    turns.Add(battleFieldCells[x + cellX, y + cellY]);
+                    if (battleFieldCells[x + cellX, y + cellY].BattleFieldObject.CanThisFigureToCross(this) != BarrierType.Impassable)
+                        turns.Add(battleFieldCells[x + cellX, y + cellY]);
                 }
             }
         }
@@ -46,7 +45,6 @@ public class BattleFieldHorse : BattleFieldFigure
             CheckAllCellsAndAdd(2, -1);
         return turns.ToArray();
     }
-
     public override BattleFieldCell[] GetRelevantAttackMoves(BattleFieldCell[,] battleFieldCells)
     {
         List<BattleFieldCell> turns = new List<BattleFieldCell>();
@@ -61,9 +59,10 @@ public class BattleFieldHorse : BattleFieldFigure
             }
             else
             {
-                if (battleFieldCells[x + cellX, y + cellY].BattleFieldObject.IssItPossibleToAttackThrough !=
-                    BarrierType.Impassable) ;
-                turns.Add(battleFieldCells[x + cellX, y + cellY]);
+                if (battleFieldCells[x + cellX, y + cellY].BattleFieldObject.CanThisFigureToAttackThrough(this) != BarrierType.Impassable)
+                {
+                    turns.Add(battleFieldCells[x + cellX, y + cellY]);
+                }
             }
         }
 
@@ -86,9 +85,16 @@ public class BattleFieldHorse : BattleFieldFigure
         
         return turns.ToArray();
     }
+
+    #endregion
+
+    #region protected Methods
+
     protected override void SetDamageAndDefence()
     {
         Damage = 40;
         Defence = 10;
     }
+
+    #endregion
 }

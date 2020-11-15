@@ -37,20 +37,20 @@ public class MainFieldTurnManager
     /// <summary>
     /// Этот метод нужен, чтобы менеджер ходов определял нажатия на клетки и принимал соответствующие действия
     /// </summary>
-    /// <param name="cell"></param>
-    public void OnCellClick(Cell cell)
+    /// <param name="cellBase"></param>
+    public void OnCellClick(CellBase cellBase)
     {
         // Если на клетке есть фигура, то нет смысла взаимодействовать именно с ней
-        if (cell.Figure != null)
+        if (cellBase.Figure != null)
         {
-            OnFigureClick(cell.Figure.MainFieldFigureInstance);
+            OnFigureClick(cellBase.Figure.MainFieldFigureInstance);
         }
         else
         {
             // Если клетка считается активной для хода, то произвести ход
-            if (cell.State == CellState.Active)
+            if (cellBase.State == CellState.Active)
             {
-                SelectedFigure.MoveToAnotherCell(cell);
+                SelectedFigure.MoveToAnotherCell(cellBase);
                 SwitchTurn();
             }
         }
@@ -75,18 +75,18 @@ public class MainFieldTurnManager
             }
 
             // 2. Начать битву, если выбранная фигура уже есть и клетка, на которой стоит нажатая фигура активна
-            if (SelectedFigure != null && figure.Cell.State == CellState.Active)
+            if (SelectedFigure != null && figure.CellBase.State == CellState.Active)
             {
                 if (Core.GameMode == GameMode.Normal)
                 {
-                    var newCell = figure.Cell;
+                    var newCell = figure.CellBase;
                     figure.DestroyThisFigure();
                     SelectedFigure.MoveToAnotherCell(newCell);
                 }
                 else
                 {
                     // Инициализируем и начинаем бой между фигурами
-                    Core.BattleInfo.SetAllInitialInfo(SelectedFigure.Data, figure.Data, figure.Cell);
+                    Core.BattleInfo.SetAllInitialInfo(SelectedFigure.Data, figure.Data, figure.CellBase);
                     StartBattle();
                 }
                 SwitchTurn();
@@ -108,7 +108,7 @@ public class MainFieldTurnManager
     {
         Core.BattleInfo.BattleEnd -= EndBattle;
         Core.BattleInfo.Loser.MainFieldFigureInstance.DestroyThisFigure();
-        var cell = Core.BattleInfo.CellFightingFor;
+        var cell = Core.BattleInfo.CellBaseFightingFor;
         Core.BattleInfo.Winner.MainFieldFigureInstance.MoveToAnotherCell(cell);
     }
 }

@@ -1,9 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using System.Collections.Generic;
 
 public class BattleFieldKing : BattleFieldFigure
 {
+    #region public Methods
+
     public override BattleFieldCell[] GetRelevantMoves(BattleFieldCell[,] battleFieldCells)
     {
         var turns = new List<BattleFieldCell>();
@@ -20,9 +20,8 @@ public class BattleFieldKing : BattleFieldFigure
                 }
                 else
                 {
-                    if (battleFieldCells[x + cellX, y + cellY].BattleFieldObject.IssItPossibleToAttackThrough !=
-                        BarrierType.Impassable) ;
-                    turns.Add(battleFieldCells[x + cellX, y + cellY]);
+                    if (battleFieldCells[x + cellX, y + cellY].BattleFieldObject.CanThisFigureToCross(this) != BarrierType.Impassable)
+                        turns.Add(battleFieldCells[x + cellX, y + cellY]);
                 }
             }
         }
@@ -44,7 +43,6 @@ public class BattleFieldKing : BattleFieldFigure
             CheckAllCellsAndAdd(-1, -1);
         return turns.ToArray();
     }
-
     public override BattleFieldCell[] GetRelevantAttackMoves(BattleFieldCell[,] battleFieldCells)
     {
         var turns = new List<BattleFieldCell>();
@@ -59,9 +57,8 @@ public class BattleFieldKing : BattleFieldFigure
             }
             else
             {
-                if (battleFieldCells[x + cellX, y + cellY].BattleFieldObject.IssItPossibleToAttackThrough !=
-                    BarrierType.Impassable) ;
-                turns.Add(battleFieldCells[x + cellX, y + cellY]);
+                if (battleFieldCells[x + cellX, y + cellY].BattleFieldObject.CanThisFigureToAttackThrough(this) != BarrierType.Impassable)
+                    turns.Add(battleFieldCells[x + cellX, y + cellY]);
             }
         }
         if (battleFieldCells.GetLength(0) > x + 1)
@@ -82,9 +79,16 @@ public class BattleFieldKing : BattleFieldFigure
             CheckAllCellsAndAdd(-1, -1);
         return turns.ToArray();
     }
+
+    #endregion
+
+    #region protected Methods
+
     protected override void SetDamageAndDefence()
     {
         Damage = 30;
         Defence = 5;
     }
+
+    #endregion
 }

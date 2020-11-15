@@ -1,7 +1,7 @@
 using System;
 using UnityEngine.EventSystems;
 
-public class MainFieldCell : Cell
+public class MainFieldCell : CellBase
 {
     private MainField _mainField;
     private void Start()

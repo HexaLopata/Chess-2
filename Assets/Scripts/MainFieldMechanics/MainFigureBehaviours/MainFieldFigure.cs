@@ -11,8 +11,8 @@ public class MainFieldFigure : MonoFigure, IPointerClickHandler
         field.MainFieldTurnManager.OnFigureClick(this);
     }
 
-    public virtual Cell[] GetRelevantTurn(Cell[,] cells)
+    public virtual CellBase[] GetRelevantTurn(CellBase[,] cells)
     {
-        return new Cell[0];
+        return new CellBase[0];
     }
 }

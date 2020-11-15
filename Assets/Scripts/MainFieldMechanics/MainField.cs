@@ -84,7 +84,7 @@ public class MainField : FieldBase
     /// Делает все переданные клетки активными
     /// </summary>
     /// <param name="cells"></param>
-    public void ActivateCells(Cell[] cells)
+    public void ActivateCells(CellBase[] cells)
     {
         DeactivateAllCells();
 

@@ -2,16 +2,52 @@
 using System.Diagnostics;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
 
 public class BattleField : FieldBase
 {
+    #region public Properties
+
     public BattleController BattleController => _battleController;
     public BattleFieldFigure FirstFigure { get; private set; }
     public BattleFieldFigure SecondFigure { get; private set; }
     public BattleFieldCell[,] BattleFieldCells { get; private set; }
 
+    #endregion
+
+    #region private Fields
+
     private BattleInfo _battleInfo;
+
     [SerializeField] private BattleController _battleController;
+
+    #endregion
+
+    #region public Methods
+
+    public void ActivateAllCells(BattleFieldCell[] battleFieldCells)
+    {
+        DeactivateAllCells();
+        foreach (var cell in battleFieldCells)
+        {
+            cell.Activate();
+        }
+    }
+    public void DeactivateAllCells()
+    {
+        if (BattleFieldCells != null)
+        {
+            foreach (var cell in BattleFieldCells)
+            {
+                cell.Deactivate();
+            }
+        }
+    }
+
+    #endregion
+
+    #region protected Methods
+
     protected override void AdditionalAwakeInit()
     {
         _whiteCell = Core.CurrentLocation.BattleFieldWhiteCell;
@@ -30,9 +66,11 @@ public class BattleField : FieldBase
         if (_battleInfo.FirstFigure.Team == Team.White)
         {
             FirstFigure = Instantiate(_battleInfo.FirstFigure.BattleFieldFigurePrefub, transform);
-            SecondFigure = Instantiate(_battleInfo.SecondFigure.BattleFieldFigurePrefub, transform);
+            SecondFigure = Instantiate(_battleInfo.SecondFigure.BattleFieldFigurePrefub,  transform);
             FirstFigure.Data = _battleInfo.FirstFigure;
             SecondFigure.Data = _battleInfo.SecondFigure;
+            FirstFigure.Skill = Instantiate(_battleInfo.FirstFigure.BattleFieldFigurePrefub.Skill);
+            SecondFigure.Skill = Instantiate(_battleInfo.SecondFigure.BattleFieldFigurePrefub.Skill);
             firstTurn = Team.White;
         }
         else
@@ -41,6 +79,8 @@ public class BattleField : FieldBase
             FirstFigure = Instantiate(_battleInfo.SecondFigure.BattleFieldFigurePrefub, transform);
             SecondFigure.Data = _battleInfo.FirstFigure;
             FirstFigure.Data = _battleInfo.SecondFigure;
+            FirstFigure.Skill = Instantiate(_battleInfo.SecondFigure.BattleFieldFigurePrefub.Skill);
+            SecondFigure.Skill = Instantiate(_battleInfo.FirstFigure.BattleFieldFigurePrefub.Skill);
             firstTurn = Team.Black;
         }
 
@@ -69,24 +109,6 @@ public class BattleField : FieldBase
         }
         _battleController.SwitchTurn(firstTurn);
     }
-    
-    public void ActivateAllCells(BattleFieldCell[] battleFieldCells)
-    {
-        DeactivateAllCells();
-        foreach (var cell in battleFieldCells)
-        {
-            cell.Activate();
-        }
-    }
 
-    private void DeactivateAllCells()
-    {
-        if (BattleFieldCells != null)
-        {
-            foreach (var cell in BattleFieldCells)
-            {
-                cell.Deactivate();
-            }
-        }
-    }
+    #endregion
 }

@@ -6,9 +6,9 @@ public class MainFieldPawn : MainFieldFigure
 {
     public bool IsFirstTurn { get; set; } = true;
 
-    public override Cell[] GetRelevantTurn(Cell[,] cells)
+    public override CellBase[] GetRelevantTurn(CellBase[,] cells)
     {
-        List<Cell> turns = new List<Cell>();
+        List<CellBase> turns = new List<CellBase>();
         var x = OnBoardPosition.x;
         var y = OnBoardPosition.y;
         if(Data.Team == Team.White)
@@ -52,9 +52,9 @@ public class MainFieldPawn : MainFieldFigure
         return turns.ToArray();
     }
 
-    public override void MoveToAnotherCell(Cell cell)
+    public override void MoveToAnotherCell(CellBase cellBase)
     {
-        base.MoveToAnotherCell(cell);
+        base.MoveToAnotherCell(cellBase);
         if(IsFirstTurn)
             IsFirstTurn = false;       
     }

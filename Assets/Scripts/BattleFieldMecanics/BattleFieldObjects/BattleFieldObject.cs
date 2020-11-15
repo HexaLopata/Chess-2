@@ -1,21 +1,69 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 [RequireComponent(typeof(Image), typeof(RectTransform))]
-public abstract class BattleFieldObject : MonoBehaviour
+public abstract class BattleFieldObject : MonoBehaviour, IPointerClickHandler
 {
-    public BarrierType IsItPossibleToCross => _isItPossibleToCross;
-    public BarrierType IssItPossibleToAttackThrough => _isItPossibleToAttackThrough;
-    public Vector2Int OnBoardPosition;
-    public BattleFieldCell Cell { get; set; }
+    #region public Properties
 
-    [SerializeField] private BarrierType _isItPossibleToAttackThrough;
-    [SerializeField] private BarrierType _isItPossibleToCross;
+    public Team Team
+    {
+        get => _team;
+        set
+        {
+            if (value == Team.Black)
+            {
+                _image.sprite = _blackSkin;
+                _rectTransform.rotation = new Quaternion(0, 0, 180, 0);
+            }
+            else
+            {
+                _image.sprite = _whiteSkin;
+                _rectTransform.rotation = new Quaternion(0, 0, 0, 0);
+            }
 
-    public virtual void Visit(BattleFieldFigure visitor) { }
+            _team = value;
+        }
+    }
+    public Vector2Int OnBoardPosition { get; set; }
+    public BattleField BattleField { get; private set; }
+    public BattleFieldCell Cell
+    {
+        get => _cell;
+        set
+        {
+            if (value != null)
+            {
+                BattleField = value.BattleField;
+                BattleField.BattleController.onSwitchTurn.AddListener(Execute);
+            }
 
+            _cell = value;
+        }
+    }
+
+    #endregion
+
+    #region private Fields
+    
+    private BattleFieldCell _cell;
+    private Team _team;
+    private RectTransform _rectTransform;
+    private Image _image;
+    
+    [SerializeField] private Sprite _whiteSkin;
+    [SerializeField] private Sprite _blackSkin;
+
+    #endregion
+
+    #region public Methods
+
+    public abstract BarrierType CanThisFigureToCross(BattleFieldFigure figure);
+    public abstract BarrierType CanThisFigureToAttackThrough(BattleFieldFigure figure);
+    public abstract void TakeDamage(BattleFieldFigure attacker);
+    public abstract void Visit(BattleFieldFigure visitor);
     public abstract void Execute();
-
     public virtual void MoveToAnotherCell(BattleFieldCell cell)
     {
         if (Cell != null)
@@ -28,5 +76,29 @@ public abstract class BattleFieldObject : MonoBehaviour
         Vector2 newPosition = new Vector2(cellPosition.x + Cell.RectTransform.rect.width / 2,
             cellPosition.y + Cell.RectTransform.rect.height / 2);
         GetComponent<RectTransform>().localPosition = newPosition;
+        // Размещает объект по иерархии так, чтобы он отображался поверх клеток, но был ниже фигур
+        transform.SetSiblingIndex(BattleField.Height * BattleField.Width);
     }
+    public void DestroyThisBattleFieldObject()
+    {
+        if(_cell != null)
+            _cell.BattleFieldObject = null;
+        Destroy(gameObject);
+    }
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        _cell.OnPointerClick(eventData);
+    }
+
+    #endregion
+
+    #region Unity Methods
+
+    private void Awake()
+    {
+        _image = GetComponent<Image>();
+        _rectTransform = GetComponent<RectTransform>();
+    }
+
+    #endregion
 }

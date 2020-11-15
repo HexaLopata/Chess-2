@@ -1,9 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using System.Collections.Generic;
 
 public class BattleFieldRook : BattleFieldFigure
 {
+    #region public Methods
+
     public override BattleFieldCell[] GetRelevantMoves(BattleFieldCell[,] battleFieldCells)
     {
         var turns = new List<BattleFieldCell>();
@@ -36,10 +36,10 @@ public class BattleFieldRook : BattleFieldFigure
                     else
                     {
                         if (battleFieldCells[localX + cellX, localY + cellY].BattleFieldObject
-                            .IssItPossibleToAttackThrough == BarrierType.Passable)
+                            .CanThisFigureToCross(this) == BarrierType.Passable)
                             turns.Add(battleFieldCells[localX + cellX, localY + cellY]);
                         else if (battleFieldCells[localX + cellX, localY + cellY].BattleFieldObject
-                                     .IssItPossibleToAttackThrough ==
+                                     .CanThisFigureToCross(this) ==
                                  BarrierType.Stopable)
                         {
                             turns.Add(battleFieldCells[localX + cellX, localY + cellY]);
@@ -76,7 +76,6 @@ public class BattleFieldRook : BattleFieldFigure
         CheckAllCellsAndAdd(turns, -1, 0);
         return turns.ToArray();
     }
-
     public override BattleFieldCell[] GetRelevantAttackMoves(BattleFieldCell[,] battleFieldCells)
     {
         var turns = new List<BattleFieldCell>();
@@ -107,10 +106,10 @@ public class BattleFieldRook : BattleFieldFigure
                 else
                 {
                     if (battleFieldCells[localX + cellX, localY + cellY].BattleFieldObject
-                        .IssItPossibleToAttackThrough == BarrierType.Passable)
+                        .CanThisFigureToAttackThrough(this) == BarrierType.Passable)
                         turns.Add(battleFieldCells[localX + cellX, localY + cellY]);
                     else if (battleFieldCells[localX + cellX, localY + cellY].BattleFieldObject
-                                 .IssItPossibleToAttackThrough ==
+                                 .CanThisFigureToAttackThrough(this) ==
                              BarrierType.Stopable)
                     {
                         turns.Add(battleFieldCells[localX + cellX, localY + cellY]);
@@ -143,9 +142,15 @@ public class BattleFieldRook : BattleFieldFigure
         return turns.ToArray();
     }
     
+    #endregion
+
+    #region protected Methods
+
     protected override void SetDamageAndDefence()
     {
         Damage = 30;
         Defence = 15;
     }
+
+    #endregion
 }

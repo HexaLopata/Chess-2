@@ -1,11 +1,12 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 
 public abstract class BattleFieldFigure : MonoFigure
 {
-    public UnityEvent onTakeDamage;
-    protected BattleField _battleField;
+    #region public Properties
+    
     public int Health
     {
         get => _health;
@@ -16,11 +17,8 @@ public abstract class BattleFieldFigure : MonoFigure
                 Data.Health = value;
         }
     }
-
-    private int _health = -1;
     public int Defence { get; set; } = 0;
     public int Damage { get; protected set; } = 0;
-
     public override FigureData Data
     {
         get
@@ -34,6 +32,30 @@ public abstract class BattleFieldFigure : MonoFigure
             base.Data = value;
         } 
     }
+    public BattleField BattleField => _battleField;
+    public Skill Skill { get; set; }
+
+    #endregion
+
+    #region private Fields
+    
+    private int _health = -1;
+
+    #endregion
+
+    #region protected Fields
+
+    protected BattleField _battleField;
+
+    #endregion
+
+    #region Events
+
+    public UnityEvent onTakeDamage;
+
+    #endregion
+
+    #region public Methods
 
     public virtual BattleFieldCell[] GetRelevantMoves(BattleFieldCell[,] battleFieldCells)
     {
@@ -48,7 +70,6 @@ public abstract class BattleFieldFigure : MonoFigure
 
         return result;
     }
-
     public virtual BattleFieldCell[] GetRelevantAttackMoves(BattleFieldCell[,] battleFieldCells) 
     {
         var result = new BattleFieldCell[battleFieldCells.GetLength(0) * battleFieldCells.GetLength(1)];
@@ -62,7 +83,47 @@ public abstract class BattleFieldFigure : MonoFigure
 
         return result;
     }
-
+    public virtual void Turn(BattleFieldCell selectedCell)
+    {
+        if (Skill != null && Skill.IsActive)
+        {
+            Skill.Execute(this, selectedCell);
+            Skill.IsActive = false;
+        }
+        else
+        {
+            if (selectedCell != null)
+            {
+                MoveToAnotherCell(selectedCell);
+                LaunchAnAttack();
+                selectedCell.BattleField.BattleController.SwitchTurn();
+            }
+        }
+    }
+    public override void MoveToAnotherCell(CellBase cellBase)
+    {
+        if (cellBase is BattleFieldCell)
+        {
+            var battleCell = cellBase as BattleFieldCell;
+            
+            if(battleCell.BattleFieldObject == null)
+            {
+                base.MoveToAnotherCell(cellBase);
+            }
+            else
+            {
+                if (battleCell.BattleFieldObject.CanThisFigureToCross(this) != BarrierType.Impassable)
+                {
+                    battleCell.BattleFieldObject.Visit(this);
+                    base.MoveToAnotherCell(cellBase);
+                }
+                else
+                    throw new Exception("Фигура пытается переместиться на клетку, на которую не должна");
+            }
+        }
+        else
+            throw new Exception("Фигура этого типа должна быть перемещена на клетку типа BattleFieldCell");
+    }
     public virtual void LaunchAnAttack()
     {
         var cells = GetRelevantAttackMoves(_battleField.BattleFieldCells);
@@ -71,15 +132,6 @@ public abstract class BattleFieldFigure : MonoFigure
             cell.TakeDamage(this);
         }
     }
-
-    private void Start()
-    {
-        _battleField = GetComponentInParent<BattleField>();
-        SetDamageAndDefence();
-    }
-
-    protected abstract void SetDamageAndDefence();
-
     public void TakeDamage(int damage)
     {
         StartCoroutine(DamageAnimation());
@@ -94,10 +146,32 @@ public abstract class BattleFieldFigure : MonoFigure
         }
     }
 
+    #endregion
+
+    #region Unity Methods
+
+    private void Start()
+    {
+        _battleField = GetComponentInParent<BattleField>();
+        SetDamageAndDefence();
+    }
+
+    #endregion
+
+    #region private Methods
+
     private IEnumerator DamageAnimation()
     {
         _image.color = Color.red;
         yield return new WaitForSeconds(0.2f);
         _image.color = Color.white;
     }
+
+    #endregion
+
+    #region protected Methods
+
+    protected abstract void SetDamageAndDefence();
+
+    #endregion
 }

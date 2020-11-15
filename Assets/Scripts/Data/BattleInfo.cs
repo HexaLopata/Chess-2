@@ -15,7 +15,7 @@ public class BattleInfo
             BattleEnd?.Invoke();
         }
     }
-    public Cell CellFightingFor => _cellFightinhFor;
+    public CellBase CellBaseFightingFor => _cellBaseFightinhFor;
     public FigureData Loser { get; set; }
     
     public event Action BattleEnd;
@@ -23,20 +23,20 @@ public class BattleInfo
     private FigureData _firstFigure;
     private FigureData _secondFigure;
     private FigureData _winner;
-    private Cell _cellFightinhFor;
+    private CellBase _cellBaseFightinhFor;
 
     /// <summary>
     /// Позволяет задать всю необходимую для начала битвы информацию
     /// </summary>
-    /// <param name="cellFightingFor"></param>
+    /// <param name="cellBaseFightingFor"></param>
     /// <param name="firstFigure"></param>
     /// <param name="secondFigure"></param>
-    public void SetAllInitialInfo(FigureData firstFigure, FigureData secondFigure, Cell cellFightingFor)
+    public void SetAllInitialInfo(FigureData firstFigure, FigureData secondFigure, CellBase cellBaseFightingFor)
     {
         Clear();
         _firstFigure = firstFigure;
         _secondFigure = secondFigure;
-        _cellFightinhFor = cellFightingFor;
+        _cellBaseFightinhFor = cellBaseFightingFor;
     }
     
     /// <summary>
@@ -46,7 +46,7 @@ public class BattleInfo
     {
         _firstFigure = null;
         _secondFigure = null;
-        _cellFightinhFor = null;
+        _cellBaseFightinhFor = null;
         _winner = null;
         Loser = null;
     }

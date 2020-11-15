@@ -1,24 +1,43 @@
-using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
 public class BattleController : MonoBehaviour
 {
+    #region Events
+
     public UnityEvent onSwitchTurn;
+
+    #endregion
+
+    #region public Properties
+
     public Team CurrentTurn { get; private set; } = Team.White;
     public BattleFieldFigure CurrentFigure => _currentFigure;
     public BattleInfo BattleInfo => _battleInfo;
+    public BattleField BattleField => _field;
+
+    #endregion
+
+    #region private Field
     
     private BattleInfo _battleInfo;
-    [SerializeField] private BattleField _field;
     private BattleFieldFigure _currentFigure;
+    
+    [SerializeField] private BattleField _field;
+
+    #endregion
+
+    #region Unity Methods
 
     private void Start()
     {
         _battleInfo = Core.BattleInfo;
     }
+
+    #endregion
+
+    #region public Methods
 
     public void SwitchTurn(Team team)
     {
@@ -41,7 +60,6 @@ public class BattleController : MonoBehaviour
         
         onSwitchTurn.Invoke();
     }
-    
     public void SwitchTurn()
     {
         if (CurrentTurn == Team.Black)
@@ -53,7 +71,6 @@ public class BattleController : MonoBehaviour
             SwitchTurn(Team.Black);
         }
     }
-
     public void SetBattleResult(Team team)
     {
         if (_field.FirstFigure.Data.Team == team)
@@ -72,4 +89,6 @@ public class BattleController : MonoBehaviour
         SceneManager.SetActiveScene(SceneManager.GetSceneByBuildIndex(2));
         SceneManager.UnloadSceneAsync(SceneManager.GetSceneByBuildIndex(3));
     }
+
+    #endregion
 }

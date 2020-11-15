@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -15,11 +14,13 @@ public class BattleFieldUIManager : MonoBehaviour
     
     private void Start()
     {
-        _firstFigure = _battleController.BattleInfo.FirstFigure.BattleFieldFigureInstance;
-        _secondFigure = _battleController.BattleInfo.SecondFigure.BattleFieldFigureInstance;
+        _firstFigure = _battleController.BattleField.FirstFigure;
+        _secondFigure = _battleController.BattleField.SecondFigure;
         _firstFigure.onTakeDamage.AddListener(UpdateHealthBars);
         _secondFigure.onTakeDamage.AddListener(UpdateHealthBars);
         _battleController.onSwitchTurn.AddListener(ShowCurrentTurn);
+        UpdateHealthBars();
+        ShowCurrentTurn();
     }
 
     private void UpdateHealthBars()

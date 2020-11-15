@@ -1,9 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using System.Collections.Generic;
 
 public class BattleFieldBishop : BattleFieldFigure
 {
+    #region public Methods
+
     public override BattleFieldCell[] GetRelevantMoves(BattleFieldCell[,] battleFieldCells)
     {
         var turns = new List<BattleFieldCell>();
@@ -33,9 +33,9 @@ public class BattleFieldBishop : BattleFieldFigure
                     }
                     else
                     {
-                        if (battleFieldCells[localX + cellX, localY + cellY].BattleFieldObject.IsItPossibleToCross == BarrierType.Passable)
+                        if (battleFieldCells[localX + cellX, localY + cellY].BattleFieldObject.CanThisFigureToCross(this) == BarrierType.Passable)
                             turns.Add(battleFieldCells[localX + cellX, localY + cellY]);
-                        else if (battleFieldCells[localX + cellX, localY + cellY].BattleFieldObject.IsItPossibleToCross ==
+                        else if (battleFieldCells[localX + cellX, localY + cellY].BattleFieldObject.CanThisFigureToCross(this) ==
                                  BarrierType.Stopable)
                         {
                             turns.Add(battleFieldCells[localX + cellX, localY + cellY]);
@@ -70,7 +70,6 @@ public class BattleFieldBishop : BattleFieldFigure
         CheckAllCellsAndAdd(turns, -1, -1);
         return turns.ToArray();
     }
-
     public override BattleFieldCell[] GetRelevantAttackMoves(BattleFieldCell[,] battleFieldCells)
     {
         var turns = new List<BattleFieldCell>();
@@ -99,10 +98,10 @@ public class BattleFieldBishop : BattleFieldFigure
                 else
                 {
                     if (battleFieldCells[localX + cellX, localY + cellY].BattleFieldObject
-                        .IssItPossibleToAttackThrough == BarrierType.Passable)
+                        .CanThisFigureToAttackThrough(this) == BarrierType.Passable)
                         turns.Add(battleFieldCells[localX + cellX, localY + cellY]);
                     else if (battleFieldCells[localX + cellX, localY + cellY].BattleFieldObject
-                                 .IssItPossibleToAttackThrough ==
+                                 .CanThisFigureToAttackThrough(this) ==
                              BarrierType.Stopable)
                     {
                         turns.Add(battleFieldCells[localX + cellX, localY + cellY]);
@@ -132,9 +131,16 @@ public class BattleFieldBishop : BattleFieldFigure
         CheckAllCellsAndAdd(turns, -1, -1);
         return turns.ToArray();
     }
+
+    #endregion
+
+    #region protected Methods
+
     protected override void SetDamageAndDefence()
     {      
         Damage = 30;
         Defence = 15;
     }
+
+    #endregion
 }
