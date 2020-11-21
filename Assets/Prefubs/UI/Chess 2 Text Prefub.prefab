@@ -1,0 +1,90 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &8028180976942581955
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 600114579572407791}
+  - component: {fileID: -1082673277885826980}
+  m_Layer: 5
+  m_Name: Chess 2 Text Prefub
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &600114579572407791
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8028180976942581955}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 50}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &-1082673277885826980
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8028180976942581955}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95e2dc83440ea220aae0d2e7ee2e01b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  emptyImage: {fileID: 7502142810662155423, guid: 2ca2b89e5554107c4a6828728055075f,
+    type: 3}
+  a: {fileID: 21300000, guid: 94c06ff51faf5bd9a8da0b453506efac, type: 3}
+  b: {fileID: 21300000, guid: 109a585223db5d71fb89ed6cf048b1ff, type: 3}
+  c: {fileID: 21300000, guid: c47fed7f8a8f85d4c9c877f71044f6c5, type: 3}
+  d: {fileID: 21300000, guid: 75cbb0c56c29c16d5b3f8c51182f1a33, type: 3}
+  e: {fileID: 21300000, guid: 6a919423b8731f00bbf30f25e9af9fe6, type: 3}
+  f: {fileID: 21300000, guid: eca57041aaa73cd9e838d1e491da19fe, type: 3}
+  g: {fileID: 21300000, guid: f0b4e61c2af6ef740a39b55e73310c78, type: 3}
+  h: {fileID: 21300000, guid: 3f6054436acf2708b9bbf89b67e515e3, type: 3}
+  i: {fileID: 21300000, guid: 1d5bf322cfaefb533beda21fe4c8c354, type: 3}
+  j: {fileID: 21300000, guid: 508227a9db9d05052884a27f554f5d65, type: 3}
+  k: {fileID: 21300000, guid: a8ccced5bbb67ab8598486e215666e7d, type: 3}
+  l: {fileID: 21300000, guid: bb8655ce93c3f1c5f8bff503b77cf64d, type: 3}
+  m: {fileID: 21300000, guid: dfd78339755636637916d29f69533d35, type: 3}
+  n: {fileID: 21300000, guid: 48d74530469e03e2ca6118cbf2bf4367, type: 3}
+  o: {fileID: 21300000, guid: 0301c26d858beff7db5fe7bceb2824a1, type: 3}
+  p: {fileID: 21300000, guid: 65cb95cadfdefe62081260a1cc70f541, type: 3}
+  q: {fileID: 21300000, guid: d12b58575593c5c2fb11b770bf716fbe, type: 3}
+  r: {fileID: 21300000, guid: 2c54bb3b17450ee7bb449c1a6f6dbdaf, type: 3}
+  s: {fileID: 21300000, guid: a39072393f4881fe7bbed140461e5502, type: 3}
+  t: {fileID: 21300000, guid: d82509b80106480a4a1692b44e7f8f4c, type: 3}
+  u: {fileID: 21300000, guid: cc1d5fdc28ca2fe49b4c2de40dd569d4, type: 3}
+  v: {fileID: 21300000, guid: f1e9e8e20f1b3c5fdb058ed2dc0ff62d, type: 3}
+  w: {fileID: 21300000, guid: 9f2fb48813e9fe069a14bef01413fa2a, type: 3}
+  x: {fileID: 21300000, guid: 7d3c4a57445c6a96095271c3a6e39e7e, type: 3}
+  y: {fileID: 21300000, guid: b33e004ba1c93dbe59f1d6e6c9669d0c, type: 3}
+  z: {fileID: 21300000, guid: 78c53737fbd27340b9d06a2059660490, type: 3}
+  one: {fileID: 21300000, guid: 32908af5694c43445bfbce466e5f3f13, type: 3}
+  two: {fileID: 21300000, guid: ae30d0e29c26ffcc4b97bedcae9f9136, type: 3}
+  three: {fileID: 21300000, guid: 034bd452a737392158885248247ef582, type: 3}
+  four: {fileID: 21300000, guid: d4a3bf06b8d9a79e18143b1420bd1069, type: 3}
+  five: {fileID: 21300000, guid: dd2b19f2164ea321ea01e59cc0b1f115, type: 3}
+  six: {fileID: 21300000, guid: 8ac4ab3f257a6663098168f0795a8e6a, type: 3}
+  seven: {fileID: 21300000, guid: ee266178969194488a7d03bb48917185, type: 3}
+  eight: {fileID: 21300000, guid: a71022c66cfdc60a4b7dadd923621ed7, type: 3}
+  nine: {fileID: 21300000, guid: 521d4b10a3ca0e7c580a8cc8897dc68f, type: 3}
+  zero: {fileID: 21300000, guid: 98516ea71094fc16eabf52f024c18a51, type: 3}
+  _text: Test
+  _fontSize: 3

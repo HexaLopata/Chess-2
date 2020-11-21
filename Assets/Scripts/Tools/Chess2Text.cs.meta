@@ -1,0 +1,48 @@
+fileFormatVersion: 2
+guid: 95e2dc83440ea220aae0d2e7ee2e01b5
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - emptyImage: {instanceID: 0}
+  - a: {fileID: 21300000, guid: 94c06ff51faf5bd9a8da0b453506efac, type: 3}
+  - b: {fileID: 21300000, guid: 109a585223db5d71fb89ed6cf048b1ff, type: 3}
+  - c: {fileID: 21300000, guid: c47fed7f8a8f85d4c9c877f71044f6c5, type: 3}
+  - d: {fileID: 21300000, guid: 75cbb0c56c29c16d5b3f8c51182f1a33, type: 3}
+  - e: {fileID: 21300000, guid: 6a919423b8731f00bbf30f25e9af9fe6, type: 3}
+  - f: {fileID: 21300000, guid: eca57041aaa73cd9e838d1e491da19fe, type: 3}
+  - g: {fileID: 21300000, guid: f0b4e61c2af6ef740a39b55e73310c78, type: 3}
+  - h: {fileID: 21300000, guid: 3f6054436acf2708b9bbf89b67e515e3, type: 3}
+  - i: {fileID: 21300000, guid: 1d5bf322cfaefb533beda21fe4c8c354, type: 3}
+  - j: {fileID: 21300000, guid: 508227a9db9d05052884a27f554f5d65, type: 3}
+  - k: {instanceID: 0}
+  - l: {instanceID: 0}
+  - m: {instanceID: 0}
+  - n: {instanceID: 0}
+  - o: {instanceID: 0}
+  - p: {instanceID: 0}
+  - q: {instanceID: 0}
+  - r: {instanceID: 0}
+  - s: {instanceID: 0}
+  - t: {instanceID: 0}
+  - u: {instanceID: 0}
+  - v: {instanceID: 0}
+  - w: {instanceID: 0}
+  - x: {instanceID: 0}
+  - y: {instanceID: 0}
+  - z: {instanceID: 0}
+  - one: {instanceID: 0}
+  - two: {instanceID: 0}
+  - three: {instanceID: 0}
+  - four: {instanceID: 0}
+  - five: {instanceID: 0}
+  - six: {instanceID: 0}
+  - seven: {instanceID: 0}
+  - eight: {instanceID: 0}
+  - nine: {instanceID: 0}
+  - zero: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

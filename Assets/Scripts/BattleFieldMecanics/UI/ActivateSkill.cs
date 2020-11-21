@@ -4,9 +4,9 @@ using UnityEngine.UI;
 public class ActivateSkill : MonoBehaviour
 {
     [SerializeField] private BattleField _field;
-    [SerializeField] private Image _image;
     [SerializeField] private bool IsForFirstPlayer; // Если true, то кнопка применяется для первого игрока, иначе для второго
     private BattleFieldFigure _figure;
+    private Image _image;
 
     private void Start()
     {
