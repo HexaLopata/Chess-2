@@ -50,7 +50,7 @@ public class MainFieldTurnManager
             // Если клетка считается активной для хода, то произвести ход
             if (cellBase.State == CellState.Active)
             {
-                SelectedFigure.MoveToAnotherCell(cellBase);
+                SelectedFigure.StartCoroutine(SelectedFigure.MoveToAnotherCellWithAnimation(cellBase));
                 SwitchTurn();
             }
         }
@@ -81,7 +81,7 @@ public class MainFieldTurnManager
                 {
                     var newCell = figure.CellBase;
                     figure.DestroyThisFigure();
-                    SelectedFigure.MoveToAnotherCell(newCell);
+                    SelectedFigure.StartCoroutine(SelectedFigure.MoveToAnotherCellWithAnimation(newCell));
                 }
                 else
                 {
@@ -109,6 +109,6 @@ public class MainFieldTurnManager
         Core.BattleInfo.BattleEnd -= EndBattle;
         Core.BattleInfo.Loser.MainFieldFigureInstance.DestroyThisFigure();
         var cell = Core.BattleInfo.CellBaseFightingFor;
-        Core.BattleInfo.Winner.MainFieldFigureInstance.MoveToAnotherCell(cell);
+        Core.BattleInfo.Winner.MainFieldFigureInstance.StartCoroutine(Core.BattleInfo.Winner.MainFieldFigureInstance.MoveToAnotherCellWithAnimation(cell));
     }
 }

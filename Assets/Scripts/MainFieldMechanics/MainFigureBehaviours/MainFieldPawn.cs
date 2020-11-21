@@ -52,7 +52,7 @@ public class MainFieldPawn : MainFieldFigure
         return turns.ToArray();
     }
 
-    public override void MoveToAnotherCell(CellBase cellBase)
+    protected override void MoveToAnotherCell(CellBase cellBase)
     {
         base.MoveToAnotherCell(cellBase);
         if(IsFirstTurn)

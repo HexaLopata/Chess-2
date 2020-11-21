@@ -94,13 +94,19 @@ public abstract class BattleFieldFigure : MonoFigure
         {
             if (selectedCell != null)
             {
-                MoveToAnotherCell(selectedCell);
-                LaunchAnAttack();
-                selectedCell.BattleField.BattleController.SwitchTurn();
+                StartCoroutine(TurnWithAnimation(selectedCell));
             }
         }
     }
-    public override void MoveToAnotherCell(CellBase cellBase)
+
+    private IEnumerator TurnWithAnimation(BattleFieldCell selectedCell)
+    {
+        yield return StartCoroutine(MoveToAnotherCellWithAnimation(selectedCell));
+        LaunchAnAttack();
+        selectedCell.BattleField.BattleController.SwitchTurn();
+    }
+    
+    protected override void MoveToAnotherCell(CellBase cellBase)
     {
         if (cellBase is BattleFieldCell)
         {

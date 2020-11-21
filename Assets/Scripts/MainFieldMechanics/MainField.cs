@@ -70,7 +70,7 @@ public class MainField : FieldBase
         figure.Data.MainFieldFigureInstance = figure;
         if (figureAndPosition.Key.x < Cells.GetLength(0) && figureAndPosition.Key.y < Cells.GetLength(1))
         {
-            figure.MoveToAnotherCell(Cells[figureAndPosition.Key.x, figureAndPosition.Key.y]);
+            StartCoroutine(figure.MoveToAnotherCellWithAnimation(Cells[figureAndPosition.Key.x, figureAndPosition.Key.y]));
             if(figure is MainFieldPawn)
             {
                 ((MainFieldPawn)figure).IsFirstTurn = true;

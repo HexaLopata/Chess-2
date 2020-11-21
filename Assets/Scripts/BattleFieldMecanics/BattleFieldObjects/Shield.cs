@@ -3,6 +3,8 @@ public class Shield : BattleFieldObject
     private float _turnRemains = 5;
     public override BarrierType CanThisFigureToCross(BattleFieldFigure figure)
     {
+        if (figure.Data.Team != Team)
+            return BarrierType.Impassable;
         return BarrierType.Passable;
     }
 

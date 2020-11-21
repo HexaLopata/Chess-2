@@ -68,6 +68,10 @@ public abstract class BattleFieldObject : MonoBehaviour, IPointerClickHandler
     {
         if (Cell != null)
             Cell.BattleFieldObject = null;
+        if (cell.BattleFieldObject != null)
+        {
+            cell.BattleFieldObject.DestroyThisBattleFieldObject();
+        }
         cell.BattleFieldObject = this;
         Cell = cell;
         OnBoardPosition = Cell.OnBoardPosition;
