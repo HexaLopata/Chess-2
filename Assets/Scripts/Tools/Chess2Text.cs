@@ -76,6 +76,7 @@ public class Chess2Text : MonoBehaviour
     private Dictionary<char, Sprite> charAndSprites = new Dictionary<char, Sprite>();
     private float currentWidth;
     private RectTransform _rectTransform;
+    private List<Image> _letters = new List<Image>();
 
     private void Awake()
     {
@@ -126,6 +127,7 @@ public class Chess2Text : MonoBehaviour
     
     private void UpdateText()
     {
+        DeleteAllLetters();
         currentWidth = 0;
         _text = _text.ToLower();
         foreach (var charecter in _text)
@@ -142,6 +144,7 @@ public class Chess2Text : MonoBehaviour
                 image.rectTransform.localPosition = new Vector3(currentWidth, 0);
                 // Отнимаем leftBias, чтобы текст был более плотным или широким
                 currentWidth += (image.rectTransform.rect.width) - _leftBias;
+                _letters.Add(image);
                 _rectTransform.sizeDelta = new Vector3( currentWidth, image.rectTransform.rect.height);
             }
 
@@ -151,5 +154,11 @@ public class Chess2Text : MonoBehaviour
                 _rectTransform.sizeDelta = new Vector3( currentWidth, _rectTransform.sizeDelta.y);
             }
         }
+    }
+
+    private void DeleteAllLetters()
+    {
+        _letters.ForEach(n => Destroy(n.gameObject));
+        _letters.Clear();
     }
 }

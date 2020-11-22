@@ -12,8 +12,8 @@ public abstract class FieldBase : MonoBehaviour
         protected List<GameObject> _additionalCells;
         public int Width { get; protected set; }
         public int Height { get; protected set; }
-        private float _cellWidth;
-        private float _cellHeight;
+        protected float _cellWidth;
+        protected float _cellHeight;
         
         protected abstract void AdditionalAwakeInit();
         protected abstract void AdditionalStartInit();

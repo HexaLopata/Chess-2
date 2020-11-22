@@ -1,8 +1,7 @@
 ﻿using System.Collections.Generic;
-using System.Diagnostics;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.Serialization;
+using UnityEngine.UI;
 
 public class BattleField : FieldBase
 {
@@ -108,6 +107,8 @@ public class BattleField : FieldBase
             }
         }
         _battleController.SwitchTurn(firstTurn);
+        
+        GetComponentInParent<Image>().rectTransform.sizeDelta = new Vector2((Width + 2) * _cellWidth, (Height + 2) * _cellHeight);
     }
 
     #endregion

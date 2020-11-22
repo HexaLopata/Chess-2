@@ -6,6 +6,11 @@ public class PlaceBattleFieldObject : Skill
     private BattleController _controller;
     private float _maxDelay = 5;
     private float _delay = 0;
+    public override string Name
+    {
+        get => battleFieldObject.GetType().Name;
+    }
+
     public override void Execute(BattleFieldFigure figure, BattleFieldCell cell)
     {
         if (_controller == null)

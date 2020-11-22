@@ -14,6 +14,8 @@ public abstract class Skill : MonoBehaviour
         }
     }
 
+    public abstract string Name { get; }
+
     private bool _isActive = false;
 
     public abstract void Execute(BattleFieldFigure figure, BattleFieldCell cell);

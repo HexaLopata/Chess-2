@@ -87,7 +87,7 @@ public class MainFieldTurnManager
                 {
                     // Инициализируем и начинаем бой между фигурами
                     Core.BattleInfo.SetAllInitialInfo(SelectedFigure.Data, figure.Data, figure.CellBase);
-                    _mainField.ExitSceneAnimation.PlayExit(StartBattle);
+                    _mainField.SceneTransition.PlayClose(StartBattle);
 
                 }
                 SwitchTurn();
@@ -107,7 +107,7 @@ public class MainFieldTurnManager
     /// </summary>
     public void EndBattle()
     {
-        _mainField.ExitSceneAnimation.PlayReturn();
+        _mainField.SceneTransition.PlayOpen();
         Core.BattleInfo.BattleEnd -= EndBattle;
         Core.BattleInfo.Loser.MainFieldFigureInstance.DestroyThisFigure();
         var cell = Core.BattleInfo.CellBaseFightingFor;

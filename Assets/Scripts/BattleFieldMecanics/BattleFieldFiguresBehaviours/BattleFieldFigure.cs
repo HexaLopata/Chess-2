@@ -40,6 +40,7 @@ public abstract class BattleFieldFigure : MonoFigure
     #region private Fields
     
     private int _health = -1;
+    private Coroutine MoveAnimation;
 
     #endregion
 
@@ -85,16 +86,19 @@ public abstract class BattleFieldFigure : MonoFigure
     }
     public virtual void Turn(BattleFieldCell selectedCell)
     {
-        if (Skill != null && Skill.IsActive)
+        if (MoveAnimation == null)
         {
-            Skill.Execute(this, selectedCell);
-            Skill.IsActive = false;
-        }
-        else
-        {
-            if (selectedCell != null)
+            if (Skill != null && Skill.IsActive)
             {
-                StartCoroutine(TurnWithAnimation(selectedCell));
+                Skill.Execute(this, selectedCell);
+                Skill.IsActive = false;
+            }
+            else
+            {
+                if (selectedCell != null)
+                {
+                    MoveAnimation = StartCoroutine(TurnWithAnimation(selectedCell));
+                }
             }
         }
     }
@@ -104,6 +108,7 @@ public abstract class BattleFieldFigure : MonoFigure
         yield return StartCoroutine(MoveToAnotherCellWithAnimation(selectedCell));
         LaunchAnAttack();
         selectedCell.BattleField.BattleController.SwitchTurn();
+        MoveAnimation = null;
     }
     
     protected override void MoveToAnotherCell(CellBase cellBase)
@@ -145,6 +150,7 @@ public abstract class BattleFieldFigure : MonoFigure
         onTakeDamage.Invoke();
         if (Health <= 0)
         {
+            DestroyThisFigure();
             if(Data.Team == Team.Black)
                 _battleField.BattleController.SetBattleResult(Team.White);
             else

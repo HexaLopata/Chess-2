@@ -2,6 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
 
 public class BattleController : MonoBehaviour
 {
@@ -26,7 +27,7 @@ public class BattleController : MonoBehaviour
     private BattleFieldFigure _currentFigure;
     
     [SerializeField] private BattleField _field;
-    [SerializeField] private SceneAnimation _sceneAnimation;
+    [SerializeField] private SceneTransition _sceneTransition;
 
     #endregion
 
@@ -73,6 +74,7 @@ public class BattleController : MonoBehaviour
             SwitchTurn(Team.Black);
         }
     }
+    
     public void SetBattleResult(Team team)
     {
         StartCoroutine(SetBattleResultWithAnimation(team));
@@ -85,7 +87,7 @@ public class BattleController : MonoBehaviour
 
     private IEnumerator SetBattleResultWithAnimation(Team team)
     {
-        yield return _sceneAnimation.Close();
+        yield return _sceneTransition.Close();
         
         if (_field.FirstFigure.Data.Team == team)
         {

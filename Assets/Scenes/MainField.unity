@@ -367,7 +367,7 @@ GameObject:
   - component: {fileID: 336192571}
   - component: {fileID: 336192570}
   m_Layer: 5
-  m_Name: Image
+  m_Name: Transition
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -404,6 +404,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16ee157d1aee3e277b2b2d1da8e18b5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _step: 40
+  _leftDirection: 1
 --- !u!114 &336192571
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -656,7 +658,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21c6e991e4841fd4eacedee7c1de3b81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _exitSceneAnimation: {fileID: 336192570}
+  sceneTransition: {fileID: 336192570}
 --- !u!1 &1768331557
 GameObject:
   m_ObjectHideFlags: 0

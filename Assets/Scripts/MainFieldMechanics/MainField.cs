@@ -1,15 +1,16 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 // Напоминание: слева снизу черная клетка, само поле 8х8
 public class MainField : FieldBase
 {
-    [SerializeField] private ExitSceneAnimation _exitSceneAnimation;
+    [FormerlySerializedAs("_exitSceneAnimation")] [SerializeField] private SceneTransition sceneTransition;
     private readonly List<KeyValuePair<Vector2Int, FigureData>> _figuresForInit = new List<KeyValuePair<Vector2Int, FigureData>>();
     public MainFieldTurnManager MainFieldTurnManager { get; private set; }
-    public ExitSceneAnimation ExitSceneAnimation
+    public SceneTransition SceneTransition
     {
-        get => _exitSceneAnimation;
+        get => sceneTransition;
     }
     
     protected override void AdditionalStartInit()
