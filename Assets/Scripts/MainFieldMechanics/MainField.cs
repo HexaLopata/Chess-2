@@ -4,8 +4,13 @@ using UnityEngine;
 // Напоминание: слева снизу черная клетка, само поле 8х8
 public class MainField : FieldBase
 {
+    [SerializeField] private ExitSceneAnimation _exitSceneAnimation;
     private readonly List<KeyValuePair<Vector2Int, FigureData>> _figuresForInit = new List<KeyValuePair<Vector2Int, FigureData>>();
     public MainFieldTurnManager MainFieldTurnManager { get; private set; }
+    public ExitSceneAnimation ExitSceneAnimation
+    {
+        get => _exitSceneAnimation;
+    }
     
     protected override void AdditionalStartInit()
     {

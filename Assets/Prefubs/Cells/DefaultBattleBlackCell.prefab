@@ -90,3 +90,5 @@ MonoBehaviour:
   _normal: {fileID: 21300000, guid: d4c1ede2b702b9d49ac3eb0650ac3367, type: 3}
   _active: {fileID: 21300000, guid: 42ed233da2c1a1043b777897809fa7bb, type: 3}
   _enemy: {fileID: 21300000, guid: b0ac88752b0d7dc4b9ddc359bbd77a18, type: 3}
+  _damageEffect: {fileID: 2318454962999371379, guid: 7885480b9c3c4a283bb5f712d9a7a298,
+    type: 3}

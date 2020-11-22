@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
@@ -25,6 +26,7 @@ public class BattleController : MonoBehaviour
     private BattleFieldFigure _currentFigure;
     
     [SerializeField] private BattleField _field;
+    [SerializeField] private SceneAnimation _sceneAnimation;
 
     #endregion
 
@@ -73,6 +75,18 @@ public class BattleController : MonoBehaviour
     }
     public void SetBattleResult(Team team)
     {
+        StartCoroutine(SetBattleResultWithAnimation(team));
+    }
+
+  
+    #endregion
+
+    #region private Methods
+
+    private IEnumerator SetBattleResultWithAnimation(Team team)
+    {
+        yield return _sceneAnimation.Close();
+        
         if (_field.FirstFigure.Data.Team == team)
         {
             _field.SecondFigure.Data.Health = _field.SecondFigure.Health;
@@ -89,6 +103,7 @@ public class BattleController : MonoBehaviour
         SceneManager.SetActiveScene(SceneManager.GetSceneByBuildIndex(2));
         SceneManager.UnloadSceneAsync(SceneManager.GetSceneByBuildIndex(3));
     }
+
 
     #endregion
 }

@@ -132,23 +132,23 @@ public class Chess2Text : MonoBehaviour
         {
             Sprite sprite;
 
-            _rectTransform.sizeDelta = new Vector2(0, 0);
+            _rectTransform.sizeDelta = new Vector3(0, 0);
             if (charAndSprites.TryGetValue(charecter, out sprite))
             {
-                _rectTransform.localScale = new Vector2(_fontSize, _fontSize);
+                _rectTransform.localScale = new Vector3(_fontSize, _fontSize);
                 var image = Instantiate(emptyImage, transform);
                 image.sprite = sprite;
                 image.SetNativeSize();
-                image.rectTransform.localPosition = new Vector2(currentWidth, 0);
+                image.rectTransform.localPosition = new Vector3(currentWidth, 0);
                 // Отнимаем leftBias, чтобы текст был более плотным или широким
                 currentWidth += (image.rectTransform.rect.width) - _leftBias;
-                _rectTransform.sizeDelta = new Vector2( currentWidth, image.rectTransform.rect.height);
+                _rectTransform.sizeDelta = new Vector3( currentWidth, image.rectTransform.rect.height);
             }
 
             if (charecter == ' ')
             {
                 currentWidth += _space * _fontSize;
-                _rectTransform.sizeDelta = new Vector2( currentWidth, _rectTransform.sizeDelta.y);
+                _rectTransform.sizeDelta = new Vector3( currentWidth, _rectTransform.sizeDelta.y);
             }
         }
     }
