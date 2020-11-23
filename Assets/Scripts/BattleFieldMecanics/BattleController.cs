@@ -92,15 +92,14 @@ public class BattleController : MonoBehaviour
         {
             _field.SecondFigure.Data.Health = _field.SecondFigure.Health;
             _battleInfo.Loser = _field.SecondFigure.Data;
-            Destroy(_field.SecondFigure);
             _battleInfo.Winner = _field.FirstFigure.Data;
         }
         else
         {
             _battleInfo.Loser = _field.FirstFigure.Data;
-            Destroy(_field.FirstFigure);
             _battleInfo.Winner = _field.SecondFigure.Data;
         }
+        
         SceneManager.SetActiveScene(SceneManager.GetSceneByBuildIndex(2));
         SceneManager.UnloadSceneAsync(SceneManager.GetSceneByBuildIndex(3));
     }

@@ -109,8 +109,8 @@ public class MainFieldTurnManager
     {
         _mainField.SceneTransition.PlayOpen();
         Core.BattleInfo.BattleEnd -= EndBattle;
-        Core.BattleInfo.Loser.MainFieldFigureInstance.DestroyThisFigure();
         var cell = Core.BattleInfo.CellBaseFightingFor;
-        Core.BattleInfo.Winner.MainFieldFigureInstance.StartCoroutine(Core.BattleInfo.Winner.MainFieldFigureInstance.MoveToAnotherCellWithAnimation(cell));
+        if(Core.BattleInfo.Winner != null)
+            Core.BattleInfo.Winner.MainFieldFigureInstance.StartCoroutine(Core.BattleInfo.Winner.MainFieldFigureInstance.MoveToAnotherCellWithAnimation(cell));
     }
 }

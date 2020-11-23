@@ -13,8 +13,12 @@ public abstract class BattleFieldFigure : MonoFigure
         set
         {
             _health = value;
-            if(Data != null)
+            if (Data != null)
+            {
                 Data.Health = value;
+                if (Health <= 0 && Data.MainFieldFigureInstance != null)
+                    Data.MainFieldFigureInstance.DestroyThisFigure();
+            }
         }
     }
     public int Defence { get; set; } = 0;

@@ -46,7 +46,6 @@ public class SpaceCut : Skill
                 }
 
                 _controller.BattleField.BattleFieldCells = newField;
-
                 _controller.SwitchTurn();
             }
         }
