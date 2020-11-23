@@ -1,7 +1,7 @@
 public class Trap : BattleFieldObject
 {
     private int _damage = 35;
-    private float _turnRemains = 4;
+    private float _turnRemains = 10;
     public override BarrierType CanThisFigureToCross(BattleFieldFigure figure)
     {
         if (figure.Data.Team != Team)

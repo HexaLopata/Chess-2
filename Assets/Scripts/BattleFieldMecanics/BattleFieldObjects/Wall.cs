@@ -1,6 +1,6 @@
 public class Wall : BattleFieldObject
 { 
-    private float _turnRemains = 3;
+    private float _turnRemains = 6;
     public override BarrierType CanThisFigureToCross(BattleFieldFigure figure)
     {
         if (figure.Data.Team != Team)

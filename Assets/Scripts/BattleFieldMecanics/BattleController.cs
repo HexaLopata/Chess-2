@@ -2,7 +2,6 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
-using UnityEngine.Serialization;
 
 public class BattleController : MonoBehaviour
 {
@@ -54,14 +53,14 @@ public class BattleController : MonoBehaviour
             CurrentTurn = Team.White;
             _currentFigure = _field.FirstFigure;
         }
+        onSwitchTurn.Invoke();
+        
         var turns = _currentFigure.GetRelevantMoves(_field.BattleFieldCells);
         
         if(turns.Length == 0)
             SwitchTurn();
         else
             _field.ActivateAllCells(turns);
-        
-        onSwitchTurn.Invoke();
     }
     public void SwitchTurn()
     {
@@ -105,7 +104,6 @@ public class BattleController : MonoBehaviour
         SceneManager.SetActiveScene(SceneManager.GetSceneByBuildIndex(2));
         SceneManager.UnloadSceneAsync(SceneManager.GetSceneByBuildIndex(3));
     }
-
-
+    
     #endregion
 }

@@ -12,16 +12,20 @@ public class BattleFieldKing : BattleFieldFigure
 
         void CheckAllCellsAndAdd(int cellX, int cellY)
         {
-            if (battleFieldCells[x + cellX, y + cellY].BattleFieldFigure == null)
+            if (battleFieldCells[x + cellX, y + cellY] != null)
             {
-                if (battleFieldCells[x + cellX, y + cellY].BattleFieldObject == null)
+                if (battleFieldCells[x + cellX, y + cellY].BattleFieldFigure == null)
                 {
-                    turns.Add(battleFieldCells[x + cellX, y + cellY]);
-                }
-                else
-                {
-                    if (battleFieldCells[x + cellX, y + cellY].BattleFieldObject.CanThisFigureToCross(this) != BarrierType.Impassable)
+                    if (battleFieldCells[x + cellX, y + cellY].BattleFieldObject == null)
+                    {
                         turns.Add(battleFieldCells[x + cellX, y + cellY]);
+                    }
+                    else
+                    {
+                        if (battleFieldCells[x + cellX, y + cellY].BattleFieldObject.CanThisFigureToCross(this) !=
+                            BarrierType.Impassable)
+                            turns.Add(battleFieldCells[x + cellX, y + cellY]);
+                    }
                 }
             }
         }
@@ -51,14 +55,18 @@ public class BattleFieldKing : BattleFieldFigure
 
         void CheckAllCellsAndAdd(int cellX, int cellY)
         {
-            if (battleFieldCells[x + cellX, y + cellY].BattleFieldObject == null)
+            if (battleFieldCells[x + cellX, y + cellY] != null)
             {
-                turns.Add(battleFieldCells[x + cellX, y + cellY]);
-            }
-            else
-            {
-                if (battleFieldCells[x + cellX, y + cellY].BattleFieldObject.CanThisFigureToAttackThrough(this) != BarrierType.Impassable)
+                if (battleFieldCells[x + cellX, y + cellY].BattleFieldObject == null)
+                {
                     turns.Add(battleFieldCells[x + cellX, y + cellY]);
+                }
+                else
+                {
+                    if (battleFieldCells[x + cellX, y + cellY].BattleFieldObject.CanThisFigureToAttackThrough(this) !=
+                        BarrierType.Impassable)
+                        turns.Add(battleFieldCells[x + cellX, y + cellY]);
+                }
             }
         }
         if (battleFieldCells.GetLength(0) > x + 1)

@@ -12,11 +12,14 @@ public class BattleFieldPawn : BattleFieldFigure
         
         void CheckAllCellsAndAdd(List<BattleFieldCell> turnsList, int cellX, int cellY, BattleFieldCell[,] cells)
         {
-            if (cells[cellX, cellY ].BattleFieldObject == null ||
-                cells[cellX, cellY].BattleFieldObject.CanThisFigureToCross(this) != BarrierType.Impassable)
+            if (cells[cellX, cellY] != null)
             {
-                if(cells[cellX, cellY].BattleFieldFigure == null)
-                    turnsList.Add(cells[cellX, cellY]);
+                if (cells[cellX, cellY].BattleFieldObject == null ||
+                    cells[cellX, cellY].BattleFieldObject.CanThisFigureToCross(this) != BarrierType.Impassable)
+                {
+                    if (cells[cellX, cellY].BattleFieldFigure == null)
+                        turnsList.Add(cells[cellX, cellY]);
+                }
             }
         }
         if (battleFieldCells.GetLength(1) > y + 1 && battleFieldCells.GetLength(0) > x + 1)
@@ -50,10 +53,13 @@ public class BattleFieldPawn : BattleFieldFigure
         
         void CheckAllCellsAndAdd(List<BattleFieldCell> turnsList, int cellX, int cellY, BattleFieldCell[,] cells)
         {
-            if (cells[cellX, cellY].BattleFieldObject == null ||
-                cells[cellX, cellY].BattleFieldObject.CanThisFigureToAttackThrough(this) != BarrierType.Impassable)
+            if (cells[cellX, cellY] != null)
             {
-                turnsList.Add(cells[cellX, cellY]);
+                if (cells[cellX, cellY].BattleFieldObject == null ||
+                    cells[cellX, cellY].BattleFieldObject.CanThisFigureToAttackThrough(this) != BarrierType.Impassable)
+                {
+                    turnsList.Add(cells[cellX, cellY]);
+                }
             }
         }
         

@@ -27,30 +27,33 @@ public class BattleFieldQueen : BattleFieldFigure
 
             while (condition)
             {
-                if (battleFieldCells[localX + cellX, localY + cellY].BattleFieldFigure == null)
+                if (battleFieldCells[localX + cellX, localY + cellY] != null)
                 {
-                    if (battleFieldCells[localX + cellX, localY + cellY].BattleFieldObject == null)
+                    if (battleFieldCells[localX + cellX, localY + cellY].BattleFieldFigure == null)
                     {
-                        turns.Add(battleFieldCells[localX + cellX, localY + cellY]);
-                    }
-                    else
-                    {
-                        if (battleFieldCells[localX + cellX, localY + cellY].BattleFieldObject
-                            .CanThisFigureToCross(this) == BarrierType.Passable)
-                            turns.Add(battleFieldCells[localX + cellX, localY + cellY]);
-                        else if (battleFieldCells[localX + cellX, localY + cellY].BattleFieldObject
-                                     .CanThisFigureToCross(this) ==
-                                 BarrierType.Stopable)
+                        if (battleFieldCells[localX + cellX, localY + cellY].BattleFieldObject == null)
                         {
                             turns.Add(battleFieldCells[localX + cellX, localY + cellY]);
-                            break;
                         }
                         else
-                            break;
+                        {
+                            if (battleFieldCells[localX + cellX, localY + cellY].BattleFieldObject
+                                .CanThisFigureToCross(this) == BarrierType.Passable)
+                                turns.Add(battleFieldCells[localX + cellX, localY + cellY]);
+                            else if (battleFieldCells[localX + cellX, localY + cellY].BattleFieldObject
+                                         .CanThisFigureToCross(this) ==
+                                     BarrierType.Stopable)
+                            {
+                                turns.Add(battleFieldCells[localX + cellX, localY + cellY]);
+                                break;
+                            }
+                            else
+                                break;
+                        }
                     }
-                }
-                else 
+                    else
                         break;
+                }
 
                 localX += cellX;
                 localY += cellY;
@@ -101,24 +104,27 @@ public class BattleFieldQueen : BattleFieldFigure
 
             while (condition)
             {
-                if (battleFieldCells[localX + cellX, localY + cellY].BattleFieldObject == null)
+                if (battleFieldCells[localX + cellX, localY + cellY] != null)
                 {
-                    turns.Add(battleFieldCells[localX + cellX, localY + cellY]);
-                }
-                else
-                {
-                    if (battleFieldCells[localX + cellX, localY + cellY].BattleFieldObject
-                        .CanThisFigureToAttackThrough(this) == BarrierType.Passable)
-                        turns.Add(battleFieldCells[localX + cellX, localY + cellY]);
-                    else if (battleFieldCells[localX + cellX, localY + cellY].BattleFieldObject
-                                 .CanThisFigureToAttackThrough(this) ==
-                             BarrierType.Stopable)
+                    if (battleFieldCells[localX + cellX, localY + cellY].BattleFieldObject == null)
                     {
                         turns.Add(battleFieldCells[localX + cellX, localY + cellY]);
-                        break;
                     }
                     else
-                        break;
+                    {
+                        if (battleFieldCells[localX + cellX, localY + cellY].BattleFieldObject
+                            .CanThisFigureToAttackThrough(this) == BarrierType.Passable)
+                            turns.Add(battleFieldCells[localX + cellX, localY + cellY]);
+                        else if (battleFieldCells[localX + cellX, localY + cellY].BattleFieldObject
+                                     .CanThisFigureToAttackThrough(this) ==
+                                 BarrierType.Stopable)
+                        {
+                            turns.Add(battleFieldCells[localX + cellX, localY + cellY]);
+                            break;
+                        }
+                        else
+                            break;
+                    }
                 }
 
                 localX += cellX;

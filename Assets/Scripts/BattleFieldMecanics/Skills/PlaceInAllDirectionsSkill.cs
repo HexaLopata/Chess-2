@@ -3,14 +3,12 @@ using UnityEngine;
 public class PlaceInAllDirectionsSkill : Skill
 {
     [SerializeField] private BattleFieldObject battleFieldObject;
-    private BattleController _controller;
-    private float _maxDelay = 5;
-    private float _delay = 0;
-    
+
     public override string Name
     {
         get => battleFieldObject.GetType().Name;
     }
+    
     public override void Execute(BattleFieldFigure figure, BattleFieldCell cell)
     {
         if (_controller == null)
@@ -33,16 +31,5 @@ public class PlaceInAllDirectionsSkill : Skill
     public override void Activate(BattleFieldFigure figure)
     {
         Execute(figure, null);
-    }
-
-    private void UpdateDelay()
-    {
-        _delay -= 0.5f;
-    }
-
-    private void SubscribeOnSwitchTurn(BattleController controller)
-    {
-        _controller = controller;
-        _controller.onSwitchTurn.AddListener(UpdateDelay);
     }
 }

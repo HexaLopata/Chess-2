@@ -10,13 +10,26 @@ public class BattleField : FieldBase
     public BattleController BattleController => _battleController;
     public BattleFieldFigure FirstFigure { get; private set; }
     public BattleFieldFigure SecondFigure { get; private set; }
-    public BattleFieldCell[,] BattleFieldCells { get; private set; }
+    public BattleFieldCell[,] BattleFieldCells
+    {
+        get => _battleFieldCells;
+        set
+        {
+            if (value != null)
+            {
+                Width = value.GetLength(0);
+                Height = value.GetLength(1);
+                _battleFieldCells = value;
+            }
+        }
+    }
 
     #endregion
 
     #region private Fields
 
     private BattleInfo _battleInfo;
+    private BattleFieldCell[,] _battleFieldCells;
 
     [SerializeField] private BattleController _battleController;
 
@@ -29,7 +42,8 @@ public class BattleField : FieldBase
         DeactivateAllCells();
         foreach (var cell in battleFieldCells)
         {
-            cell.Activate();
+            if(cell != null)
+                cell.Activate();
         }
     }
     public void DeactivateAllCells()
@@ -38,7 +52,8 @@ public class BattleField : FieldBase
         {
             foreach (var cell in BattleFieldCells)
             {
-                cell.Deactivate();
+                if(cell != null)
+                    cell.Deactivate();
             }
         }
     }

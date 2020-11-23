@@ -25,29 +25,34 @@ public class BattleFieldBishop : BattleFieldFigure
 
             while (condition)
             {
-                if (battleFieldCells[localX + cellX, localY + cellY].Figure == null)
+                if (battleFieldCells[localX + cellX, localY + cellY] != null)
                 {
-                    if (battleFieldCells[localX + cellX, localY + cellY].BattleFieldObject == null)
+                    if (battleFieldCells[localX + cellX, localY + cellY].Figure == null)
                     {
-                        turns.Add(battleFieldCells[localX + cellX, localY + cellY]);
+                        if (battleFieldCells[localX + cellX, localY + cellY].BattleFieldObject == null)
+                        {
+                            turns.Add(battleFieldCells[localX + cellX, localY + cellY]);
+                        }
+                        else
+                        {
+                            if (battleFieldCells[localX + cellX, localY + cellY].BattleFieldObject
+                                .CanThisFigureToCross(this) == BarrierType.Passable)
+                                turns.Add(battleFieldCells[localX + cellX, localY + cellY]);
+                            else if (battleFieldCells[localX + cellX, localY + cellY].BattleFieldObject
+                                         .CanThisFigureToCross(this) ==
+                                     BarrierType.Stopable)
+                            {
+                                turns.Add(battleFieldCells[localX + cellX, localY + cellY]);
+                                break;
+                            }
+                            else
+                                break;
+                        }
                     }
                     else
                     {
-                        if (battleFieldCells[localX + cellX, localY + cellY].BattleFieldObject.CanThisFigureToCross(this) == BarrierType.Passable)
-                            turns.Add(battleFieldCells[localX + cellX, localY + cellY]);
-                        else if (battleFieldCells[localX + cellX, localY + cellY].BattleFieldObject.CanThisFigureToCross(this) ==
-                                 BarrierType.Stopable)
-                        {
-                            turns.Add(battleFieldCells[localX + cellX, localY + cellY]);
-                            break;
-                        }
-                        else
-                            break;
+                        break;
                     }
-                }
-                else
-                {
-                    break;
                 }
 
                 localX += cellX;
