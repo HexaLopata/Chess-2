@@ -11,6 +11,7 @@ public class CounterAttack : Skill
             SubscribeOnSwitchTurn(figure.BattleField.BattleController);
         if (_delay <= 0)
         {
+            _delay = _maxDelay;
             if(_attack == null)
                 _attack =  StartCoroutine(DoubleAttack(figure));
         }
