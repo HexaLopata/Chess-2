@@ -123,6 +123,9 @@ public class BattleFieldRook : BattleFieldFigure
                         else
                             break;
                     }
+
+                    if (battleFieldCells[localX + cellX, localY + cellY].BattleFieldFigure != null)
+                        break;
                 }
 
                 localX += cellX;
