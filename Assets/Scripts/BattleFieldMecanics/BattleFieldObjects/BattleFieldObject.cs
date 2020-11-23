@@ -81,7 +81,7 @@ public abstract class BattleFieldObject : MonoBehaviour, IPointerClickHandler
             cellPosition.y + Cell.RectTransform.rect.height / 2);
         GetComponent<RectTransform>().localPosition = newPosition;
         // Размещает объект по иерархии так, чтобы он отображался поверх клеток, но был ниже фигур
-        transform.SetSiblingIndex(BattleField.Height * BattleField.Width);
+        transform.SetSiblingIndex(BattleField.Height * BattleField.Width + 2);
     }
     public void DestroyThisBattleFieldObject()
     {

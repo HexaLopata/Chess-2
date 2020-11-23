@@ -30,6 +30,7 @@ public class RandomTeleport : Skill
             }
             
             var randomCell = turns[Random.Range(0, turns.Count)];
+            _delay = _maxDelay;
             StartCoroutine(MoveAndUpdateTurns(figure, randomCell));
         }
     }
