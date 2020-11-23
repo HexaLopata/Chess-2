@@ -35,6 +35,7 @@ public class BattleController : MonoBehaviour
     private void Start()
     {
         _battleInfo = Core.BattleInfo;
+        _sceneTransition.PlayOpen(StartBattle);
     }
 
     #endregion
@@ -84,6 +85,17 @@ public class BattleController : MonoBehaviour
 
     #region private Methods
 
+    private void StartBattle()
+    {
+        var figureFirst = Core.BattleInfo.FirstFigure.BattleFieldFigureInstance;
+        foreach (var cell in BattleField.BattleFieldCells)
+        {
+            cell.TakeDamage(figureFirst);
+        }
+        
+        SwitchTurn(figureFirst.Data.Team);
+    }
+    
     private IEnumerator SetBattleResultWithAnimation(Team team)
     {
         yield return _sceneTransition.Close();

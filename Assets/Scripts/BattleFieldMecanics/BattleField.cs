@@ -121,10 +121,8 @@ public class BattleField : FieldBase
                 BattleFieldCells[x, y] = (BattleFieldCell)Cells[x, y];
             }
         }
-        _battleController.SwitchTurn(firstTurn);
-        
+
         GetComponentInParent<Image>().rectTransform.sizeDelta = new Vector2((Width + 2) * _cellWidth, (Height + 2) * _cellHeight);
     }
-
     #endregion
 }

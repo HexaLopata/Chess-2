@@ -10,17 +10,24 @@ public class SceneTransition : MonoBehaviour
     /// </summary>
     [SerializeField] private int _step = 40;
     [SerializeField] private bool _leftDirection = true;
+    [SerializeField] private bool _autoPlay = false;
     private RectTransform _rectTransform;
+    private Coroutine _open;
+    private Coroutine _close;
 
-    private void Start()
+    private void Awake()
     {
         _rectTransform = GetComponent<RectTransform>();
-        PlayOpen();
+        if(_autoPlay)
+            PlayOpen();
     }
 
     public void PlayClose(Action callBack = null)
     {
-        StartCoroutine(Close(callBack));
+        if(_close == null)
+            _close = StartCoroutine(Close(callBack));
+        else
+            callBack?.Invoke();
     }
 
     /// <summary>
@@ -29,7 +36,10 @@ public class SceneTransition : MonoBehaviour
     /// <param name="callBack"></param>
     public void PlayOpen(Action callBack = null)
     {
-        StartCoroutine(Open());
+        if(_open == null)
+            _open = StartCoroutine(Open(callBack));
+        else
+            callBack?.Invoke();
     }
     
     /// <summary>
@@ -59,6 +69,7 @@ public class SceneTransition : MonoBehaviour
         }
 
         callBack?.Invoke();
+        _close = null;
     }
 
     public IEnumerator Open(Action callBack = null)
@@ -83,5 +94,6 @@ public class SceneTransition : MonoBehaviour
         }
 
         callBack?.Invoke();
+        _open = null;
     }
 }
