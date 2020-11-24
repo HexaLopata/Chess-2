@@ -3,11 +3,11 @@ Chess with funny additional features
 
 ![alt text](Screenshots/mainMenu.jpg)
 
-#Chess has never been so diverse
+# Chess has never been so diverse
 ![alt text](Screenshots/MainField.jpg)
 
-#Play with your friends!
+# Play with your friends!
 Local multiplayer on one screen!
 
-#Fight one-on-one with your figure using skills!
+# Fight one-on-one with your figure using skills!
 ![alt text](Screenshots/BattleField.jpg)
