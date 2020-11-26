@@ -30,9 +30,11 @@ public abstract class MonoFigure : MonoBehaviour
 
     public CellBase CellBase { get; set; }
     public Vector2Int OnBoardPosition { get; set; }
+    public bool King => _king;
 
     [SerializeField] private Sprite _whiteSkin;
     [SerializeField] private Sprite _blackSkin;
+    [SerializeField] private bool _king;
     protected FigureData _data;
     protected Image _image;
     private RectTransform _rectTransform;

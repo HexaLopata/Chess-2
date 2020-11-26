@@ -18,6 +18,7 @@ public class SceneTransition : MonoBehaviour
     private void Awake()
     {
         _rectTransform = GetComponent<RectTransform>();
+        GetComponent<Image>().color = Color.black;
         if(_autoPlay)
             PlayOpen();
     }
@@ -49,13 +50,13 @@ public class SceneTransition : MonoBehaviour
     /// <returns></returns>
     public IEnumerator Close(Action callBack = null)
     {
-        GetComponent<Image>().color = Color.black;
         if (_leftDirection)
         {
             while (_rectTransform.localPosition.x < 0)
             {
-                _rectTransform.localPosition =
-                    new Vector2(_rectTransform.localPosition.x + _step, _rectTransform.localPosition.y);
+                var localPosition = _rectTransform.localPosition;
+                localPosition = new Vector2(localPosition.x + _step, localPosition.y);
+                _rectTransform.localPosition = localPosition;
                 yield return null;
             }
         }
@@ -63,7 +64,9 @@ public class SceneTransition : MonoBehaviour
         {
             while (_rectTransform.localPosition.x > 0)
             {
-                _rectTransform.localPosition = new Vector2(_rectTransform.localPosition.x - _step, _rectTransform.localPosition.y);
+                var localPosition = _rectTransform.localPosition;
+                localPosition = new Vector2(localPosition.x - _step, localPosition.y);
+                _rectTransform.localPosition = localPosition;
                 yield return null;
             }
         }
@@ -74,13 +77,13 @@ public class SceneTransition : MonoBehaviour
 
     public IEnumerator Open(Action callBack = null)
     {
-        GetComponent<Image>().color = Color.black;
         if (_leftDirection)
         {
             while (_rectTransform.localPosition.x > -3000)
             {
-                _rectTransform.localPosition =
-                    new Vector2(_rectTransform.localPosition.x - _step, _rectTransform.localPosition.y);
+                var localPosition = _rectTransform.localPosition;
+                localPosition = new Vector2(localPosition.x - _step, localPosition.y);
+                _rectTransform.localPosition = localPosition;
                 yield return null;
             }
         }
@@ -88,7 +91,9 @@ public class SceneTransition : MonoBehaviour
         {
             while (_rectTransform.localPosition.x < 3000)
             {
-                _rectTransform.localPosition = new Vector2(_rectTransform.localPosition.x + _step, _rectTransform.localPosition.y);
+                var localPosition = _rectTransform.localPosition;
+                localPosition = new Vector2(localPosition.x + _step, localPosition.y);
+                _rectTransform.localPosition = localPosition;
                 yield return null;
             }
         }

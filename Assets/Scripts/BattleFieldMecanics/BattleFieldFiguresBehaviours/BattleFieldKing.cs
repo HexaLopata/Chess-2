@@ -95,7 +95,7 @@ public class BattleFieldKing : BattleFieldFigure
     protected override void SetDamageAndDefence()
     {
         Damage = 30;
-        Defence = 5;
+        Defence = 15;
     }
 
     #endregion

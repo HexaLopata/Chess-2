@@ -111,8 +111,11 @@ public class BattleController : MonoBehaviour
             _battleInfo.Loser = _field.FirstFigure.Data;
             _battleInfo.Winner = _field.SecondFigure.Data;
         }
-        
-        SceneManager.SetActiveScene(SceneManager.GetSceneByBuildIndex(2));
+
+        if (SceneManager.GetSceneByBuildIndex(2).isLoaded)
+        {
+            SceneManager.SetActiveScene(SceneManager.GetSceneByBuildIndex(2));
+        }
         SceneManager.UnloadSceneAsync(SceneManager.GetSceneByBuildIndex(3));
     }
     

@@ -715,6 +715,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _step: 40
   _leftDirection: 0
+  _autoPlay: 0
 --- !u!114 &749929444
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1170,6 +1171,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _step: 40
   _leftDirection: 0
+  _autoPlay: 0
 --- !u!114 &1082513237
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -105,12 +106,36 @@ public class MainFieldTurnManager
     /// <summary>
     /// Применяет все изменения полученные в результате битвы фигур
     /// </summary>
-    public void EndBattle()
+    private void EndBattle()
     {
-        _mainField.SceneTransition.PlayOpen();
+        if (_mainField.WhiteKings.Count(k => k != null) == 0 &&
+            _mainField.BlackKings.Count(k => k != null) == 0)
+        {
+            SetGameResultAndFinishGame(GameResult.Draw);
+        }
+        else if (_mainField.WhiteKings.Count(k => k != null) == 0)
+        {
+            SetGameResultAndFinishGame(GameResult.BlackWon);
+        }
+        else if (_mainField.BlackKings.Count(k => k != null) == 0)
+        {
+            SetGameResultAndFinishGame(GameResult.WhiteWon);
+        }
+        else
+        {
+            _mainField.SceneTransition.PlayOpen();
+            var cell = Core.BattleInfo.CellBaseFightingFor;
+            if(Core.BattleInfo.Winner != null)
+                Core.BattleInfo.Winner.MainFieldFigureInstance.StartCoroutine(Core.BattleInfo.Winner.MainFieldFigureInstance.MoveToAnotherCellWithAnimation(cell));
+        }
         Core.BattleInfo.BattleEnd -= EndBattle;
-        var cell = Core.BattleInfo.CellBaseFightingFor;
-        if(Core.BattleInfo.Winner != null)
-            Core.BattleInfo.Winner.MainFieldFigureInstance.StartCoroutine(Core.BattleInfo.Winner.MainFieldFigureInstance.MoveToAnotherCellWithAnimation(cell));
+    }
+
+    private void SetGameResultAndFinishGame(GameResult result)
+    {
+        Core.GameResult = result;
+        SceneManager.LoadSceneAsync(4, LoadSceneMode.Additive);
+        //SceneManager.SetActiveScene(SceneManager.GetSceneByBuildIndex(4));
+        SceneManager.UnloadSceneAsync(SceneManager.GetSceneByBuildIndex(2));
     }
 }

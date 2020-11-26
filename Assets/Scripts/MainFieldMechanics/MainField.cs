@@ -5,13 +5,19 @@ using UnityEngine.Serialization;
 // Напоминание: слева снизу черная клетка, само поле 8х8
 public class MainField : FieldBase
 {
-    [FormerlySerializedAs("_exitSceneAnimation")] [SerializeField] private SceneTransition sceneTransition;
-    private readonly List<KeyValuePair<Vector2Int, FigureData>> _figuresForInit = new List<KeyValuePair<Vector2Int, FigureData>>();
     public MainFieldTurnManager MainFieldTurnManager { get; private set; }
     public SceneTransition SceneTransition
     {
         get => sceneTransition;
     }
+    public List<MonoFigure> WhiteKings => _whiteKings;
+    public List<MonoFigure> BlackKings => _blackKings;
+    
+    [SerializeField] private SceneTransition sceneTransition;
+    
+    private readonly List<KeyValuePair<Vector2Int, FigureData>> _figuresForInit = new List<KeyValuePair<Vector2Int, FigureData>>();
+    private List<MonoFigure> _whiteKings = new List<MonoFigure>();
+    private List<MonoFigure> _blackKings = new List<MonoFigure>();
     
     protected override void AdditionalStartInit()
     {
@@ -74,6 +80,13 @@ public class MainField : FieldBase
         MainFieldFigure figure = Instantiate(data.MainFieldFigurePrefub, transform);
         figure.Data = data;
         figure.Data.MainFieldFigureInstance = figure;
+        if (figure.King)
+        {
+            if(figure.Data.Team == Team.Black)
+                _blackKings.Add(figure);
+            else
+                _whiteKings.Add(figure);
+        }
         if (figureAndPosition.Key.x < Cells.GetLength(0) && figureAndPosition.Key.y < Cells.GetLength(1))
         {
             StartCoroutine(figure.MoveToAnotherCellWithAnimation(Cells[figureAndPosition.Key.x, figureAndPosition.Key.y]));
