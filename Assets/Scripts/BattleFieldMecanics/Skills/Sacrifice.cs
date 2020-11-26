@@ -1,17 +1,21 @@
 public class Sacrifice : Skill
 {
-    public override string Name => "Sacrifice";
     public override void Execute(BattleFieldFigure figure, BattleFieldCell cell)
     {
-        var rawField = figure.BattleField.BattleFieldCells;
-        for (int x = 0; x  < rawField.GetLength(0); x++)
+        if (_delay <= 0)
         {
-            for (int y = 0; y < rawField.GetLength(1); y++)
+            var rawField = figure.BattleField.BattleFieldCells;
+            for (int x = 0; x < rawField.GetLength(0); x++)
             {
-                rawField[x, y].TakeDamage(figure);
+                for (int y = 0; y < rawField.GetLength(1); y++)
+                {
+                    rawField[x, y].TakeDamage(figure);
+                }
             }
+
+            _delay = _maxDelay;
+            figure.TakeDamage(1000);
         }
-        figure.TakeDamage(1000);
     }
 
     public override void Activate(BattleFieldFigure figure)

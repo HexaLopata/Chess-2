@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class RandomTeleport : Skill
 {
-    public override string Name => "Teleport";
     public override void Execute(BattleFieldFigure figure, BattleFieldCell cell)
     {
+        base.Execute(figure, cell);
+        
         if (_delay <= 0)
         {
             var figurePos = figure.OnBoardPosition;

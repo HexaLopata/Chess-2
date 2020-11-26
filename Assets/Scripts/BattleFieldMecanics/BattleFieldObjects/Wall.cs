@@ -1,6 +1,5 @@
-public class Wall : BattleFieldObject
-{ 
-    private float _turnRemains = 6;
+public class Wall : TimeLimitedObject
+{
     public override BarrierType CanThisFigureToCross(BattleFieldFigure figure)
     {
         if (figure.Data.Team != Team)
@@ -20,14 +19,10 @@ public class Wall : BattleFieldObject
         _turnRemains -= 0.5f;
     }
 
-    public override void Visit(BattleFieldFigure visitor) { }
-
-    public override void Execute()
+    public override void TakeDamage(int damage)
     {
         _turnRemains -= 0.5f;
-        if (_turnRemains <= 0)
-        {
-            DestroyThisBattleFieldObject();
-        }
     }
+
+    public override void Visit(BattleFieldFigure visitor) { }
 }

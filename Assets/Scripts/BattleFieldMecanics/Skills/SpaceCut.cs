@@ -1,10 +1,9 @@
 public class SpaceCut : Skill
 {
-    public override string Name => "Space Cut";
     public override void Execute(BattleFieldFigure figure, BattleFieldCell cell)
     {
-        if(_controller == null)
-            SubscribeOnSwitchTurn(figure.BattleField.BattleController);
+        base.Execute(figure, cell);
+        
         var rawField = figure.BattleField.BattleFieldCells;
         if (figure.BattleField.Width > 4 && figure.BattleField.Height > 4)
         {

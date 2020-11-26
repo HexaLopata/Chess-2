@@ -2,11 +2,9 @@ using System.Collections;
 
 public class DoubleTurn : Skill
 {
-    public override string Name => "Jerk";
     public override void Execute(BattleFieldFigure figure, BattleFieldCell cell)
     {
-        if (_controller == null)
-            SubscribeOnSwitchTurn(figure.BattleField.BattleController);
+        base.Execute(figure, cell);
         
         if (_delay <= 0)
         {

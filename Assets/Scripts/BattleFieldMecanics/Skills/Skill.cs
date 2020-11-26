@@ -13,15 +13,21 @@ public abstract class Skill : MonoBehaviour
             activateOrDisactivate.Invoke();
         }
     }
-    public abstract string Name { get; }
+    public string Name => _name;
     
     protected BattleController _controller;
-    [SerializeField] protected float _maxDelay = 5;
     protected float _delay = 0;
+    
+    [SerializeField] protected float _maxDelay = 5;
+    [SerializeField] protected string _name;
     
     private bool _isActive;
 
-    public abstract void Execute(BattleFieldFigure figure, BattleFieldCell cell);
+    public virtual void Execute(BattleFieldFigure figure, BattleFieldCell cell)
+    {
+        if (_controller == null)
+            SubscribeOnSwitchTurn(figure.BattleField.BattleController);
+    }
 
     public abstract void Activate(BattleFieldFigure figure);
     

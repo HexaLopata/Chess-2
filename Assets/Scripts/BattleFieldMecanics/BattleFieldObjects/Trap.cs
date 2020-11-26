@@ -1,7 +1,9 @@
-public class Trap : BattleFieldObject
+using UnityEngine;
+
+public class Trap : TimeLimitedObject
 {
-    private int _damage = 35;
-    private float _turnRemains = 10;
+    [SerializeField] private int _damage = 35;
+    
     public override BarrierType CanThisFigureToCross(BattleFieldFigure figure)
     {
         if (figure.Data.Team != Team)
@@ -35,20 +37,13 @@ public class Trap : BattleFieldObject
         }
     }
 
+    public override void TakeDamage(int damage) { }
+
     public override void Visit(BattleFieldFigure visitor)
     {
         if (visitor.Data.Team != Team)
         {
             visitor.TakeDamage(_damage);
-            DestroyThisBattleFieldObject();
-        }
-    }
-
-    public override void Execute()
-    {
-        _turnRemains -= 0.5f;
-        if (_turnRemains <= 0)
-        {
             DestroyThisBattleFieldObject();
         }
     }

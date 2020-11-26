@@ -42,6 +42,9 @@ public abstract class BattleFieldObject : MonoBehaviour, IPointerClickHandler
             _cell = value;
         }
     }
+    public Image Image => _image;
+    public Sprite WhiteSkin => _whiteSkin;
+    public Sprite BlackSkin => _blackSkin;
 
     #endregion
 
@@ -50,8 +53,8 @@ public abstract class BattleFieldObject : MonoBehaviour, IPointerClickHandler
     private BattleFieldCell _cell;
     private Team _team;
     private RectTransform _rectTransform;
-    private Image _image;
-    
+    protected Image _image;
+
     [SerializeField] private Sprite _whiteSkin;
     [SerializeField] private Sprite _blackSkin;
 
@@ -62,6 +65,7 @@ public abstract class BattleFieldObject : MonoBehaviour, IPointerClickHandler
     public abstract BarrierType CanThisFigureToCross(BattleFieldFigure figure);
     public abstract BarrierType CanThisFigureToAttackThrough(BattleFieldFigure figure);
     public abstract void TakeDamage(BattleFieldFigure attacker);
+    public abstract void TakeDamage(int damage);
     public abstract void Visit(BattleFieldFigure visitor);
     public abstract void Execute();
     public virtual void MoveToAnotherCell(BattleFieldCell cell)

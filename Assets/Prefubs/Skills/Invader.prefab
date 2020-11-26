@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7258157851409736167}
-  - component: {fileID: -2341372308914507766}
+  - component: {fileID: 610768749981634708}
   m_Layer: 0
-  m_Name: PlaceShieldSkill
+  m_Name: Invader
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -31,7 +31,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &-2341372308914507766
+--- !u!114 &610768749981634708
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -40,13 +40,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 4451160320274389103}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c8680098f5db4f059a0e70ebc6cf73ad, type: 3}
+  m_Script: {fileID: 11500000, guid: ab491d9fd85743f68c4c1f58cfd3224f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   activateOrDisactivate:
     m_PersistentCalls:
       m_Calls: []
-  _maxDelay: 5
-  _name: Paladin
-  _battleFieldObject: {fileID: -2771007223784719237, guid: b6e49d5e0cebd04a592570354ebc6e68,
+  _maxDelay: 0
+  _name: Invader
+  _battleFieldObject: {fileID: -7462228662124645256, guid: f7b2edaa125d5dae0b34b51aac5d930e,
     type: 3}
+  _continueTurn: 1

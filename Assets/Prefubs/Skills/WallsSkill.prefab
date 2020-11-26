@@ -46,5 +46,7 @@ MonoBehaviour:
   activateOrDisactivate:
     m_PersistentCalls:
       m_Calls: []
+  _maxDelay: 5
+  _name: Builder
   battleFieldObject: {fileID: 7437973266940876044, guid: e0711d71105e8cf57b75f27f2022c410,
     type: 3}

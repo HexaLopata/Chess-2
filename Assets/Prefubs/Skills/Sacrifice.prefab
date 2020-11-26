@@ -46,4 +46,5 @@ MonoBehaviour:
   activateOrDisactivate:
     m_PersistentCalls:
       m_Calls: []
-  _maxDelay: 5
+  _maxDelay: 0
+  _name: Sacrifice

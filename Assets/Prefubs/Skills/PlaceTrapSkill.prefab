@@ -43,5 +43,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8680098f5db4f059a0e70ebc6cf73ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  battleFieldObject: {fileID: -5508046774929977376, guid: 80e3805b3b2662e50954d56c33c1439f,
+  activateOrDisactivate:
+    m_PersistentCalls:
+      m_Calls: []
+  _maxDelay: 5
+  _name: Hunter
+  _battleFieldObject: {fileID: -5508046774929977376, guid: 80e3805b3b2662e50954d56c33c1439f,
     type: 3}

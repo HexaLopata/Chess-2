@@ -2,22 +2,20 @@ using UnityEngine;
 
 public class PlaceBattleFieldObject : Skill
 {
-    [SerializeField] private BattleFieldObject battleFieldObject;
-    public override string Name
-    {
-        get => battleFieldObject.GetType().Name;
-    }
-
+    [SerializeField] private BattleFieldObject _battleFieldObject;
+    [SerializeField] private bool _continueTurn;
+    
     public override void Execute(BattleFieldFigure figure, BattleFieldCell cell)
     {
-        if (_controller == null)
-            SubscribeOnSwitchTurn(figure.BattleField.BattleController);
+        base.Execute(figure, cell);
         if (_delay <= 0)
         {
-            var obj = Instantiate(battleFieldObject, figure.BattleField.transform);
+            var obj = Instantiate(_battleFieldObject, figure.BattleField.transform);
             obj.MoveToAnotherCell(cell);
             obj.Team = figure.Data.Team;
-            figure.BattleField.BattleController.SwitchTurn();
+            if (!_continueTurn)
+                figure.BattleField.BattleController.SwitchTurn();
+
             _delay = _maxDelay;
         }
     }

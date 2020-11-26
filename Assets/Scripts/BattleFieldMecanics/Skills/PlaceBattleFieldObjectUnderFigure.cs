@@ -1,23 +1,19 @@
 using UnityEngine;
 
-public class PlaceInAllDirectionsSkill : Skill
+public class PlaceBattleFieldObjectUnderFigure : Skill
 {
-    [SerializeField] private BattleFieldObject battleFieldObject;
+    [SerializeField] private BattleFieldObject _battleFieldObject;
     [SerializeField] private bool _continueTurn;
 
     public override void Execute(BattleFieldFigure figure, BattleFieldCell cell)
     {
         base.Execute(figure, cell);
+        
         if (_delay <= 0)
         {
-            var turns = figure.GetRelevantMoves(figure.BattleField.BattleFieldCells);
-            foreach (var turn in turns)
-            {
-                var obj = Instantiate(battleFieldObject, figure.BattleField.transform);
-                obj.MoveToAnotherCell(turn);
-                obj.Team = figure.Data.Team;
-            }
-
+            var obj = Instantiate(_battleFieldObject, figure.BattleField.transform);
+            obj.MoveToAnotherCell(figure.BattleField.BattleFieldCells[figure.OnBoardPosition.x, figure.OnBoardPosition.y]);
+            obj.Team = figure.Data.Team;
             if(!_continueTurn)
                 figure.BattleField.BattleController.SwitchTurn();
             _delay = _maxDelay;

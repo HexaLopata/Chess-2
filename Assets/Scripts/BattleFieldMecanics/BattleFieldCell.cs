@@ -82,6 +82,21 @@ public class BattleFieldCell : CellBase
             }
         }
     }
+
+    public void TakeDamage(int damage)
+    {
+        _damageAnimation = StartCoroutine(DamageAnimation());
+        if (BattleFieldFigure != null)
+        {
+            BattleFieldFigure.TakeDamage(damage);
+        }
+
+        if (BattleFieldObject != null)
+        {
+            BattleFieldObject.TakeDamage(damage);
+        }
+    }
+    
     public override void Activate()
     {
         State = CellState.Active;
