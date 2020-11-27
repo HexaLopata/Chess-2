@@ -4,7 +4,8 @@ public class BattleInfo
 {
     public FigureData FirstFigure => _firstFigure; 
     public FigureData SecondFigure => _secondFigure;
-    public FigureData Winner {
+    public FigureData Winner 
+    {
         get
         {
             return _winner;
@@ -15,7 +16,7 @@ public class BattleInfo
             BattleEnd?.Invoke();
         }
     }
-    public CellBase CellBaseFightingFor => _cellBaseFightinhFor;
+    public CellBase CellBaseFightingFor => _cellFightingFor;
     public FigureData Loser { get; set; }
     
     public event Action BattleEnd;
@@ -23,7 +24,7 @@ public class BattleInfo
     private FigureData _firstFigure;
     private FigureData _secondFigure;
     private FigureData _winner;
-    private CellBase _cellBaseFightinhFor;
+    private CellBase _cellFightingFor;
 
     /// <summary>
     /// Позволяет задать всю необходимую для начала битвы информацию
@@ -36,7 +37,7 @@ public class BattleInfo
         Clear();
         _firstFigure = firstFigure;
         _secondFigure = secondFigure;
-        _cellBaseFightinhFor = cellBaseFightingFor;
+        _cellFightingFor = cellBaseFightingFor;
     }
     
     /// <summary>
@@ -46,7 +47,7 @@ public class BattleInfo
     {
         _firstFigure = null;
         _secondFigure = null;
-        _cellBaseFightinhFor = null;
+        _cellFightingFor = null;
         _winner = null;
         Loser = null;
     }

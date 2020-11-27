@@ -125,7 +125,7 @@ public class MainFieldTurnManager
         {
             _mainField.SceneTransition.PlayOpen();
             var cell = Core.BattleInfo.CellBaseFightingFor;
-            if(Core.BattleInfo.Winner != null)
+            if(Core.BattleInfo.Winner.MainFieldFigureInstance != null)
                 Core.BattleInfo.Winner.MainFieldFigureInstance.StartCoroutine(Core.BattleInfo.Winner.MainFieldFigureInstance.MoveToAnotherCellWithAnimation(cell));
         }
         Core.BattleInfo.BattleEnd -= EndBattle;
@@ -135,7 +135,6 @@ public class MainFieldTurnManager
     {
         Core.GameResult = result;
         SceneManager.LoadSceneAsync(4, LoadSceneMode.Additive);
-        //SceneManager.SetActiveScene(SceneManager.GetSceneByBuildIndex(4));
         SceneManager.UnloadSceneAsync(SceneManager.GetSceneByBuildIndex(2));
     }
 }

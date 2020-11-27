@@ -17,7 +17,10 @@ public abstract class BattleFieldFigure : MonoFigure
             {
                 Data.Health = value;
                 if (Health <= 0 && Data.MainFieldFigureInstance != null)
+                {
                     Data.MainFieldFigureInstance.DestroyThisFigure();
+                    DestroyThisFigure();
+                }
             }
         }
     }
@@ -154,7 +157,6 @@ public abstract class BattleFieldFigure : MonoFigure
         onTakeDamage.Invoke();
         if (Health <= 0)
         {
-            DestroyThisFigure();
             if(Data.Team == Team.Black)
                 _battleField.BattleController.SetBattleResult(Team.White);
             else

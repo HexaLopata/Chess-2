@@ -99,7 +99,7 @@ public class BattleController : MonoBehaviour
     private IEnumerator SetBattleResultWithAnimation(Team team)
     {
         yield return _sceneTransition.Close();
-        
+
         if (_field.FirstFigure.Data.Team == team)
         {
             _field.SecondFigure.Data.Health = _field.SecondFigure.Health;

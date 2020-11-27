@@ -2,7 +2,7 @@ public class Flag : TimeLimitedObject
 {
     public override BarrierType CanThisFigureToCross(BattleFieldFigure figure)
     {
-        return BarrierType.Impassable;
+        return figure.Data.Team != Team ? BarrierType.Impassable : BarrierType.Passable;
     }
 
     public override BarrierType CanThisFigureToAttackThrough(BattleFieldFigure figure)

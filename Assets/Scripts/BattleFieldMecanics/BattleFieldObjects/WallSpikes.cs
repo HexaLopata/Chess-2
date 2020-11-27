@@ -12,7 +12,7 @@ public class WallSpikes : TimeLimitedObject
 
     public override BarrierType CanThisFigureToCross(BattleFieldFigure figure)
     {
-        return BarrierType.Impassable;
+        return figure.Data.Team != Team ? BarrierType.Impassable : BarrierType.Passable;
     }
 
     public override BarrierType CanThisFigureToAttackThrough(BattleFieldFigure figure)
@@ -42,7 +42,7 @@ public class WallSpikes : TimeLimitedObject
                 turns.Add(cells[pos.x - 1, pos.y]);
             if (pos.y + 1 < cells.GetLength(1))
                 turns.Add(cells[pos.x, pos.y + 1]);
-
+            
             turns.ForEach(c => c.TakeDamage(_damage));
         }
         else
