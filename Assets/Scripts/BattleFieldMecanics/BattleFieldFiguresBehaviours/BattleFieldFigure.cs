@@ -97,8 +97,8 @@ public abstract class BattleFieldFigure : MonoFigure
         {
             if (Skill != null && Skill.IsActive)
             {
-                Skill.Execute(this, selectedCell);
                 Skill.IsActive = false;
+                Skill.Execute(this, selectedCell);
             }
             else
             {

@@ -769,7 +769,7 @@ PrefabInstance:
     - target: {fileID: 4251546590968637878, guid: 4b3c84ebee0fe78428bd6c56b937bc7e,
         type: 3}
       propertyPath: _skills.Array.size
-      value: 10
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 4251546590968637878, guid: 4b3c84ebee0fe78428bd6c56b937bc7e,
         type: 3}
@@ -793,47 +793,53 @@ PrefabInstance:
         type: 3}
       propertyPath: _skills.Array.data[2]
       value: 
-      objectReference: {fileID: 610768749981634708, guid: c43e15d47753e10d3bddac01f8ac2de0,
+      objectReference: {fileID: 2719090964465642033, guid: 8a209245136dec84a998047e81b52d14,
         type: 3}
     - target: {fileID: 4251546590968637878, guid: 4b3c84ebee0fe78428bd6c56b937bc7e,
         type: 3}
       propertyPath: _skills.Array.data[3]
       value: 
-      objectReference: {fileID: -2341372308914507766, guid: aef8cb8d68573b03f8aef51281f204e8,
+      objectReference: {fileID: 610768749981634708, guid: c43e15d47753e10d3bddac01f8ac2de0,
         type: 3}
     - target: {fileID: 4251546590968637878, guid: 4b3c84ebee0fe78428bd6c56b937bc7e,
         type: 3}
       propertyPath: _skills.Array.data[4]
       value: 
-      objectReference: {fileID: -2341372308914507766, guid: 4eb0c763ca7dae66983824b106ca029a,
+      objectReference: {fileID: -2341372308914507766, guid: aef8cb8d68573b03f8aef51281f204e8,
         type: 3}
     - target: {fileID: 4251546590968637878, guid: 4b3c84ebee0fe78428bd6c56b937bc7e,
         type: 3}
       propertyPath: _skills.Array.data[5]
       value: 
-      objectReference: {fileID: -2341372308914507766, guid: 8e85c700a49ae572ab8f4e66cd86bcbb,
+      objectReference: {fileID: -2341372308914507766, guid: 4eb0c763ca7dae66983824b106ca029a,
         type: 3}
     - target: {fileID: 4251546590968637878, guid: 4b3c84ebee0fe78428bd6c56b937bc7e,
         type: 3}
       propertyPath: _skills.Array.data[6]
       value: 
-      objectReference: {fileID: 3922533169117817666, guid: 29456997d9ccd0e1c8d1ff5a025cad24,
+      objectReference: {fileID: -2341372308914507766, guid: 8e85c700a49ae572ab8f4e66cd86bcbb,
         type: 3}
     - target: {fileID: 4251546590968637878, guid: 4b3c84ebee0fe78428bd6c56b937bc7e,
         type: 3}
       propertyPath: _skills.Array.data[7]
       value: 
-      objectReference: {fileID: 5847123419268908281, guid: deacf7faedaa7e7bd96bb150b458f923,
+      objectReference: {fileID: 3922533169117817666, guid: 29456997d9ccd0e1c8d1ff5a025cad24,
         type: 3}
     - target: {fileID: 4251546590968637878, guid: 4b3c84ebee0fe78428bd6c56b937bc7e,
         type: 3}
       propertyPath: _skills.Array.data[8]
       value: 
-      objectReference: {fileID: 7242825869750835985, guid: 3fe7e5d6f8e84baaa8c60bde417f8883,
+      objectReference: {fileID: 5847123419268908281, guid: deacf7faedaa7e7bd96bb150b458f923,
         type: 3}
     - target: {fileID: 4251546590968637878, guid: 4b3c84ebee0fe78428bd6c56b937bc7e,
         type: 3}
       propertyPath: _skills.Array.data[9]
+      value: 
+      objectReference: {fileID: 7242825869750835985, guid: 3fe7e5d6f8e84baaa8c60bde417f8883,
+        type: 3}
+    - target: {fileID: 4251546590968637878, guid: 4b3c84ebee0fe78428bd6c56b937bc7e,
+        type: 3}
+      propertyPath: _skills.Array.data[10]
       value: 
       objectReference: {fileID: -4723625920124010496, guid: 5a2c7c160fd372fa6b49b2560d3b17b1,
         type: 3}

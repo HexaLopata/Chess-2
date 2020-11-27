@@ -1,5 +1,3 @@
-using System.Collections;
-
 public class DoubleTurn : Skill
 {
     public override void Execute(BattleFieldFigure figure, BattleFieldCell cell)
@@ -16,7 +14,7 @@ public class DoubleTurn : Skill
     
     public override void Activate(BattleFieldFigure figure)
     {
-        if (_delay <= 0 || IsActive == true)
+        if (_delay <= 0 || IsActive)
         {
             IsActive = !IsActive;
         }

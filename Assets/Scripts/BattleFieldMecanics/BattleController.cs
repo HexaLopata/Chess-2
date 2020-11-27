@@ -24,6 +24,7 @@ public class BattleController : MonoBehaviour
     
     private BattleInfo _battleInfo;
     private BattleFieldFigure _currentFigure;
+    private Coroutine _settingBattleResult;
     
     [SerializeField] private BattleField _field;
     [SerializeField] private SceneTransition _sceneTransition;
@@ -77,7 +78,8 @@ public class BattleController : MonoBehaviour
     
     public void SetBattleResult(Team team)
     {
-        StartCoroutine(SetBattleResultWithAnimation(team));
+        if(_settingBattleResult == null)
+            _settingBattleResult = StartCoroutine(SetBattleResultWithAnimation(team));
     }
 
   
@@ -117,6 +119,7 @@ public class BattleController : MonoBehaviour
             SceneManager.SetActiveScene(SceneManager.GetSceneByBuildIndex(2));
         }
         SceneManager.UnloadSceneAsync(SceneManager.GetSceneByBuildIndex(3));
+        _settingBattleResult = null;
     }
     
     #endregion
