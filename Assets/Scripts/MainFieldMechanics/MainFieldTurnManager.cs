@@ -100,6 +100,7 @@ public class MainFieldTurnManager
     {
         Camera.main.GetComponent<AudioListener>().enabled = false;
         SceneManager.LoadSceneAsync(3, LoadSceneMode.Additive);
+        _mainField.CurrentCamera.enabled = false;
         Core.BattleInfo.BattleEnd += EndBattle;
     }
 
@@ -123,6 +124,7 @@ public class MainFieldTurnManager
         }
         else
         {
+            _mainField.CurrentCamera.enabled = true;
             _mainField.SceneTransition.PlayOpen();
             var cell = Core.BattleInfo.CellBaseFightingFor;
             if(Core.BattleInfo.Winner.MainFieldFigureInstance != null)

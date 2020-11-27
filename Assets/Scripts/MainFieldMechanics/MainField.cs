@@ -12,9 +12,11 @@ public class MainField : FieldBase
     }
     public List<MonoFigure> WhiteKings => _whiteKings;
     public List<MonoFigure> BlackKings => _blackKings;
-    
-    [SerializeField] private SceneTransition sceneTransition;
-    
+    public Camera CurrentCamera => _currentCamera;
+
+    [SerializeField] SceneTransition sceneTransition;
+    [SerializeField] private Camera _currentCamera;
+
     private readonly List<KeyValuePair<Vector2Int, FigureData>> _figuresForInit = new List<KeyValuePair<Vector2Int, FigureData>>();
     private List<MonoFigure> _whiteKings = new List<MonoFigure>();
     private List<MonoFigure> _blackKings = new List<MonoFigure>();
