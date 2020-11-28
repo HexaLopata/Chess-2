@@ -1,20 +1,27 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 
-public class MainFieldTurnManager
+public class MainFieldTurnManager : MonoBehaviour
 {
-    public Action OnSwitchTurn;
-    public MainFieldFigure SelectedFigure { get; set; }
+    public UnityEvent onSwitchTurn;
+    public UnityEvent onSelectFigure;
+
+    public MainFieldFigure SelectedFigure
+    {
+        get => _selectedFigure;
+        set
+        {
+            _selectedFigure = value;
+            onSelectFigure.Invoke();
+        }
+    }
     public Team CurrentTurn { get; private set; } = Team.White;
 
-    private MainField _mainField;
+    [SerializeField] private MainField _mainField;
 
-    public MainFieldTurnManager(MainField mainField)
-    {
-        _mainField = mainField;
-    }
+    private MainFieldFigure _selectedFigure;
 
     /// <summary>
     /// Деактивирует все клетки и передает ход другой команде
@@ -32,7 +39,7 @@ public class MainFieldTurnManager
 
         SelectedFigure = null;
         _mainField.DeactivateAllCells();
-        OnSwitchTurn?.Invoke();
+        onSwitchTurn?.Invoke();
     }
 
     /// <summary>
@@ -51,7 +58,7 @@ public class MainFieldTurnManager
             // Если клетка считается активной для хода, то произвести ход
             if (cellBase.State == CellState.Active)
             {
-                SelectedFigure.StartCoroutine(SelectedFigure.MoveToAnotherCellWithAnimation(cellBase));
+                StartCoroutine(SelectedFigure.MoveToAnotherCellWithAnimation(cellBase));
                 SwitchTurn();
             }
         }
@@ -82,7 +89,7 @@ public class MainFieldTurnManager
                 {
                     var newCell = figure.CellBase;
                     figure.DestroyThisFigure();
-                    SelectedFigure.StartCoroutine(SelectedFigure.MoveToAnotherCellWithAnimation(newCell));
+                    StartCoroutine(SelectedFigure.MoveToAnotherCellWithAnimation(newCell));
                 }
                 else
                 {
@@ -91,8 +98,14 @@ public class MainFieldTurnManager
                     _mainField.SceneTransition.PlayClose(StartBattle);
 
                 }
+
                 SwitchTurn();
             }
+        }
+        else
+        {
+            SelectedFigure = null;
+            _mainField.DeactivateAllCells();
         }
     }
 
@@ -128,7 +141,7 @@ public class MainFieldTurnManager
             _mainField.SceneTransition.PlayOpen();
             var cell = Core.BattleInfo.CellBaseFightingFor;
             if(Core.BattleInfo.Winner.MainFieldFigureInstance != null)
-                Core.BattleInfo.Winner.MainFieldFigureInstance.StartCoroutine(Core.BattleInfo.Winner.MainFieldFigureInstance.MoveToAnotherCellWithAnimation(cell));
+                StartCoroutine(Core.BattleInfo.Winner.MainFieldFigureInstance.MoveToAnotherCellWithAnimation(cell));
         }
         Core.BattleInfo.BattleEnd -= EndBattle;
     }

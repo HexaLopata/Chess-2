@@ -89,4 +89,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _whiteSkin: {fileID: 21300000, guid: 53e0623ee0231906a96ea07bf1442895, type: 3}
   _blackSkin: {fileID: 21300000, guid: c21eee1cb4c465132940867963267755, type: 3}
-  _turnRemains: 3
+  _turnRemains: 6

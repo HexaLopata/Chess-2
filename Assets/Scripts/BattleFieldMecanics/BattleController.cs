@@ -56,13 +56,17 @@ public class BattleController : MonoBehaviour
             _currentFigure = _field.FirstFigure;
         }
         onSwitchTurn.Invoke();
-        
-        var turns = _currentFigure.GetRelevantMoves(_field.BattleFieldCells);
-        
-        if(turns.Length == 0)
-            SwitchTurn();
-        else
-            _field.ActivateAllCells(turns);
+
+        _field.DeactivateAllCells();
+        if (_currentFigure.Data.Health > 0)
+        {
+            var turns = _currentFigure.GetRelevantMoves(_field.BattleFieldCells);
+
+            if (turns.Length == 0)
+                SwitchTurn();
+            else
+                _field.ActivateAllCells(turns);
+        }
     }
     public void SwitchTurn()
     {

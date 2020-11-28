@@ -46,7 +46,8 @@ MonoBehaviour:
   activateOrDisactivate:
     m_PersistentCalls:
       m_Calls: []
-  _maxDelay: 5
+  _maxDelay: 3
   _name: Torturer
   _battleFieldObject: {fileID: -9189137359416473611, guid: 3f66d5c78fed349f7bd4bd2fefc4b54e,
     type: 3}
+  _continueTurn: 0

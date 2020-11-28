@@ -25,7 +25,7 @@ public class Freeze : Skill
             var attackedCells = figure.GetRelevantAttackMoves(figure.BattleField.BattleFieldCells);
             foreach (var attackedCell in attackedCells)
             {
-                // Если попали в противника, то указывает это в переменную _freezing и повторно активируем умение
+                // Если попали в противника, то указывает это в переменную _freezing и повторно активирует умение
                 if (attackedCell.BattleFieldFigure != null)
                 {
                     _freezing = true;

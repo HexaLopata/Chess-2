@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,6 +9,8 @@ public class BattleFieldUIManager : MonoBehaviour
     [SerializeField] private Image _secondHealthBar;
     [SerializeField] private Chess2Text _yourTurnText1;
     [SerializeField] private Chess2Text _yourTurnText2;
+    [SerializeField] private Chess2Text _skill1Recovery;
+    [SerializeField] private Chess2Text _skill2Recovery;
     [SerializeField] private BattleController _battleController;
     private BattleFieldFigure _firstFigure;
     private BattleFieldFigure _secondFigure;
@@ -40,6 +43,27 @@ public class BattleFieldUIManager : MonoBehaviour
         {
             _yourTurnText1.gameObject.SetActive(true);
             _yourTurnText2.gameObject.SetActive(false);
+        }
+
+        ShowSkillDelay();
+    }
+
+    private void ShowSkillDelay()
+    {
+        if (_battleController.BattleField.FirstFigure != null)
+        {
+            if (_battleController.BattleField.FirstFigure.Skill.Delay > 0)
+                _skill1Recovery.Text = Math.Floor(_battleController.BattleField.FirstFigure.Skill.Delay).ToString();
+            else
+                _skill1Recovery.Text = "0";
+        }
+
+        if (_battleController.BattleField.FirstFigure != null)
+        {
+            if (_battleController.BattleField.SecondFigure.Skill.Delay > 0)
+                _skill2Recovery.Text = Math.Floor(_battleController.BattleField.SecondFigure.Skill.Delay).ToString();
+            else
+                _skill2Recovery.Text = "0";
         }
     }
 

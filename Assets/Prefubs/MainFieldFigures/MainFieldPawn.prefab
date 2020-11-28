@@ -36,7 +36,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 90, y: 30}
-  m_SizeDelta: {x: 60, y: 60}
+  m_SizeDelta: {x: 56, y: 56}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &-4287951204266187216
 CanvasRenderer:
@@ -89,3 +89,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _whiteSkin: {fileID: 21300000, guid: 35489425401765f419ae2e2df97e485b, type: 3}
   _blackSkin: {fileID: 21300000, guid: f22d030e45942ce43acbbe5c67aaae15, type: 3}
+  _king: 0
+  _figureName: Pawn

@@ -13,6 +13,7 @@ public abstract class Skill : MonoBehaviour
             activateOrDisactivate.Invoke();
         }
     }
+    public float Delay => _delay;
     public string Name => _name;
     
     protected BattleController _controller;

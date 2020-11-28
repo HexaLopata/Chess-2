@@ -5,7 +5,7 @@ using UnityEngine.Serialization;
 // Напоминание: слева снизу черная клетка, само поле 8х8
 public class MainField : FieldBase
 {
-    public MainFieldTurnManager MainFieldTurnManager { get; private set; }
+    public MainFieldTurnManager MainFieldTurnManager => _turnManager;
     public SceneTransition SceneTransition
     {
         get => sceneTransition;
@@ -16,7 +16,7 @@ public class MainField : FieldBase
 
     [SerializeField] SceneTransition sceneTransition;
     [SerializeField] private Camera _currentCamera;
-
+    [SerializeField] private MainFieldTurnManager _turnManager; 
     private readonly List<KeyValuePair<Vector2Int, FigureData>> _figuresForInit = new List<KeyValuePair<Vector2Int, FigureData>>();
     private List<MonoFigure> _whiteKings = new List<MonoFigure>();
     private List<MonoFigure> _blackKings = new List<MonoFigure>();
@@ -36,7 +36,6 @@ public class MainField : FieldBase
         _additionalCells = Core.CurrentLocation.AdditionalCells;
         Width = 8;
         Height = 8;
-        MainFieldTurnManager = new MainFieldTurnManager(this);
         InitAllFiguresDictionary();
     }
     
