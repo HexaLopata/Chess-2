@@ -55,7 +55,7 @@ public class BattleFieldUIManager : MonoBehaviour
             if (_battleController.BattleField.FirstFigure.Skill.Delay > 0)
                 _skill1Recovery.Text = Math.Floor(_battleController.BattleField.FirstFigure.Skill.Delay).ToString();
             else
-                _skill1Recovery.Text = "0";
+                _skill1Recovery.Text = "";
         }
 
         if (_battleController.BattleField.FirstFigure != null)
@@ -63,7 +63,7 @@ public class BattleFieldUIManager : MonoBehaviour
             if (_battleController.BattleField.SecondFigure.Skill.Delay > 0)
                 _skill2Recovery.Text = Math.Floor(_battleController.BattleField.SecondFigure.Skill.Delay).ToString();
             else
-                _skill2Recovery.Text = "0";
+                _skill2Recovery.Text = "";
         }
     }
 

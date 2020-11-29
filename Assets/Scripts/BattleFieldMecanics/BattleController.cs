@@ -18,6 +18,20 @@ public class BattleController : MonoBehaviour
     public BattleInfo BattleInfo => _battleInfo;
     public BattleField BattleField => _field;
 
+    public int TurnCount
+    {
+        get => _turnCount;
+        set
+        {
+            if (_turnCount >= _maxTurnCount)
+            {
+                StartCoroutine(SuddenDeathAnimation());
+            }
+
+            _turnCount = value;
+        }
+    }
+
     #endregion
 
     #region private Field
@@ -25,9 +39,13 @@ public class BattleController : MonoBehaviour
     private BattleInfo _battleInfo;
     private BattleFieldFigure _currentFigure;
     private Coroutine _settingBattleResult;
+    private int _turnCount;
+    private const int _maxTurnCount = 30; 
     
     [SerializeField] private BattleField _field;
     [SerializeField] private SceneTransition _sceneTransition;
+    [SerializeField] private Chess2Text _suddenDeathMessage1;
+    [SerializeField] private Chess2Text _suddenDeathMessage2;
 
     #endregion
 
@@ -65,7 +83,10 @@ public class BattleController : MonoBehaviour
             if (turns.Length == 0)
                 SwitchTurn();
             else
+            {
                 _field.ActivateAllCells(turns);
+                TurnCount++;
+            }
         }
     }
     public void SwitchTurn()
@@ -100,6 +121,32 @@ public class BattleController : MonoBehaviour
         }
         
         SwitchTurn(figureFirst.Data.Team);
+    }
+
+    private IEnumerator SuddenDeathAnimation()
+    {
+        _field.DeactivateAllCells();
+        _suddenDeathMessage1.gameObject.SetActive(true);
+        _suddenDeathMessage2.gameObject.SetActive(true);
+        
+        yield return new WaitForSeconds(2);
+        
+        _suddenDeathMessage1.gameObject.SetActive(false);
+        _suddenDeathMessage2.gameObject.SetActive(false);
+        
+        yield return new WaitForSeconds(0.5f);
+        
+        if (BattleField.FirstFigure.Health > BattleField.SecondFigure.Health)
+        {
+            BattleField.SecondFigure.TakeDamage(1000);
+        }
+        else if (BattleField.FirstFigure.Health < BattleField.SecondFigure.Health)
+        {
+            BattleField.FirstFigure.TakeDamage(1000);
+        }
+        
+        var turns = _currentFigure.GetRelevantMoves(_field.BattleFieldCells);
+        _field.ActivateAllCells(turns);
     }
     
     private IEnumerator SetBattleResultWithAnimation(Team team)
