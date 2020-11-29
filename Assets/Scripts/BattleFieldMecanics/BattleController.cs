@@ -40,8 +40,9 @@ public class BattleController : MonoBehaviour
     private BattleFieldFigure _currentFigure;
     private Coroutine _settingBattleResult;
     private int _turnCount;
-    private const int _maxTurnCount = 30; 
-    
+
+    [SerializeField] private int _suddenDeathDamage = 30;
+    [SerializeField] private int _maxTurnCount = 20; 
     [SerializeField] private BattleField _field;
     [SerializeField] private SceneTransition _sceneTransition;
     [SerializeField] private Chess2Text _suddenDeathMessage1;
@@ -129,7 +130,7 @@ public class BattleController : MonoBehaviour
         _suddenDeathMessage1.gameObject.SetActive(true);
         _suddenDeathMessage2.gameObject.SetActive(true);
         
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(1);
         
         _suddenDeathMessage1.gameObject.SetActive(false);
         _suddenDeathMessage2.gameObject.SetActive(false);
@@ -138,11 +139,17 @@ public class BattleController : MonoBehaviour
         
         if (BattleField.FirstFigure.Health > BattleField.SecondFigure.Health)
         {
-            BattleField.SecondFigure.TakeDamage(1000);
+            foreach (var cell in BattleField.BattleFieldCells)
+            {
+                cell.TakeDamage(_suddenDeathDamage);
+            }
         }
         else if (BattleField.FirstFigure.Health < BattleField.SecondFigure.Health)
         {
-            BattleField.FirstFigure.TakeDamage(1000);
+            foreach (var cell in BattleField.BattleFieldCells)
+            {
+                cell.TakeDamage(_suddenDeathDamage);
+            }
         }
         
         var turns = _currentFigure.GetRelevantMoves(_field.BattleFieldCells);
