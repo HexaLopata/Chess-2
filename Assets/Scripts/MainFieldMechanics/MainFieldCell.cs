@@ -1,9 +1,13 @@
 using System;
 using UnityEngine.EventSystems;
 
+/// <summary>
+/// Эта клетка используется исключительно на главном поле
+/// </summary>
 public class MainFieldCell : CellBase
 {
     private MainField _mainField;
+
     private void Start()
     {
         if(_field is MainField)
@@ -14,6 +18,10 @@ public class MainFieldCell : CellBase
         }
     }
 
+    /// <summary>
+    /// Передает менеджеру ходов информацию о нажатии на текущую клетку
+    /// </summary>
+    /// <param name="eventData"></param>
     public override void OnPointerClick(PointerEventData eventData)
     {
         var field = GetComponentInParent<MainField>();

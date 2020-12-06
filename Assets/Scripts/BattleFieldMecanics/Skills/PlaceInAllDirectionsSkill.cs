@@ -5,23 +5,18 @@ public class PlaceInAllDirectionsSkill : Skill
     [SerializeField] private BattleFieldObject battleFieldObject;
     [SerializeField] private bool _continueTurn;
 
-    public override void Execute(BattleFieldFigure figure, BattleFieldCell cell)
+    protected override void SkillAction(BattleFieldFigure figure, BattleFieldCell cell)
     {
-        base.Execute(figure, cell);
-        if (_delay <= 0)
+        var turns = figure.GetRelevantMoves();
+        foreach (var turn in turns)
         {
-            var turns = figure.GetRelevantMoves(figure.BattleField.BattleFieldCells);
-            foreach (var turn in turns)
-            {
-                var obj = Instantiate(battleFieldObject, figure.BattleField.transform);
-                obj.MoveToAnotherCell(turn);
-                obj.Team = figure.Data.Team;
-            }
-
-            if(!_continueTurn)
-                figure.BattleField.BattleController.SwitchTurn();
-            _delay = _maxDelay;
+            var obj = Instantiate(battleFieldObject, figure.BattleField.transform);
+            obj.MoveToAnotherCell(turn);
+            obj.Team = figure.Data.Team;
         }
+
+        if (!_continueTurn)
+            figure.BattleField.BattleController.SwitchTurn();
     }
 
     public override void Activate(BattleFieldFigure figure)

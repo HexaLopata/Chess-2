@@ -1,6 +1,9 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Фабрика набора клеток для локации
+/// </summary>
 public class LocationFactory : MonoBehaviour
 {
     [SerializeField] private GameObject _mainFieldWhiteCell;

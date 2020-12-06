@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
+/// <summary>
+/// Базовый класс для фигур боевого поля
+/// </summary>
 public abstract class BattleFieldFigure : MonoFigure
 {
-    #region public Properties
-    
     public int Health
     {
         get => _health;
@@ -24,8 +26,8 @@ public abstract class BattleFieldFigure : MonoFigure
             }
         }
     }
-    public int Defence { get; set; } = 0;
-    public int Damage { get; protected set; } = 0;
+    public int Defence => _defence;
+    public int Damage => _damage;
     public override FigureData Data
     {
         get
@@ -41,56 +43,65 @@ public abstract class BattleFieldFigure : MonoFigure
     }
     public BattleField BattleField => _battleField;
     public Skill Skill { get; set; }
+    public UnityEvent onTakeDamage;
 
-    #endregion
-
-    #region private Fields
-    
     private int _health = -1;
     private Coroutine MoveAnimation;
 
-    #endregion
-
-    #region protected Fields
+    [SerializeField] private int _damage = 30;
+    [SerializeField] private int _defence = 15;
 
     protected BattleField _battleField;
+    protected BattleFieldCell[,] _battleFieldCells;
+    protected List<BattleFieldCell> _turns = new List<BattleFieldCell>();
 
-    #endregion
-
-    #region Events
-
-    public UnityEvent onTakeDamage;
-
-    #endregion
-
-    #region public Methods
-
-    public virtual BattleFieldCell[] GetRelevantMoves(BattleFieldCell[,] battleFieldCells)
+    private void Start()
     {
-        var result = new BattleFieldCell[battleFieldCells.GetLength(0) * battleFieldCells.GetLength(1)];
-        for (int x = 0; x < battleFieldCells.GetLength(0); x++)
+        _battleField = GetComponentInParent<BattleField>();
+        if (_battleField != null)
+            _battleFieldCells = _battleField.BattleFieldCells;
+    }
+
+    /// <summary>
+    /// Возвращает доступные ходы
+    /// </summary>
+    /// <returns></returns>
+    public virtual BattleFieldCell[] GetRelevantMoves()
+    {
+        var result = new BattleFieldCell[_battleFieldCells.GetLength(0) * _battleFieldCells.GetLength(1)];
+        for (int x = 0; x < _battleFieldCells.GetLength(0); x++)
         {
-            for (int y = 0; y < battleFieldCells.GetLength(1); y++)
+            for (int y = 0; y < _battleFieldCells.GetLength(1); y++)
             {
-                result[x + (y * battleFieldCells.GetLength(1))] = battleFieldCells[x, y];
+                result[x + (y * _battleFieldCells.GetLength(1))] = _battleFieldCells[x, y];
             }
         }
 
         return result;
     }
-    public virtual BattleFieldCell[] GetRelevantAttackMoves(BattleFieldCell[,] battleFieldCells) 
+
+    /// <summary>
+    /// Возвращает доступные для атаки ходы
+    /// </summary>
+    /// <returns></returns>
+    public virtual BattleFieldCell[] GetRelevantAttackMoves() 
     {
-        var result = new BattleFieldCell[battleFieldCells.GetLength(0) * battleFieldCells.GetLength(1)];
-        for (int x = 0; x < battleFieldCells.GetLength(0); x++)
+        var result = new BattleFieldCell[_battleFieldCells.GetLength(0) * _battleFieldCells.GetLength(1)];
+        for (int x = 0; x < _battleFieldCells.GetLength(0); x++)
         {
-            for (int y = 0; y < battleFieldCells.GetLength(1); y++)
+            for (int y = 0; y < _battleFieldCells.GetLength(1); y++)
             {
-                result[x + (y * battleFieldCells.GetLength(1))] = battleFieldCells[x, y];
+                result[x + (y * _battleFieldCells.GetLength(1))] = _battleFieldCells[x, y];
             }
         }
 
         return result;
     }
+
+    /// <summary>
+    /// Совершает ход или выполняет действия умения, если оно активировано
+    /// </summary>
+    /// <param name="selectedCell"></param>
     public virtual void Turn(BattleFieldCell selectedCell)
     {
         if (MoveAnimation == null)
@@ -110,15 +121,20 @@ public abstract class BattleFieldFigure : MonoFigure
         }
     }
 
-    private IEnumerator TurnWithAnimation(BattleFieldCell selectedCell)
+    /// <summary>
+    /// Выполняет ход с анимацией
+    /// </summary>
+    /// <param name="selectedCell"></param>
+    /// <returns></returns>
+    public IEnumerator TurnWithAnimation(BattleFieldCell selectedCell)
     {
         yield return StartCoroutine(MoveToAnotherCellWithAnimation(selectedCell));
         LaunchAnAttack();
         selectedCell.BattleField.BattleController.SwitchTurn();
         MoveAnimation = null;
     }
-    
-    protected override void MoveToAnotherCell(CellBase cellBase)
+
+    public override void MoveToAnotherCell(CellBase cellBase)
     {
         if (cellBase is BattleFieldCell)
         {
@@ -142,14 +158,23 @@ public abstract class BattleFieldFigure : MonoFigure
         else
             throw new Exception("Фигура этого типа должна быть перемещена на клетку типа BattleFieldCell");
     }
+
+    /// <summary>
+    /// Атакует все доступные фигуре клетки
+    /// </summary>
     public virtual void LaunchAnAttack()
     {
-        var cells = GetRelevantAttackMoves(_battleField.BattleFieldCells);
+        var cells = GetRelevantAttackMoves();
         foreach (var cell in cells)
         {
             cell.TakeDamage(this);
         }
     }
+
+    /// <summary>
+    /// Получение урона
+    /// </summary>
+    /// <param name="damage"></param>
     public void TakeDamage(int damage)
     {
         StartCoroutine(DamageAnimation());
@@ -164,20 +189,10 @@ public abstract class BattleFieldFigure : MonoFigure
         }
     }
 
-    #endregion
-
-    #region Unity Methods
-
-    private void Start()
-    {
-        _battleField = GetComponentInParent<BattleField>();
-        SetDamageAndDefence();
-    }
-
-    #endregion
-
-    #region private Methods
-
+    /// <summary>
+    /// Анимация получения урона
+    /// </summary>
+    /// <returns></returns>
     private IEnumerator DamageAnimation()
     {
         _image.color = Color.red;
@@ -185,11 +200,34 @@ public abstract class BattleFieldFigure : MonoFigure
         _image.color = Color.white;
     }
 
-    #endregion
+    /// <summary>
+    /// Вспомогательный метод для добавления клеток в список ходов, если клетка, на переданных координатах существует и объекты не запрещают ход на нее
+    /// </summary>
+    /// <param name="cellX">Смещение относительно координат фигры по x</param>
+    /// <param name="cellY">Смещение относительно координат фигры по y</param>
+    /// <param name="isAttack">Проверять ли объекты на возможность атаковать по ним</param>
+    protected void CheckCellAndAdd(int cellX, int cellY, bool isAttack)
+    {
+        var x = OnBoardPosition.x + cellX;
+        var y = OnBoardPosition.y + cellY;
+        var cell = _battleFieldCells[x, y];
 
-    #region protected Methods
-
-    protected abstract void SetDamageAndDefence();
-
-    #endregion
+        if (cell.BattleFieldFigure == null || isAttack)
+        {
+            if (cell.BattleFieldObject == null)
+            {
+                _turns.Add(cell);
+            }
+            else
+            {
+                BarrierType barrier;
+                if (isAttack)
+                    barrier = cell.BattleFieldObject.CanThisFigureToAttackThrough(this);
+                else
+                    barrier = cell.BattleFieldObject.CanThisFigureToCross(this);
+                if (barrier != BarrierType.Impassable)
+                    _turns.Add(cell);
+            }
+        }
+    }
 }

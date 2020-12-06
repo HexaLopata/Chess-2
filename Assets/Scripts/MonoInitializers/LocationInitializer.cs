@@ -1,5 +1,8 @@
 ﻿using UnityEngine;
 
+/// <summary>
+/// Инициализирует текущую локацию
+/// </summary>
 public class LocationInitializer : MonoBehaviour
 {
     [SerializeField] private LocationFactory _locationFactory;

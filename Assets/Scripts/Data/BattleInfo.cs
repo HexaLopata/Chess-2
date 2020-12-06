@@ -1,9 +1,15 @@
 using System;
 
+/// <summary>
+/// Вся информация о битве
+/// </summary>
 public class BattleInfo
 {
     public FigureData FirstFigure => _firstFigure; 
     public FigureData SecondFigure => _secondFigure;
+    /// <summary>
+    /// Оповещает о завершении битвы, если выявлен победитель
+    /// </summary>
     public FigureData Winner 
     {
         get
@@ -41,7 +47,7 @@ public class BattleInfo
     }
     
     /// <summary>
-    /// Отчищает всю старую информацию
+    /// Очищает всю старую информацию
     /// </summary>
     private void Clear()
     {

@@ -2,6 +2,9 @@
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
+/// <summary>
+/// Абстрактный класс для клетки из клетчатого поля
+/// </summary>
 [RequireComponent(typeof(Image), typeof(RectTransform)),]
 public abstract class CellBase : MonoBehaviour, IPointerClickHandler
 {
@@ -37,6 +40,9 @@ public abstract class CellBase : MonoBehaviour, IPointerClickHandler
     public abstract void Deactivate();
 }
 
+/// <summary>
+/// Состояния клетки
+/// </summary>
 public enum CellState
 {
     NotActive,

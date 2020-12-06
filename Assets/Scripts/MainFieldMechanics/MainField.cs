@@ -1,8 +1,9 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Serialization;
 
-// Напоминание: слева снизу черная клетка, само поле 8х8
+/// <summary>
+/// Это главное поле
+/// </summary>
 public class MainField : FieldBase
 {
     public MainFieldTurnManager MainFieldTurnManager => _turnManager;
@@ -39,6 +40,9 @@ public class MainField : FieldBase
         InitAllFiguresDictionary();
     }
     
+    /// <summary>
+    /// Расставляет фигры на поле в соответствии правилам шахмат
+    /// </summary>
     private void InitAllFiguresDictionary()
     {
         _figuresForInit.Add(new KeyValuePair<Vector2Int, FigureData>(new Vector2Int(0, 0), Core.FirstPlayerData.Deck.Rook));
@@ -75,6 +79,10 @@ public class MainField : FieldBase
         _figuresForInit.Add(new KeyValuePair<Vector2Int, FigureData>(new Vector2Int(7, 6), Core.SecondPlayerData.Deck.Pawn));
     }
 
+    /// <summary>
+    /// Создает фигуру и размещает ее на переданной клетке
+    /// </summary>
+    /// <param name="figureAndPosition"></param>
     private void CreateFigure(KeyValuePair<Vector2Int, FigureData> figureAndPosition)
     {
         var data = figureAndPosition.Value.Clone();

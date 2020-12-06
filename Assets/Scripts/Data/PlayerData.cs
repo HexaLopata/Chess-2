@@ -1,5 +1,8 @@
 ﻿using System;
 
+/// <summary>
+/// Вся информация об игроке
+/// </summary>
 public class PlayerData
 {
     private string _name;

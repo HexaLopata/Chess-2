@@ -1,9 +1,7 @@
 public class SpaceCut : Skill
 {
-    public override void Execute(BattleFieldFigure figure, BattleFieldCell cell)
-    {
-        base.Execute(figure, cell);
-        
+    protected override void SkillAction(BattleFieldFigure figure, BattleFieldCell cell)
+    {       
         var rawField = figure.BattleField.BattleFieldCells;
         if (figure.BattleField.Width > 4 && figure.BattleField.Height > 4)
         {

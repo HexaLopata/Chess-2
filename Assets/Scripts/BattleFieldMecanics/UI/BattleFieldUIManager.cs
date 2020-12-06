@@ -3,6 +3,9 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// Главный класс для управления интерфейсом поля битвы
+/// </summary>
 public class BattleFieldUIManager : MonoBehaviour
 {
     [SerializeField] private Image _firstHealthBar;
@@ -26,12 +29,18 @@ public class BattleFieldUIManager : MonoBehaviour
         ShowCurrentTurn();
     }
 
+    /// <summary>
+    /// Обновляет шкалы здоровья
+    /// </summary>
     private void UpdateHealthBars()
     {
         StartCoroutine(HPDecreaseAnimation(_firstHealthBar, (float)_firstFigure.Health / 100));
         StartCoroutine(HPDecreaseAnimation(_secondHealthBar, (float)_secondFigure.Health / 100));
     }
     
+    /// <summary>
+    /// Показывает, чей сейчас ход
+    /// </summary>
     private void ShowCurrentTurn()
     {
         if (_battleController.CurrentTurn == Team.Black)
@@ -48,11 +57,14 @@ public class BattleFieldUIManager : MonoBehaviour
         ShowSkillDelay();
     }
 
+    /// <summary>
+    /// Показывает, сколько осталось до отката умения
+    /// </summary>
     private void ShowSkillDelay()
     {
         if (_battleController.BattleField.FirstFigure != null)
         {
-            if (_battleController.BattleField.FirstFigure.Skill.Delay > 0)
+            if (_battleController.BattleField.FirstFigure.Skill.Delay > 0.5f)
                 _skill1Recovery.Text = Math.Floor(_battleController.BattleField.FirstFigure.Skill.Delay).ToString();
             else
                 _skill1Recovery.Text = "";
@@ -60,13 +72,19 @@ public class BattleFieldUIManager : MonoBehaviour
 
         if (_battleController.BattleField.FirstFigure != null)
         {
-            if (_battleController.BattleField.SecondFigure.Skill.Delay > 0)
+            if (_battleController.BattleField.SecondFigure.Skill.Delay > 0.5f)
                 _skill2Recovery.Text = Math.Floor(_battleController.BattleField.SecondFigure.Skill.Delay).ToString();
             else
                 _skill2Recovery.Text = "";
         }
     }
 
+    /// <summary>
+    /// Анимирует уменьшение жизней в шкале здоровья
+    /// </summary>
+    /// <param name="healthBar"></param>
+    /// <param name="targetHP"></param>
+    /// <returns></returns>
     private IEnumerator HPDecreaseAnimation(Image healthBar, float targetHP)
     {
         while (healthBar.fillAmount > targetHP)

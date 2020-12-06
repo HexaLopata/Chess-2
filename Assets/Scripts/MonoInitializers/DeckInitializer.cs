@@ -3,6 +3,9 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using Random = UnityEngine.Random;
 
+/// <summary>
+/// Инициализирует набор фигур и скиллов для игроков
+/// </summary>
 public class DeckInitializer : MonoBehaviour
 {
     [SerializeField] private FigureFactory _pawnFactory;

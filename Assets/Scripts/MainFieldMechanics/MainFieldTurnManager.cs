@@ -3,11 +3,17 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 
+/// <summary>
+/// Этот класс отвечает за проведение ходов на главном поле
+/// </summary>
 public class MainFieldTurnManager : MonoBehaviour
 {
     public UnityEvent onSwitchTurn;
     public UnityEvent onSelectFigure;
 
+    /// <summary>
+    /// Выбранная игроком фигура
+    /// </summary>
     public MainFieldFigure SelectedFigure
     {
         get => _selectedFigure;
@@ -109,6 +115,9 @@ public class MainFieldTurnManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Активирует переход на поле боя и отключает рендер текущей сцены
+    /// </summary>
     private void StartBattle()
     {
         Camera.main.GetComponent<AudioListener>().enabled = false;
@@ -146,6 +155,10 @@ public class MainFieldTurnManager : MonoBehaviour
         Core.BattleInfo.BattleEnd -= EndBattle;
     }
 
+    /// <summary>
+    /// Выставляет результат битвы и переходит на сцену с ним
+    /// </summary>
+    /// <param name="result"></param>
     private void SetGameResultAndFinishGame(GameResult result)
     {
         Core.GameResult = result;

@@ -89,3 +89,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _whiteSkin: {fileID: 21300000, guid: 7cc8b4c9f6600fa46981f8d72f4b82d4, type: 3}
   _blackSkin: {fileID: 21300000, guid: 5b272079764da8546b4ec44fe3108dfc, type: 3}
+  _king: 0
+  _damage: 30
+  _defence: 5
+  onTakeDamage:
+    m_PersistentCalls:
+      m_Calls: []

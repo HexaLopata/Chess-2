@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
+/// <summary>
+/// Загружает первую игровую сцену
+/// </summary>
 public class MonoCore : MonoBehaviour
 {
     private Core _core;

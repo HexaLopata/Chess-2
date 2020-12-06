@@ -1,5 +1,8 @@
 ﻿using UnityEngine;
 
+/// <summary>
+/// Выставляет результат игры в переданный текст
+/// </summary>
 public class GameResultTextSetter : MonoBehaviour
 {
     [SerializeField] private Chess2Text _text1;

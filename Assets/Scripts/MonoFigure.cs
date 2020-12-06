@@ -3,8 +3,12 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// Абстрактный класс для фигур главного поля и поля битвы
+/// </summary>
 public abstract class MonoFigure : MonoBehaviour
 {
+    // Вся общая информация о фигуре
     public virtual FigureData Data
     {
         get
@@ -13,6 +17,7 @@ public abstract class MonoFigure : MonoBehaviour
         }
         set
         {
+            // Обновляет скин, если изменилась команда
             if (value.Team == Team.Black)
             {
                 _image.sprite = _blackSkin;
@@ -27,17 +32,18 @@ public abstract class MonoFigure : MonoBehaviour
             _data = value;
         } 
     }  
-
     public CellBase CellBase { get; set; }
     public Vector2Int OnBoardPosition { get; set; }
     public bool King => _king;
 
+    private RectTransform _rectTransform;
+
     [SerializeField] private Sprite _whiteSkin;
     [SerializeField] private Sprite _blackSkin;
     [SerializeField] private bool _king;
+
     protected FigureData _data;
     protected Image _image;
-    private RectTransform _rectTransform;
 
     private void Awake()
     {
@@ -45,7 +51,11 @@ public abstract class MonoFigure : MonoBehaviour
         _rectTransform = GetComponent<RectTransform>();
     }
 
-    protected virtual void MoveToAnotherCell(CellBase cellBase)
+    /// <summary>
+    /// Перемещает фигуру на переданную клетку, обновляет необходимые данные и выравнивает фигуру
+    /// </summary>
+    /// <param name="cellBase"></param>
+    public virtual void MoveToAnotherCell(CellBase cellBase)
     {
         if (CellBase != null)
             CellBase.Figure = null;
@@ -53,6 +63,12 @@ public abstract class MonoFigure : MonoBehaviour
         CellBase = cellBase;
         OnBoardPosition = CellBase.OnBoardPosition;
     }
+
+    /// <summary>
+    /// Делает то же, что и MoveToAnotherCell, но с анимацией
+    /// </summary>
+    /// <param name="cellBase"></param>
+    /// <returns></returns>
     public IEnumerator MoveToAnotherCellWithAnimation(CellBase cellBase)
     {
         MoveToAnotherCell(cellBase);
@@ -78,6 +94,9 @@ public abstract class MonoFigure : MonoBehaviour
         GetComponent<RectTransform>().localPosition = newPosition;
     }
 
+    /// <summary>
+    /// Уничтожает фигуру и очищает информацию о себе на клетке, на которой сейчас стоит фигура
+    /// </summary>
     public void DestroyThisFigure()
     {
         if(CellBase != null)

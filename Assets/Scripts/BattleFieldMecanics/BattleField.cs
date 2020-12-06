@@ -3,10 +3,11 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+/// <summary>
+/// Боевое поле
+/// </summary>
 public class BattleField : FieldBase
 {
-    #region public Properties
-
     public BattleController BattleController => _battleController;
     public BattleFieldFigure FirstFigure { get; private set; }
     public BattleFieldFigure SecondFigure { get; private set; }
@@ -24,19 +25,15 @@ public class BattleField : FieldBase
         }
     }
 
-    #endregion
-
-    #region private Fields
-
     private BattleInfo _battleInfo;
     private BattleFieldCell[,] _battleFieldCells;
 
     [SerializeField] private BattleController _battleController;
 
-    #endregion
-
-    #region public Methods
-
+    /// <summary>
+    /// Активирует все переданные клетки
+    /// </summary>
+    /// <param name="battleFieldCells"></param>
     public void ActivateAllCells(BattleFieldCell[] battleFieldCells)
     {
         DeactivateAllCells();
@@ -46,6 +43,10 @@ public class BattleField : FieldBase
                 cell.Activate();
         }
     }
+
+    /// <summary>
+    /// Деактивирует все клетки
+    /// </summary>
     public void DeactivateAllCells()
     {
         if (BattleFieldCells != null)
@@ -57,10 +58,6 @@ public class BattleField : FieldBase
             }
         }
     }
-
-    #endregion
-
-    #region protected Methods
 
     protected override void AdditionalAwakeInit()
     {
@@ -74,7 +71,7 @@ public class BattleField : FieldBase
     protected override void AdditionalStartInit()
     {
         _battleInfo = Core.BattleInfo;
-        Team firstTurn;
+
         // Сделать сцену активной пришлось именно здесь, иначе возникал ArgumentException - invalid scene
         SceneManager.SetActiveScene(SceneManager.GetSceneByBuildIndex(3));
         if (_battleInfo.FirstFigure.Team == Team.White)
@@ -85,7 +82,6 @@ public class BattleField : FieldBase
             SecondFigure.Data = _battleInfo.SecondFigure;
             FirstFigure.Skill = Instantiate(_battleInfo.FirstFigure.BattleFieldFigurePrefub.Skill);
             SecondFigure.Skill = Instantiate(_battleInfo.SecondFigure.BattleFieldFigurePrefub.Skill);
-            firstTurn = Team.White;
         }
         else
         {
@@ -95,7 +91,6 @@ public class BattleField : FieldBase
             FirstFigure.Data = _battleInfo.SecondFigure;
             FirstFigure.Skill = Instantiate(_battleInfo.SecondFigure.BattleFieldFigurePrefub.Skill);
             SecondFigure.Skill = Instantiate(_battleInfo.FirstFigure.BattleFieldFigurePrefub.Skill);
-            firstTurn = Team.Black;
         }
 
         if (Width % 2 == 0 && Height % 2 == 1)
@@ -124,5 +119,4 @@ public class BattleField : FieldBase
 
         GetComponentInParent<Image>().rectTransform.sizeDelta = new Vector2((Width + 2) * _cellWidth, (Height + 2) * _cellHeight);
     }
-    #endregion
 }

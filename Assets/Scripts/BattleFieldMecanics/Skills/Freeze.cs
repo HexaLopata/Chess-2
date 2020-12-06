@@ -11,10 +11,8 @@ public class Freeze : Skill
     private float _currentFreezeTime = 0;
     private bool _freezing;
 
-    public override void Execute(BattleFieldFigure figure, BattleFieldCell cell)
+    protected override void SkillAction(BattleFieldFigure figure, BattleFieldCell cell)
     {
-        base.Execute(figure, cell);
-
         // Если противник заморожен, то умение будет активно еще ход
         if(_freezing)
             IsActive = true;
@@ -22,7 +20,7 @@ public class Freeze : Skill
         // Если откат прошел и умение еще не активно
         if (_delay <= 0 && !IsActive)
         {
-            var attackedCells = figure.GetRelevantAttackMoves(figure.BattleField.BattleFieldCells);
+            var attackedCells = figure.GetRelevantAttackMoves();
             foreach (var attackedCell in attackedCells)
             {
                 // Если попали в противника, то указывает это в переменную _freezing и повторно активирует умение
@@ -34,10 +32,11 @@ public class Freeze : Skill
                     _iceImageInstance.rectTransform.localPosition = attackedCell.RectTransform.localPosition;
                 }
                 attackedCell.TakeDamage(0);
+                _delay = _maxDelay;
             }
-            _delay = _maxDelay;
         }
 
+        _delay = 0;
         // Если противник еще заморожен, то ходим на выбранную клетку обычным образом
         if (_freezing && cell != null)
         {
@@ -50,9 +49,10 @@ public class Freeze : Skill
     {
         yield return figure.MoveToAnotherCellWithAnimation(cell);
         figure.LaunchAnAttack();
-        _controller.BattleField.ActivateAllCells(figure.GetRelevantMoves(figure.BattleField.BattleFieldCells));
+        _controller.BattleField.ActivateAllCells(figure.GetRelevantMoves());
         if (_currentFreezeTime >= _freezeTime)
         {
+            _delay = _maxDelay;
             _currentFreezeTime = 0;
             _freezing = false;
             IsActive = false;
@@ -64,6 +64,7 @@ public class Freeze : Skill
     public override void Activate(BattleFieldFigure figure)
     {
         IsActive = false;
-        Execute(figure, null);
+        if(_delay <= 0)
+            SkillAction(figure, null);
     }
 }

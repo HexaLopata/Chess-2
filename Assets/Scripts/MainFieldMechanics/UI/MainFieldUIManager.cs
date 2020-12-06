@@ -1,12 +1,15 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// Основной класс для работы с интерфейсом на главной сцене
+/// </summary>
 public class MainFieldUIManager : MonoBehaviour
 {
     [SerializeField] private Chess2Text _yourTurnText1;
     [SerializeField] private Chess2Text _yourTurnText2;
     [SerializeField] private MainFieldTurnManager _turnManager;
+
     [Header("Info Borders")]
     [SerializeField] private Image _whiteIcon;
     [SerializeField] private Image _blackIcon;
@@ -16,12 +19,23 @@ public class MainFieldUIManager : MonoBehaviour
     [SerializeField] private Chess2Text _blackHP;
     [SerializeField] private Chess2Text _whiteSkillName;
     [SerializeField] private Chess2Text _blackSkillName;
+    [SerializeField] private Image _whiteInfoBorder;
+    [SerializeField] private Image _blackInfoBorder;
 
     private void Start()
     {
+        // Убирает информационные таблички, если игровой режим - классический
+        if (Core.GameMode == GameMode.Normal)
+        {
+            _whiteInfoBorder.gameObject.SetActive(false);
+            _blackInfoBorder.gameObject.SetActive(false);
+        }
         DisableAllBorderInfo();
     }
 
+    /// <summary>
+    /// Включает и выключает таблички с надписями о текущем ходе
+    /// </summary>
     public void ShowCurrentTurn()
     {
         if (_turnManager.CurrentTurn == Team.Black)
@@ -38,6 +52,9 @@ public class MainFieldUIManager : MonoBehaviour
         DisableAllBorderInfo();
     }
 
+    /// <summary>
+    /// Обновляет всю информацию на табличках
+    /// </summary>
     public void UpdateBorderInfo()
     {
         if (_turnManager.SelectedFigure != null)
@@ -61,8 +78,12 @@ public class MainFieldUIManager : MonoBehaviour
         }
         else
             DisableAllBorderInfo();
+
     }
 
+    /// <summary>
+    /// Убирает всю информацию с табличек
+    /// </summary>
     private void DisableAllBorderInfo()
     {
         _whiteIcon.enabled = false;

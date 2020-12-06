@@ -1,5 +1,8 @@
 ﻿using UnityEngine;
 
+/// <summary>
+/// Фабрика для получения фигуры
+/// </summary>
 public class FigureFactory : MonoBehaviour
 {
     [SerializeField] protected MainFieldFigure _mainFieldFigurePrefub;

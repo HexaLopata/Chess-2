@@ -1,14 +1,23 @@
-﻿public enum Team
+﻿/// <summary>
+/// Команды фигур
+/// </summary>
+public enum Team
 {
     White,
     Black
 }
 
+/// <summary>
+/// Этот интерфейс нужен для порождения фигур
+/// </summary>
 public interface IFigureDataPrototype
 {
     FigureData Clone();
 }
 
+/// <summary>
+/// Вся информация о фигуре
+/// </summary>
 public class FigureData : IFigureDataPrototype
 {
     public BattleFieldFigure BattleFieldFigurePrefub => _battleFieldFigurePrefub;

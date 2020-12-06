@@ -1,8 +1,10 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 
+/// <summary>
+/// Этот класс является независимой реализацией текста в chess 2
+/// </summary>
 [RequireComponent(typeof(RectTransform))]
 public class Chess2Text : MonoBehaviour
 {
@@ -53,6 +55,9 @@ public class Chess2Text : MonoBehaviour
     [SerializeField] private Sprite nine;
     [SerializeField] private Sprite zero;
 
+    /// <summary>
+    /// Изменяет текст и обновляет его отображение
+    /// </summary>
     public string Text
     {
         get => _text;
@@ -62,7 +67,9 @@ public class Chess2Text : MonoBehaviour
             UpdateText();
         }
     }
-
+    /// <summary>
+    /// Изменяет размер шрифта и обновляет отображение текста
+    /// </summary>
     public float FontSize
     {
         get => _fontSize;
@@ -85,6 +92,9 @@ public class Chess2Text : MonoBehaviour
         UpdateText();
     }
 
+    /// <summary>
+    /// Соотносит изображения с символами
+    /// </summary>
     private void InitDictionary()
     {
         charAndSprites.Add('a', a);
@@ -125,6 +135,9 @@ public class Chess2Text : MonoBehaviour
         charAndSprites.Add('0', zero);
     }
     
+    /// <summary>
+    /// Считывает строку и последовательно добавляет изображения с символами
+    /// </summary>
     private void UpdateText()
     {
         DeleteAllLetters();
@@ -156,6 +169,9 @@ public class Chess2Text : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Уничтожает все изображения символов
+    /// </summary>
     private void DeleteAllLetters()
     {
         _letters.ForEach(n => Destroy(n.gameObject));

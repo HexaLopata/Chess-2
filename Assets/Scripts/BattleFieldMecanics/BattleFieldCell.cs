@@ -3,12 +3,16 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
+/// <summary>
+/// Клетка для поля битвы
+/// </summary>
 public class BattleFieldCell : CellBase
 {
-    #region public Properties
-
     public BattleFieldObject BattleFieldObject { get; set; }
     public BattleField BattleField => _battleField;
+    /// <summary>
+    /// Фигура, находящаяся на этой клетке
+    /// </summary>
     public override FigureData Figure
     {
         get => base.Figure;
@@ -22,26 +26,21 @@ public class BattleFieldCell : CellBase
             {
                 BattleFieldFigure = null;
             }
-            
+
             base.Figure = value;
         }
     }
+    /// <summary>
+    /// Боевой экземпляр фигуры, находящеяся на этой клетке
+    /// </summary>
     public BattleFieldFigure BattleFieldFigure { get; set; }
-
-    #endregion
-
-    #region private Fields
 
     private BattleField _battleField;
     private Coroutine _damageAnimation;
 
-    #endregion
-
-    #region Unity Methods
-
     private void Start()
     {
-        if(_field is BattleField)
+        if (_field is BattleField)
             _battleField = (BattleField)_field;
         else
         {
@@ -49,10 +48,10 @@ public class BattleFieldCell : CellBase
         }
     }
 
-    #endregion
-
-    #region public Methods
-
+    /// <summary>
+    /// Позволяет выбранной игроком фигуре походить на эту клетку
+    /// </summary>
+    /// <param name="eventData"></param>
     public override void OnPointerClick(PointerEventData eventData)
     {
         if (State == CellState.Active)
@@ -61,6 +60,7 @@ public class BattleFieldCell : CellBase
             currentFigure.Turn(this);
         }
     }
+
     /// <summary>
     /// Возникает, если эта ячейка находится в радиусе поражения фигуры во время атаки
     /// </summary>
@@ -70,7 +70,7 @@ public class BattleFieldCell : CellBase
         _damageAnimation = StartCoroutine(DamageAnimation());
         if (BattleFieldFigure != null)
         {
-            if(BattleFieldFigure.Data.Team != attacker.Data.Team)
+            if (BattleFieldFigure.Data.Team != attacker.Data.Team)
                 BattleFieldFigure.TakeDamage(attacker.Damage);
         }
 
@@ -83,6 +83,10 @@ public class BattleFieldCell : CellBase
         }
     }
 
+    /// <summary>
+    /// Проигрывает анимацию атаки на клетку и наносит урон всем лежащим на этой клетке объектам
+    /// </summary>
+    /// <param name="damage"></param>
     public void TakeDamage(int damage)
     {
         _damageAnimation = StartCoroutine(DamageAnimation());
@@ -96,7 +100,7 @@ public class BattleFieldCell : CellBase
             BattleFieldObject.TakeDamage(damage);
         }
     }
-    
+
     public override void Activate()
     {
         State = CellState.Active;
@@ -105,6 +109,7 @@ public class BattleFieldCell : CellBase
             _image.sprite = _active;
         }
     }
+
     public override void Deactivate()
     {
         State = CellState.NotActive;
@@ -114,20 +119,14 @@ public class BattleFieldCell : CellBase
         }
     }
 
-    #endregion
-
-    #region private Methods
-
     private IEnumerator DamageAnimation()
     {
         _image.sprite = _enemy;
         yield return new WaitForSeconds(0.2f);
-        if(State == CellState.Active)
+        if (State == CellState.Active)
             _image.sprite = _active;
         else
             _image.sprite = _normal;
         _damageAnimation = null;
     }
-
-    #endregion
 }

@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// Скрипт для кнопки активации умения
+/// </summary>
 public class ActivateSkill : MonoBehaviour
 {
     [SerializeField] private BattleField _field;
@@ -20,6 +23,9 @@ public class ActivateSkill : MonoBehaviour
             _figure.Skill.activateOrDisactivate.AddListener(UpdateButton);
     }
 
+    /// <summary>
+    /// Активирует умение
+    /// </summary>
     private void Activate()
     {
         if (_field.BattleController.CurrentTurn == _figure.Data.Team)
@@ -29,6 +35,9 @@ public class ActivateSkill : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Обновляет цвет кнопки
+    /// </summary>
     private void UpdateButton()
     {
         if(_figure.Skill.IsActive)

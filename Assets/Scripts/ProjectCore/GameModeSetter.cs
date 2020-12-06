@@ -1,5 +1,8 @@
 ﻿using UnityEngine;
 
+/// <summary>
+/// Предоставляет метод для определения игрового режима
+/// </summary>
 public class GameModeSetter : MonoBehaviour
 {
     /// <summary>

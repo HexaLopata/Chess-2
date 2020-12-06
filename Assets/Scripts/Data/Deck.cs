@@ -1,4 +1,7 @@
-﻿public class Deck
+﻿/// <summary>
+/// Набор фигур всех типов
+/// </summary>
+public class Deck
 {
     public FigureData Pawn { get; set; }
     public FigureData King { get; set; }

@@ -1,4 +1,7 @@
-﻿public class Core
+﻿/// <summary>
+/// В этом классе хранится вся основная игровая информация, которая будет переходить между сценами
+/// </summary>
+public class Core
 {
     private MonoCore _monoCore;
     

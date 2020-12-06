@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using System.Collections.Generic;
 
 public class MainFieldPawn : MainFieldFigure
 {
@@ -52,7 +50,7 @@ public class MainFieldPawn : MainFieldFigure
         return turns.ToArray();
     }
 
-    protected override void MoveToAnotherCell(CellBase cellBase)
+    public override void MoveToAnotherCell(CellBase cellBase)
     {
         base.MoveToAnotherCell(cellBase);
         if(IsFirstTurn)

@@ -1,5 +1,8 @@
 ﻿using UnityEngine;
 
+/// <summary>
+/// Показывает имя умения
+/// </summary>
 [RequireComponent(typeof(Chess2Text))]
 public class SkillNameSetter : MonoBehaviour
 {

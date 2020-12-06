@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
+/// <summary>
+/// Предоставляет метод для переключения сцен
+/// </summary>
 public class SceneSwitcher : MonoBehaviour
 {
     public void SwitchScene(int sceneId)

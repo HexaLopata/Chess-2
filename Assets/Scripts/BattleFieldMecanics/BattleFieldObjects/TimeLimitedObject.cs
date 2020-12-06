@@ -1,5 +1,8 @@
 using UnityEngine;
 
+/// <summary>
+/// Объекты этого типа уничтожаются со временем
+/// </summary>
 public abstract class TimeLimitedObject : BattleFieldObject
 {
     [SerializeField] protected float _turnRemains = 10;

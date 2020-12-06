@@ -3,21 +3,16 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 
+/// <summary>
+/// Этот класс отвечает за проведения ходов на поле битвы
+/// </summary>
 public class BattleController : MonoBehaviour
 {
-    #region Events
-
     public UnityEvent onSwitchTurn;
-
-    #endregion
-
-    #region public Properties
-
     public Team CurrentTurn { get; private set; } = Team.White;
     public BattleFieldFigure CurrentFigure => _currentFigure;
     public BattleInfo BattleInfo => _battleInfo;
     public BattleField BattleField => _field;
-
     public int TurnCount
     {
         get => _turnCount;
@@ -25,17 +20,13 @@ public class BattleController : MonoBehaviour
         {
             if (_turnCount >= _maxTurnCount)
             {
-                StartCoroutine(SuddenDeathAnimation());
+                StartCoroutine(SuddenDeathRoutine());
             }
 
             _turnCount = value;
         }
     }
 
-    #endregion
-
-    #region private Field
-    
     private BattleInfo _battleInfo;
     private BattleFieldFigure _currentFigure;
     private Coroutine _settingBattleResult;
@@ -48,20 +39,16 @@ public class BattleController : MonoBehaviour
     [SerializeField] private Chess2Text _suddenDeathMessage1;
     [SerializeField] private Chess2Text _suddenDeathMessage2;
 
-    #endregion
-
-    #region Unity Methods
-
     private void Start()
     {
         _battleInfo = Core.BattleInfo;
-        _sceneTransition.PlayOpen(StartBattle);
+        _sceneTransition.PlayOpen(OnStartBattle);
     }
 
-    #endregion
-
-    #region public Methods
-
+    /// <summary>
+    /// Передает ход переданной команде
+    /// </summary>
+    /// <param name="team"></param>
     public void SwitchTurn(Team team)
     {
         if (team == Team.Black)
@@ -79,7 +66,7 @@ public class BattleController : MonoBehaviour
         _field.DeactivateAllCells();
         if (_currentFigure.Data.Health > 0)
         {
-            var turns = _currentFigure.GetRelevantMoves(_field.BattleFieldCells);
+            var turns = _currentFigure.GetRelevantMoves();
 
             if (turns.Length == 0)
                 SwitchTurn();
@@ -90,6 +77,10 @@ public class BattleController : MonoBehaviour
             }
         }
     }
+
+    /// <summary>
+    /// Переключает ход
+    /// </summary>
     public void SwitchTurn()
     {
         if (CurrentTurn == Team.Black)
@@ -102,18 +93,20 @@ public class BattleController : MonoBehaviour
         }
     }
     
+    /// <summary>
+    /// Выставляет результаты битвы и переключает сцену на главное поле
+    /// </summary>
+    /// <param name="team">Победитель</param>
     public void SetBattleResult(Team team)
     {
         if(_settingBattleResult == null)
             _settingBattleResult = StartCoroutine(SetBattleResultWithAnimation(team));
     }
 
-  
-    #endregion
-
-    #region private Methods
-
-    private void StartBattle()
+    /// <summary>
+    /// Выполняется в начале битвы
+    /// </summary>
+    private void OnStartBattle()
     {
         var figureFirst = Core.BattleInfo.FirstFigure.BattleFieldFigureInstance;
         foreach (var cell in BattleField.BattleFieldCells)
@@ -124,7 +117,11 @@ public class BattleController : MonoBehaviour
         SwitchTurn(figureFirst.Data.Team);
     }
 
-    private IEnumerator SuddenDeathAnimation()
+    /// <summary>
+    /// Выполняется во время "Внезапной смерти"
+    /// </summary>
+    /// <returns></returns>
+    private IEnumerator SuddenDeathRoutine()
     {
         _field.DeactivateAllCells();
         _suddenDeathMessage1.gameObject.SetActive(true);
@@ -137,25 +134,20 @@ public class BattleController : MonoBehaviour
         
         yield return new WaitForSeconds(0.5f);
         
-        if (BattleField.FirstFigure.Health > BattleField.SecondFigure.Health)
+        foreach (var cell in BattleField.BattleFieldCells)
         {
-            foreach (var cell in BattleField.BattleFieldCells)
-            {
-                cell.TakeDamage(_suddenDeathDamage);
-            }
-        }
-        else if (BattleField.FirstFigure.Health < BattleField.SecondFigure.Health)
-        {
-            foreach (var cell in BattleField.BattleFieldCells)
-            {
-                cell.TakeDamage(_suddenDeathDamage);
-            }
+            cell.TakeDamage(_suddenDeathDamage);
         }
         
-        var turns = _currentFigure.GetRelevantMoves(_field.BattleFieldCells);
+        var turns = _currentFigure.GetRelevantMoves();
         _field.ActivateAllCells(turns);
     }
     
+    /// <summary>
+    /// Вспомогательный метод для завершения битвы
+    /// </summary>
+    /// <param name="team"></param>
+    /// <returns></returns>
     private IEnumerator SetBattleResultWithAnimation(Team team)
     {
         yield return _sceneTransition.Close();
@@ -179,6 +171,4 @@ public class BattleController : MonoBehaviour
         SceneManager.UnloadSceneAsync(SceneManager.GetSceneByBuildIndex(3));
         _settingBattleResult = null;
     }
-    
-    #endregion
 }
