@@ -4,12 +4,12 @@ using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 
 /// <summary>
-/// Этот класс отвечает за проведения ходов на поле битвы
+/// Р­С‚РѕС‚ РєР»Р°СЃСЃ РѕС‚РІРµС‡Р°РµС‚ Р·Р° РїСЂРѕРІРµРґРµРЅРёСЏ С…РѕРґРѕРІ РЅР° РїРѕР»Рµ Р±РёС‚РІС‹
 /// </summary>
 public class BattleController : MonoBehaviour
 {
     public UnityEvent onSwitchTurn;
-    public Team CurrentTurn { get; private set; } = Team.White;
+    public Team CurrentTurn { get; private set; } = Team.No;
     public BattleFieldFigure CurrentFigure => _currentFigure;
     public BattleInfo BattleInfo => _battleInfo;
     public BattleField BattleField => _field;
@@ -46,7 +46,7 @@ public class BattleController : MonoBehaviour
     }
 
     /// <summary>
-    /// Передает ход переданной команде
+    /// РџРµСЂРµРґР°РµС‚ С…РѕРґ РїРµСЂРµРґР°РЅРЅРѕР№ РєРѕРјР°РЅРґРµ
     /// </summary>
     /// <param name="team"></param>
     public void SwitchTurn(Team team)
@@ -79,7 +79,7 @@ public class BattleController : MonoBehaviour
     }
 
     /// <summary>
-    /// Переключает ход
+    /// РџРµСЂРµРєР»СЋС‡Р°РµС‚ С…РѕРґ
     /// </summary>
     public void SwitchTurn()
     {
@@ -94,9 +94,9 @@ public class BattleController : MonoBehaviour
     }
     
     /// <summary>
-    /// Выставляет результаты битвы и переключает сцену на главное поле
+    /// Р’С‹СЃС‚Р°РІР»СЏРµС‚ СЂРµР·СѓР»СЊС‚Р°С‚С‹ Р±РёС‚РІС‹ Рё РїРµСЂРµРєР»СЋС‡Р°РµС‚ СЃС†РµРЅСѓ РЅР° РіР»Р°РІРЅРѕРµ РїРѕР»Рµ
     /// </summary>
-    /// <param name="team">Победитель</param>
+    /// <param name="team">РџРѕР±РµРґРёС‚РµР»СЊ</param>
     public void SetBattleResult(Team team)
     {
         if(_settingBattleResult == null)
@@ -104,7 +104,7 @@ public class BattleController : MonoBehaviour
     }
 
     /// <summary>
-    /// Выполняется в начале битвы
+    /// Р’С‹РїРѕР»РЅСЏРµС‚СЃСЏ РІ РЅР°С‡Р°Р»Рµ Р±РёС‚РІС‹
     /// </summary>
     private void OnStartBattle()
     {
@@ -118,7 +118,7 @@ public class BattleController : MonoBehaviour
     }
 
     /// <summary>
-    /// Выполняется во время "Внезапной смерти"
+    /// Р’С‹РїРѕР»РЅСЏРµС‚СЃСЏ РІРѕ РІСЂРµРјСЏ "Р’РЅРµР·Р°РїРЅРѕР№ СЃРјРµСЂС‚Рё"
     /// </summary>
     /// <returns></returns>
     private IEnumerator SuddenDeathRoutine()
@@ -144,7 +144,7 @@ public class BattleController : MonoBehaviour
     }
     
     /// <summary>
-    /// Вспомогательный метод для завершения битвы
+    /// Р’СЃРїРѕРјРѕРіР°С‚РµР»СЊРЅС‹Р№ РјРµС‚РѕРґ РґР»СЏ Р·Р°РІРµСЂС€РµРЅРёСЏ Р±РёС‚РІС‹
     /// </summary>
     /// <param name="team"></param>
     /// <returns></returns>

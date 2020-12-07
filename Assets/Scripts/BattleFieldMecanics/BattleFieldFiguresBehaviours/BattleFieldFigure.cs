@@ -212,21 +212,24 @@ public abstract class BattleFieldFigure : MonoFigure
         var y = OnBoardPosition.y + cellY;
         var cell = _battleFieldCells[x, y];
 
-        if (cell.BattleFieldFigure == null || isAttack)
+        if (cell != null)
         {
-            if (cell.BattleFieldObject == null)
+            if (cell.BattleFieldFigure == null || isAttack)
             {
-                _turns.Add(cell);
-            }
-            else
-            {
-                BarrierType barrier;
-                if (isAttack)
-                    barrier = cell.BattleFieldObject.CanThisFigureToAttackThrough(this);
-                else
-                    barrier = cell.BattleFieldObject.CanThisFigureToCross(this);
-                if (barrier != BarrierType.Impassable)
+                if (cell.BattleFieldObject == null)
+                {
                     _turns.Add(cell);
+                }
+                else
+                {
+                    BarrierType barrier;
+                    if (isAttack)
+                        barrier = cell.BattleFieldObject.CanThisFigureToAttackThrough(this);
+                    else
+                        barrier = cell.BattleFieldObject.CanThisFigureToCross(this);
+                    if (barrier != BarrierType.Impassable)
+                        _turns.Add(cell);
+                }
             }
         }
     }

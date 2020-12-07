@@ -22,36 +22,40 @@ public abstract class EndLessDistanceFigure : BattleFieldFigure
             var y = localY + cellY;
             var currentCell = _battleFieldCells[x, y];
 
-            if (currentCell.BattleFieldObject == null)
+            if (currentCell != null)
             {
-                _turns.Add(currentCell);
-            }
-            else
-            {
-                BarrierType barrier;
-                if (isAttack)
-                    barrier = currentCell.BattleFieldObject.CanThisFigureToAttackThrough(this);
-                else
-                    barrier = currentCell.BattleFieldObject.CanThisFigureToCross(this);
 
-                if (barrier == BarrierType.Passable)
+                if (currentCell.BattleFieldObject == null)
                 {
                     _turns.Add(currentCell);
                 }
-                else if (barrier == BarrierType.Stopable)
+                else
                 {
-                    _turns.Add(currentCell);
+                    BarrierType barrier;
+                    if (isAttack)
+                        barrier = currentCell.BattleFieldObject.CanThisFigureToAttackThrough(this);
+                    else
+                        barrier = currentCell.BattleFieldObject.CanThisFigureToCross(this);
+
+                    if (barrier == BarrierType.Passable)
+                    {
+                        _turns.Add(currentCell);
+                    }
+                    else if (barrier == BarrierType.Stopable)
+                    {
+                        _turns.Add(currentCell);
+                        break;
+                    }
+                    else
+                        break;
+                }
+
+                if (currentCell.BattleFieldFigure != null)
+                {
+                    if (!isAttack)
+                        _turns.Remove(currentCell);
                     break;
                 }
-                else
-                    break;
-            }
-
-            if (currentCell.BattleFieldFigure != null)
-            {
-                if (!isAttack)
-                    _turns.Remove(currentCell);
-                break;
             }
 
             localX += cellX;

@@ -4,7 +4,8 @@
 public enum Team
 {
     White,
-    Black
+    Black,
+    No,
 }
 
 /// <summary>

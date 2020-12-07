@@ -4,7 +4,7 @@ using UnityEngine;
 public class WallSpikes : TimeLimitedObject
 {
     private bool _opened = true;
-    
+
     [SerializeField] private int _damage = 30;
     [Space]
     [SerializeField] private Sprite _whiteOpenedSkin;
@@ -17,7 +17,7 @@ public class WallSpikes : TimeLimitedObject
 
     public override BarrierType CanThisFigureToAttackThrough(BattleFieldFigure figure)
     {
-        return BarrierType.Stopable;
+        return BarrierType.Passable;
     }
 
     public override void TakeDamage(BattleFieldFigure attacker) { }
@@ -42,15 +42,21 @@ public class WallSpikes : TimeLimitedObject
                 turns.Add(cells[pos.x - 1, pos.y]);
             if (pos.y + 1 < cells.GetLength(1))
                 turns.Add(cells[pos.x, pos.y + 1]);
-            
-            turns.ForEach(c => c.TakeDamage(_damage));
+
+            foreach (var cell in turns)
+            {
+                if (cell.BattleFieldFigure.Data.Team != Team)
+                    cell.TakeDamage(_damage);
+                else
+                    cell.TakeDamage(0);
+            }
         }
         else
         {
             _opened = false;
             Image.sprite = Team == Team.Black ? BlackSkin : WhiteSkin;
         }
-        
+
         base.Execute();
     }
 }

@@ -3,7 +3,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 /// <summary>
-/// Кнопка, при нажатии которой ее размер становится равным размеру спрайта
+/// РљРЅРѕРїРєР°, РїСЂРё РЅР°Р¶Р°С‚РёРё РєРѕС‚РѕСЂРѕР№ РµРµ СЂР°Р·РјРµСЂ СЃС‚Р°РЅРѕРІРёС‚СЃСЏ СЂР°РІРЅС‹Рј СЂР°Р·РјРµСЂСѓ СЃРїСЂР°Р№С‚Р°
 /// </summary>
 public class ScalingButton : Button
 {
@@ -11,7 +11,7 @@ public class ScalingButton : Button
     private Sprite _normalSprite;
 
     /// <summary>
-    /// Стандартный спрайт
+    /// РЎС‚Р°РЅРґР°СЂС‚РЅС‹Р№ СЃРїСЂР°Р№С‚
     /// </summary>
     public Sprite NormalSprite
     {
@@ -26,7 +26,7 @@ public class ScalingButton : Button
     }
 
     /// <summary>
-    /// Делает то же, что и обычная кнопка, но менят спрайт на спрайт нажатия и изменяет размер до размера спрайта
+    /// Р”РµР»Р°РµС‚ С‚Рѕ Р¶Рµ, С‡С‚Рѕ Рё РѕР±С‹С‡РЅР°СЏ РєРЅРѕРїРєР°, РЅРѕ РјРµРЅСЏС‚ СЃРїСЂР°Р№С‚ РЅР° СЃРїСЂР°Р№С‚ РЅР°Р¶Р°С‚РёСЏ Рё РёР·РјРµРЅСЏРµС‚ СЂР°Р·РјРµСЂ РґРѕ СЂР°Р·РјРµСЂР° СЃРїСЂР°Р№С‚Р°
     /// </summary>
     /// <param name="eventData"></param>
     public override void OnPointerUp(PointerEventData eventData)
@@ -37,7 +37,7 @@ public class ScalingButton : Button
     }
 
     /// <summary>
-    /// Делает то же, что и обычная кнопка, но менят спрайт на спрайт нажатия и изменяет размер до размера спрайта
+    /// Р”РµР»Р°РµС‚ С‚Рѕ Р¶Рµ, С‡С‚Рѕ Рё РѕР±С‹С‡РЅР°СЏ РєРЅРѕРїРєР°, РЅРѕ РјРµРЅСЏС‚ СЃРїСЂР°Р№С‚ РЅР° СЃРїСЂР°Р№С‚ РЅР°Р¶Р°С‚РёСЏ Рё РёР·РјРµРЅСЏРµС‚ СЂР°Р·РјРµСЂ РґРѕ СЂР°Р·РјРµСЂР° СЃРїСЂР°Р№С‚Р°
     /// </summary>
     /// <param name="eventData"></param>
     public override void OnPointerDown(PointerEventData eventData)

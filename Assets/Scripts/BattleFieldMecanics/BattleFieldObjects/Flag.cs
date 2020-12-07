@@ -7,7 +7,7 @@ public class Flag : TimeLimitedObject
 
     public override BarrierType CanThisFigureToAttackThrough(BattleFieldFigure figure)
     {
-        return BarrierType.Passable;
+        return figure.Data.Team != Team ? BarrierType.Stopable : BarrierType.Passable;
     }
 
     public override void TakeDamage(BattleFieldFigure attacker) { }

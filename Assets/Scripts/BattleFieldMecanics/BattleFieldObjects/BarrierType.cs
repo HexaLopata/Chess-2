@@ -1,5 +1,5 @@
 /// <summary>
-/// Тип преграды
+/// РўРёРї РїСЂРµРіСЂР°РґС‹
 /// </summary>
 public enum BarrierType
 {

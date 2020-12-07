@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.Events;
 
 /// <summary>
-/// Базовый класс для умений фигур
+/// Р‘Р°Р·РѕРІС‹Р№ РєР»Р°СЃСЃ РґР»СЏ СѓРјРµРЅРёР№ С„РёРіСѓСЂ
 /// </summary>
 public abstract class Skill : MonoBehaviour
 {
@@ -28,7 +28,7 @@ public abstract class Skill : MonoBehaviour
     private bool _isActive;
 
     /// <summary>
-    /// Выполняет действие умения, если умение уже откатилось
+    /// Р’С‹РїРѕР»РЅСЏРµС‚ РґРµР№СЃС‚РІРёРµ СѓРјРµРЅРёСЏ, РµСЃР»Рё СѓРјРµРЅРёРµ СѓР¶Рµ РѕС‚РєР°С‚РёР»РѕСЃСЊ
     /// </summary>
     /// <param name="figure"></param>
     /// <param name="cell"></param>
@@ -44,20 +44,20 @@ public abstract class Skill : MonoBehaviour
     }
 
     /// <summary>
-    /// Действие умения
+    /// Р”РµР№СЃС‚РІРёРµ СѓРјРµРЅРёСЏ
     /// </summary>
     /// <param name="figure"></param>
     /// <param name="cell"></param>
     protected abstract void SkillAction(BattleFieldFigure figure, BattleFieldCell cell);
 
     /// <summary>
-    /// Этот метод выполняется при активации умения
+    /// Р­С‚РѕС‚ РјРµС‚РѕРґ РІС‹РїРѕР»РЅСЏРµС‚СЃСЏ РїСЂРё Р°РєС‚РёРІР°С†РёРё СѓРјРµРЅРёСЏ
     /// </summary>
     /// <param name="figure"></param>
     public abstract void Activate(BattleFieldFigure figure);
 
     /// <summary>
-    /// Этот метод уменьшает откат каждый ход
+    /// Р­С‚РѕС‚ РјРµС‚РѕРґ СѓРјРµРЅСЊС€Р°РµС‚ РѕС‚РєР°С‚ РєР°Р¶РґС‹Р№ С…РѕРґ
     /// </summary>
     protected virtual void UpdateDelay()
     {

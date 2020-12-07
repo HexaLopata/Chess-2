@@ -1,51 +1,61 @@
 public class SpaceCut : Skill
 {
     protected override void SkillAction(BattleFieldFigure figure, BattleFieldCell cell)
-    {       
+    {
         var rawField = figure.BattleField.BattleFieldCells;
-        if (figure.BattleField.Width > 4 && figure.BattleField.Height > 4)
+
+        bool canBeCutFromTheTop = true;
+        bool canBeCutFromTheRight = true;
+
+        if (figure.BattleField.BattleFieldCells.GetLength(0) <= 4)
+            canBeCutFromTheRight = false;
+        if (figure.BattleField.BattleFieldCells.GetLength(1) <= 4)
+            canBeCutFromTheTop = false;
+
+        for (int i = 0; i < rawField.GetLength(0); i++)
         {
-            bool canBeCuted = true;
-            for (int i = 0; i < rawField.GetLength(0); i++)
-            {
-                if (rawField[i, rawField.GetLength(1) - 1].BattleFieldFigure != null)
-                    canBeCuted = false;
-            }
-
-            for (int i = 1; i < rawField.GetLength(1); i++)
-            {
-                if (rawField[rawField.GetLength(0) - 1, i].BattleFieldFigure != null)
-                    canBeCuted = false;
-            }
-
-            if (canBeCuted)
-            {
-                for (int i = 0; i < rawField.GetLength(0); i++)
-                {
-                    Destroy(figure.BattleField.BattleFieldCells[i, rawField.GetLength(1) - 1].gameObject);
-                    figure.BattleField.BattleFieldCells[i, rawField.GetLength(1) - 1] = null;
-                }
-
-                for (int i = rawField.GetLength(1) - 2; i >= 0; i--)
-                {
-                    Destroy(figure.BattleField.BattleFieldCells[rawField.GetLength(0) - 1, i].gameObject);
-                    figure.BattleField.BattleFieldCells[rawField.GetLength(0) - 1, i] = null;
-                }
-
-                BattleFieldCell[,] newField = new BattleFieldCell[rawField.GetLength(0) - 1, rawField.GetLength(1) - 1];
-
-                for (int i = 0; i < newField.GetLength(0); i++)
-                {
-                    for (int j = 0; j < newField.GetLength(1); j++)
-                    {
-                        newField[i, j] = rawField[i, j];
-                    }
-                }
-
-                _controller.BattleField.BattleFieldCells = newField;
-                _controller.SwitchTurn();
-            }
+            var currentCell = rawField[i, rawField.GetLength(1) - 1];
+            if (currentCell.BattleFieldFigure != null)
+                canBeCutFromTheTop = false;
+            if (currentCell.BattleFieldObject != null)
+                currentCell.BattleFieldObject.DestroyThisBattleFieldObject();
         }
+
+        for (int i = 0; i < rawField.GetLength(1); i++)
+        {
+            var currentCell = rawField[rawField.GetLength(0) - 1, rawField.GetLength(1) - 1 - i];
+            if (currentCell.BattleFieldFigure != null)
+                canBeCutFromTheRight = false;
+            if (currentCell.BattleFieldObject != null)
+                currentCell.BattleFieldObject.DestroyThisBattleFieldObject();
+        }
+
+        if (canBeCutFromTheRight || canBeCutFromTheTop)
+        {
+            BattleFieldCell[,] newField = new BattleFieldCell[0, 0];
+
+            if (canBeCutFromTheRight && canBeCutFromTheTop)
+                newField = new BattleFieldCell[rawField.GetLength(0) - 1, rawField.GetLength(1) - 1];
+            else if (canBeCutFromTheRight)
+                newField = new BattleFieldCell[rawField.GetLength(0) - 1, rawField.GetLength(1)];
+            else if (canBeCutFromTheTop)
+                newField = new BattleFieldCell[rawField.GetLength(0), rawField.GetLength(1) - 1];
+
+            for(int x = 0; x < rawField.GetLength(0); x++)
+            {
+                for(int y = 0; y < rawField.GetLength(1); y++)
+                {
+                    if (canBeCutFromTheTop && x >= newField.GetLength(0) || canBeCutFromTheTop && y >= newField.GetLength(1))
+                        Destroy(rawField[x, y].gameObject);
+                    else
+                        newField[x, y] = rawField[x, y];
+                }
+            }
+
+            figure.BattleField.BattleFieldCells = newField;
+        }
+        figure.BattleField.DeactivateAllCells();
+        _controller.SwitchTurn();
     }
 
     public override void Activate(BattleFieldFigure figure)
