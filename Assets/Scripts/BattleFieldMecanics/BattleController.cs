@@ -9,7 +9,19 @@ using UnityEngine.SceneManagement;
 public class BattleController : MonoBehaviour
 {
     public UnityEvent onSwitchTurn;
-    public Team CurrentTurn { get; private set; } = Team.No;
+    public Team CurrentTurn 
+    { 
+        get
+        {
+            if (_fightingLoopIsActive)
+                return _currentTurn;
+            return Team.No;
+        } 
+        private set
+        {
+            _currentTurn = value;
+        } 
+    }
     public BattleFieldFigure CurrentFigure => _currentFigure;
     public BattleInfo BattleInfo => _battleInfo;
     public BattleField BattleField => _field;
@@ -31,6 +43,9 @@ public class BattleController : MonoBehaviour
     private BattleFieldFigure _currentFigure;
     private Coroutine _settingBattleResult;
     private int _turnCount;
+    private Team _currentTurn = Team.No;
+    private bool _fightingLoopIsActive = true;
+    private BattleFieldCell[] _currentActiveCells;
 
     [SerializeField] private int _suddenDeathDamage = 30;
     [SerializeField] private int _maxTurnCount = 20; 
@@ -63,7 +78,7 @@ public class BattleController : MonoBehaviour
         }
         onSwitchTurn.Invoke();
 
-        _field.DeactivateAllCells();
+        DeactivateAllCells();
         if (_currentFigure.Data.Health > 0)
         {
             var turns = _currentFigure.GetRelevantMoves();
@@ -72,8 +87,41 @@ public class BattleController : MonoBehaviour
                 SwitchTurn();
             else
             {
-                _field.ActivateAllCells(turns);
+                ActivateAllCells(turns);
                 TurnCount++;
+            }
+        }
+    }
+
+    /// <summary>
+    /// Активирует все переданные клетки
+    /// </summary>
+    /// <param name="battleFieldCells"></param>
+    public void ActivateAllCells(BattleFieldCell[] battleFieldCells)
+    {
+        _currentActiveCells = battleFieldCells;
+        if (_fightingLoopIsActive)
+        {
+            DeactivateAllCells();
+            foreach (var cell in battleFieldCells)
+            {
+                if (cell != null)
+                    cell.Activate();
+            }
+        }
+    }
+
+    /// <summary>
+    /// Деактивирует все клетки
+    /// </summary>
+    public void DeactivateAllCells()
+    {
+        if (_field.BattleFieldCells != null)
+        {
+            foreach (var cell in _field.BattleFieldCells)
+            {
+                if (cell != null)
+                    cell.Deactivate();
             }
         }
     }
@@ -93,6 +141,24 @@ public class BattleController : MonoBehaviour
         }
     }
     
+    /// <summary>
+    /// Останавливает цикл ходов
+    /// </summary>
+    public void StopRequest()
+    {
+        _fightingLoopIsActive = false;
+        DeactivateAllCells();
+    }
+
+    /// <summary>
+    /// Возобновляет цикл ходов
+    /// </summary>
+    public void StartRequest()
+    {
+        _fightingLoopIsActive = true;
+        ActivateAllCells(_currentFigure.GetRelevantMoves());
+    }
+
     /// <summary>
     /// Выставляет результаты битвы и переключает сцену на главное поле
     /// </summary>
@@ -123,7 +189,7 @@ public class BattleController : MonoBehaviour
     /// <returns></returns>
     private IEnumerator SuddenDeathRoutine()
     {
-        _field.DeactivateAllCells();
+        StopRequest();
         _suddenDeathMessage1.gameObject.SetActive(true);
         _suddenDeathMessage2.gameObject.SetActive(true);
         
@@ -138,9 +204,8 @@ public class BattleController : MonoBehaviour
         {
             cell.TakeDamage(_suddenDeathDamage);
         }
-        
-        var turns = _currentFigure.GetRelevantMoves();
-        _field.ActivateAllCells(turns);
+
+        StartRequest();
     }
     
     /// <summary>

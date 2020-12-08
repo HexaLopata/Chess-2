@@ -30,35 +30,6 @@ public class BattleField : FieldBase
 
     [SerializeField] private BattleController _battleController;
 
-    /// <summary>
-    /// Активирует все переданные клетки
-    /// </summary>
-    /// <param name="battleFieldCells"></param>
-    public void ActivateAllCells(BattleFieldCell[] battleFieldCells)
-    {
-        DeactivateAllCells();
-        foreach (var cell in battleFieldCells)
-        {
-            if(cell != null)
-                cell.Activate();
-        }
-    }
-
-    /// <summary>
-    /// Деактивирует все клетки
-    /// </summary>
-    public void DeactivateAllCells()
-    {
-        if (BattleFieldCells != null)
-        {
-            foreach (var cell in BattleFieldCells)
-            {
-                if(cell != null)
-                    cell.Deactivate();
-            }
-        }
-    }
-
     protected override void AdditionalAwakeInit()
     {
         _whiteCell = Core.CurrentLocation.BattleFieldWhiteCell;

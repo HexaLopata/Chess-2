@@ -32,10 +32,10 @@ public class RandomTeleport : Skill
 
     private IEnumerator MoveAndUpdateTurns(BattleFieldFigure figure, BattleFieldCell cell)
     {
-        figure.BattleField.DeactivateAllCells();
+        figure.BattleField.BattleController.DeactivateAllCells();
         yield return figure.MoveToAnotherCellWithAnimation(cell);
         if (figure.GetRelevantMoves().Length > 0)
-            figure.BattleField.ActivateAllCells(figure.GetRelevantMoves());
+            figure.BattleField.BattleController.ActivateAllCells(figure.GetRelevantMoves());
         else
             figure.BattleField.BattleController.SwitchTurn();
     }

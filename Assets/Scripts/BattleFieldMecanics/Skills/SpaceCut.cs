@@ -17,8 +17,6 @@ public class SpaceCut : Skill
             var currentCell = rawField[i, rawField.GetLength(1) - 1];
             if (currentCell.BattleFieldFigure != null)
                 canBeCutFromTheTop = false;
-            if (currentCell.BattleFieldObject != null)
-                currentCell.BattleFieldObject.DestroyThisBattleFieldObject();
         }
 
         for (int i = 0; i < rawField.GetLength(1); i++)
@@ -26,8 +24,6 @@ public class SpaceCut : Skill
             var currentCell = rawField[rawField.GetLength(0) - 1, rawField.GetLength(1) - 1 - i];
             if (currentCell.BattleFieldFigure != null)
                 canBeCutFromTheRight = false;
-            if (currentCell.BattleFieldObject != null)
-                currentCell.BattleFieldObject.DestroyThisBattleFieldObject();
         }
 
         if (canBeCutFromTheRight || canBeCutFromTheTop)
@@ -48,13 +44,17 @@ public class SpaceCut : Skill
                     if (canBeCutFromTheTop && x >= newField.GetLength(0) || canBeCutFromTheTop && y >= newField.GetLength(1))
                         Destroy(rawField[x, y].gameObject);
                     else
+                    {
                         newField[x, y] = rawField[x, y];
+                        if (newField[x, y].BattleFieldObject != null)
+                            newField[x, y].BattleFieldObject.DestroyThisBattleFieldObject();
+                    }
                 }
             }
 
             figure.BattleField.BattleFieldCells = newField;
         }
-        figure.BattleField.DeactivateAllCells();
+        figure.BattleField.BattleController.DeactivateAllCells();
         _controller.SwitchTurn();
     }
 

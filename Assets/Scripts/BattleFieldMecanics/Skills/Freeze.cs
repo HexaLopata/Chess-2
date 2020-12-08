@@ -49,7 +49,7 @@ public class Freeze : Skill
     {
         yield return figure.MoveToAnotherCellWithAnimation(cell);
         figure.LaunchAnAttack();
-        _controller.BattleField.ActivateAllCells(figure.GetRelevantMoves());
+        _controller.ActivateAllCells(figure.GetRelevantMoves());
         if (_currentFreezeTime >= _freezeTime)
         {
             _delay = _maxDelay;

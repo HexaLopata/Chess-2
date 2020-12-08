@@ -1,3 +1,5 @@
+using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -37,7 +39,11 @@ public abstract class BattleFieldObject : MonoBehaviour, IPointerClickHandler
             if (value != null)
             {
                 BattleField = value.BattleField;
-                BattleField.BattleController.onSwitchTurn.AddListener(Execute);
+                if (_controller == null)
+                {
+                    _controller = BattleField.BattleController;
+                    BattleField.BattleController.onSwitchTurn.AddListener(Execute);
+                }
             }
 
             _cell = value;
@@ -49,7 +55,9 @@ public abstract class BattleFieldObject : MonoBehaviour, IPointerClickHandler
     
     private BattleFieldCell _cell;
     private Team _team;
+    private BattleController _controller;
     private RectTransform _rectTransform;
+    private bool _isMoving;
     protected Image _image;
 
     [SerializeField] private Sprite _whiteSkin;
@@ -112,12 +120,43 @@ public abstract class BattleFieldObject : MonoBehaviour, IPointerClickHandler
     }
 
     /// <summary>
+    /// Делает то же, что и MoveToAnotherCell, но с анимацией
+    /// </summary>
+    /// <param name="cellBase"></param>
+    /// <returns></returns>
+    public IEnumerator MoveToAnotherCellWithAnimation(BattleFieldCell cell)
+    {
+        _isMoving = true;
+        _controller.BattleField.BattleController.StopRequest();
+        var rectTransform = GetComponent<RectTransform>();
+        var startPoint = rectTransform.localPosition;
+        var endPoint = new Vector2(cell.RectTransform.localPosition.x + cell.RectTransform.rect.width / 2,
+                                    cell.RectTransform.localPosition.y + cell.RectTransform.rect.height / 2);
+        var direction = new Vector2(endPoint.x - startPoint.x, endPoint.y - startPoint.y);
+        var roundedEndPoint = new Vector2Int(Convert.ToInt32(endPoint.x), Convert.ToInt32(endPoint.y));
+
+        while (Convert.ToInt32(rectTransform.localPosition.x) != roundedEndPoint.x ||
+               Convert.ToInt32(rectTransform.localPosition.y) != roundedEndPoint.y)
+        {
+            var x = rectTransform.localPosition.x;
+            var y = rectTransform.localPosition.y;
+            rectTransform.localPosition = new Vector2(x + direction.x / 15, y + direction.y / 15);
+            yield return new WaitForSeconds(0.01f);
+        }
+        MoveToAnotherCell(cell);
+        _controller.StartRequest();
+        _isMoving = false;
+    }
+
+    /// <summary>
     /// Уничтожает этот объект и обновляет информацию о себе у клетки
     /// </summary>
     public void DestroyThisBattleFieldObject()
     {
         if(_cell != null)
             _cell.BattleFieldObject = null;
+        if (_isMoving)
+            _controller.StartRequest();
         Destroy(gameObject);
     }
 

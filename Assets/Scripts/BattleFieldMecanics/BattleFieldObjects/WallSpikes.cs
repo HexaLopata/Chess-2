@@ -21,6 +21,7 @@ public class WallSpikes : TimeLimitedObject
     }
 
     public override void TakeDamage(BattleFieldFigure attacker) { }
+
     public override void TakeDamage(int damage) { }
 
     public override void Visit(BattleFieldFigure visitor) { }
@@ -45,7 +46,7 @@ public class WallSpikes : TimeLimitedObject
 
             foreach (var cell in turns)
             {
-                if (cell.BattleFieldFigure.Data.Team != Team)
+                if (cell.BattleFieldFigure != null && cell.BattleFieldFigure.Data.Team != Team)
                     cell.TakeDamage(_damage);
                 else
                     cell.TakeDamage(0);

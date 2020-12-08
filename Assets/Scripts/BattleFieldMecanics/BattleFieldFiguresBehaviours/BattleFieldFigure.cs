@@ -99,6 +99,34 @@ public abstract class BattleFieldFigure : MonoFigure
     }
 
     /// <summary>
+    /// Возвращает ходы доступные для атаки ходы так, как будто фигура стоит на переданной позиции
+    /// </summary>
+    /// <param name="position"></param>
+    /// <returns></returns>
+    public BattleFieldCell[] GetRelevantAttackMovesFromCustomPosition(Vector2Int position)
+    {
+        var realOnBoardPosition = OnBoardPosition;
+        OnBoardPosition = position;
+        var result = GetRelevantAttackMoves();
+        OnBoardPosition = realOnBoardPosition;
+        return result;
+    }
+
+    /// <summary>
+    /// Возвращает ходы так, как будто фигура стоит на переданной позиции
+    /// </summary>
+    /// <param name="position"></param>
+    /// <returns></returns>
+    public BattleFieldCell[] GetRelevantMovesFromCustomPosition(Vector2Int position)
+    {
+        var realOnBoardPosition = OnBoardPosition;
+        OnBoardPosition = position;
+        var result = GetRelevantMoves();
+        OnBoardPosition = realOnBoardPosition;
+        return result;
+    }
+
+    /// <summary>
     /// Совершает ход или выполняет действия умения, если оно активировано
     /// </summary>
     /// <param name="selectedCell"></param>

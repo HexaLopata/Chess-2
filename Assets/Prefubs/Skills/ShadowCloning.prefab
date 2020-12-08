@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7258157851409736167}
-  - component: {fileID: -4723625920124010496}
+  - component: {fileID: 2421494067913858927}
   m_Layer: 0
-  m_Name: WallsSkill
+  m_Name: ShadowCloning
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -31,7 +31,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &-4723625920124010496
+--- !u!114 &2421494067913858927
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -40,14 +40,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 4451160320274389103}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f93043559d74464ab87e4cdd3b041c6, type: 3}
+  m_Script: {fileID: 11500000, guid: a7ec224152398714ba1733daa5987b4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   activateOrDisactivate:
     m_PersistentCalls:
       m_Calls: []
-  _maxDelay: 5
-  _name: Wall Builder
-  battleFieldObject: {fileID: 7437973266940876044, guid: e0711d71105e8cf57b75f27f2022c410,
+  _maxDelay: 7
+  _name: Shadow Clone
+  _shadowClone: {fileID: 6182609388292124700, guid: 94673816858896f43b73e388fa36b1c0,
     type: 3}
-  _continueTurn: 0
