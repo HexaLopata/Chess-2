@@ -37,6 +37,8 @@ public abstract class MonoFigure : MonoBehaviour
     public bool King => _king;
 
     private RectTransform _rectTransform;
+    private AudioSource _movementSound;
+    private bool _isFirstMovement = true;
 
     [SerializeField] private Sprite _whiteSkin;
     [SerializeField] private Sprite _blackSkin;
@@ -48,6 +50,7 @@ public abstract class MonoFigure : MonoBehaviour
     private void Awake()
     {
         _image = GetComponent<Image>();
+        _movementSound = GetComponent<AudioSource>();
         _rectTransform = GetComponent<RectTransform>();
     }
 
@@ -92,6 +95,11 @@ public abstract class MonoFigure : MonoBehaviour
         Vector2 newPosition = new Vector2(cellPosition.x + CellBase.RectTransform.rect.width / 2,
             cellPosition.y + CellBase.RectTransform.rect.height / 2);
         GetComponent<RectTransform>().localPosition = newPosition;
+        if (!_isFirstMovement)
+        {
+            _movementSound.Play();
+        }
+        _isFirstMovement = false;
     }
 
     /// <summary>

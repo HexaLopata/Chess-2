@@ -1,3 +1,15 @@
-﻿fileFormatVersion: 2
+fileFormatVersion: 2
 guid: d3db3b3c80c441cf8e03e3ddb2500ee8
-timeCreated: 1604839879
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - _whiteSkin: {instanceID: 0}
+  - _blackSkin: {instanceID: 0}
+  - _movementSound: {fileID: 4598194916419110772, guid: 380d8147f1da34d49b532b3c34921929,
+      type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
