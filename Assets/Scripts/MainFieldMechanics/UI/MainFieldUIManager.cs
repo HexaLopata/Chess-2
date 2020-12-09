@@ -19,6 +19,8 @@ public class MainFieldUIManager : MonoBehaviour
     [SerializeField] private Chess2Text _blackHP;
     [SerializeField] private Chess2Text _whiteSkillName;
     [SerializeField] private Chess2Text _blackSkillName;
+    [SerializeField] private Chess2Text _whiteTalentName;
+    [SerializeField] private Chess2Text _blackTalentName;
     [SerializeField] private Image _whiteInfoBorder;
     [SerializeField] private Image _blackInfoBorder;
 
@@ -66,6 +68,7 @@ public class MainFieldUIManager : MonoBehaviour
                 _whiteName.Text = _turnManager.SelectedFigure.FigureName;
                 _whiteHP.Text = $"HP {_turnManager.SelectedFigure.Data.Health}I100";
                 _whiteSkillName.Text = _turnManager.SelectedFigure.Data.BattleFieldFigurePrefub.Skill.Name;
+                _whiteTalentName.Text = _turnManager.SelectedFigure.Data.BattleFieldFigurePrefub.Talent.Name;
             }
             else
             {
@@ -74,6 +77,7 @@ public class MainFieldUIManager : MonoBehaviour
                 _blackName.Text = _turnManager.SelectedFigure.FigureName;
                 _blackHP.Text = $"HP {_turnManager.SelectedFigure.Data.Health}I100";
                 _blackSkillName.Text = _turnManager.SelectedFigure.Data.BattleFieldFigurePrefub.Skill.Name;
+                _blackTalentName.Text = _turnManager.SelectedFigure.Data.BattleFieldFigurePrefub.Talent.Name;
             }
         }
         else
@@ -94,6 +98,8 @@ public class MainFieldUIManager : MonoBehaviour
         _blackHP.gameObject.SetActive(false);
         _whiteSkillName.gameObject.SetActive(false);
         _blackSkillName.gameObject.SetActive(false);
+        _whiteTalentName.gameObject.SetActive(false);
+        _blackTalentName.gameObject.SetActive(false);
     }
 
     private void EnableAllWhiteBorderInfo()
@@ -102,6 +108,7 @@ public class MainFieldUIManager : MonoBehaviour
         _whiteName.gameObject.SetActive(true);
         _whiteHP.gameObject.SetActive(true);
         _whiteSkillName.gameObject.SetActive(true);
+        _whiteTalentName.gameObject.SetActive(true);
     }
 
     private void EnableAllBlackBorderInfo()
@@ -110,5 +117,6 @@ public class MainFieldUIManager : MonoBehaviour
         _blackName.gameObject.SetActive(true);
         _blackHP.gameObject.SetActive(true);
         _blackSkillName.gameObject.SetActive(true);
+        _blackTalentName.gameObject.SetActive(true);
     }
 }

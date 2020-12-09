@@ -53,6 +53,8 @@ public class BattleField : FieldBase
             SecondFigure.Data = _battleInfo.SecondFigure;
             FirstFigure.Skill = Instantiate(_battleInfo.FirstFigure.BattleFieldFigurePrefub.Skill);
             SecondFigure.Skill = Instantiate(_battleInfo.SecondFigure.BattleFieldFigurePrefub.Skill);
+            FirstFigure.Talent = Instantiate(_battleInfo.FirstFigure.BattleFieldFigurePrefub.Talent);
+            SecondFigure.Talent = Instantiate(_battleInfo.SecondFigure.BattleFieldFigurePrefub.Talent);
         }
         else
         {
@@ -62,6 +64,8 @@ public class BattleField : FieldBase
             FirstFigure.Data = _battleInfo.SecondFigure;
             FirstFigure.Skill = Instantiate(_battleInfo.SecondFigure.BattleFieldFigurePrefub.Skill);
             SecondFigure.Skill = Instantiate(_battleInfo.FirstFigure.BattleFieldFigurePrefub.Skill);
+            FirstFigure.Talent = Instantiate(_battleInfo.SecondFigure.BattleFieldFigurePrefub.Talent);
+            SecondFigure.Talent = Instantiate(_battleInfo.FirstFigure.BattleFieldFigurePrefub.Talent);
         }
 
         if (Width % 2 == 0 && Height % 2 == 1)

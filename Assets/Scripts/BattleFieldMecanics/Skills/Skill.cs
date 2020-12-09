@@ -7,6 +7,7 @@ using UnityEngine.Events;
 public abstract class Skill : MonoBehaviour
 {
     public UnityEvent activateOrDisactivate;
+    public UnityEvent onChangeDelay;
     public bool IsActive
     {
         get => _isActive;
@@ -16,7 +17,15 @@ public abstract class Skill : MonoBehaviour
             activateOrDisactivate.Invoke();
         }
     }
-    public float Delay => _delay;
+    public float Delay
+    {
+        get => _delay;
+        set
+        {
+            _delay = value;
+            onChangeDelay.Invoke();
+        }
+    }
     public string Name => _name;
 
     protected BattleController _controller;
@@ -61,7 +70,7 @@ public abstract class Skill : MonoBehaviour
     /// </summary>
     protected virtual void UpdateDelay()
     {
-        _delay -= 0.5f;
+        Delay -= 0.5f;
     }
 
     protected void SubscribeOnSwitchTurn(BattleController controller)

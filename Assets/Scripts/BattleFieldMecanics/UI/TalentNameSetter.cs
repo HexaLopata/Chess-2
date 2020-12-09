@@ -1,10 +1,10 @@
 ﻿using UnityEngine;
 
 /// <summary>
-/// Показывает имя умения
+/// Показывает имя таланта
 /// </summary>
 [RequireComponent(typeof(Chess2Text))]
-public class SkillNameSetter : MonoBehaviour
+public class TalentNameSetter : MonoBehaviour
 {
     [SerializeField] private bool _isForFirstPlayer;
     [SerializeField] private BattleField _field;
@@ -18,6 +18,6 @@ public class SkillNameSetter : MonoBehaviour
             _figure = _field.FirstFigure;
         else
             _figure = _field.SecondFigure;
-        _text.Text = _figure.Skill.Name;
+        _text.Text = _figure.Talent.Name;
     }
 }

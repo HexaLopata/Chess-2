@@ -43,6 +43,14 @@ public abstract class BattleFieldFigure : MonoFigure
     }
     public BattleField BattleField => _battleField;
     public Skill Skill { get; set; }
+    public Talent Talent
+    {
+        get => _talent;
+        set
+        {
+            _talent = value;
+        }
+    }
     public UnityEvent onTakeDamage;
 
     private int _health = -1;
@@ -51,6 +59,7 @@ public abstract class BattleFieldFigure : MonoFigure
     [SerializeField] private int _damage = 30;
     [SerializeField] private int _defence = 15;
 
+    protected Talent _talent;
     protected BattleField _battleField;
     protected BattleFieldCell[,] _battleFieldCells;
     protected List<BattleFieldCell> _turns = new List<BattleFieldCell>();
@@ -60,6 +69,7 @@ public abstract class BattleFieldFigure : MonoFigure
         _battleField = GetComponentInParent<BattleField>();
         if (_battleField != null)
             _battleFieldCells = _battleField.BattleFieldCells;
+        _talent.Owner = this;
     }
 
     /// <summary>

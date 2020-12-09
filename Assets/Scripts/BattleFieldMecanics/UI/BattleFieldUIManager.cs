@@ -25,6 +25,8 @@ public class BattleFieldUIManager : MonoBehaviour
         _firstFigure.onTakeDamage.AddListener(UpdateHealthBars);
         _secondFigure.onTakeDamage.AddListener(UpdateHealthBars);
         _battleController.onSwitchTurn.AddListener(ShowCurrentTurn);
+        _battleController.BattleField.FirstFigure.Skill.onChangeDelay.AddListener(ShowSkillDelay);
+        _battleController.BattleField.SecondFigure.Skill.onChangeDelay.AddListener(ShowSkillDelay);
         UpdateHealthBars();
         ShowCurrentTurn();
     }
@@ -53,8 +55,6 @@ public class BattleFieldUIManager : MonoBehaviour
             _yourTurnText1.gameObject.SetActive(true);
             _yourTurnText2.gameObject.SetActive(false);
         }
-
-        ShowSkillDelay();
     }
 
     /// <summary>

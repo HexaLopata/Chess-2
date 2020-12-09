@@ -69,27 +69,32 @@ public abstract class BattleFieldObject : MonoBehaviour, IPointerClickHandler
     /// <param name="figure"></param>
     /// <returns></returns>
     public abstract BarrierType CanThisFigureToCross(BattleFieldFigure figure);
+
     /// <summary>
     /// Может ли фигура атаковать клетку с этим объектом
     /// </summary>
     /// <param name="figure"></param>
     /// <returns></returns>
     public abstract BarrierType CanThisFigureToAttackThrough(BattleFieldFigure figure);
+
     /// <summary>
     /// Выполняется при нанесении урона по этому объекту
     /// </summary>
     /// <param name="attacker"></param>
     public abstract void TakeDamage(BattleFieldFigure attacker);
+
     /// <summary>
     /// Выполняется при нанесении урона по этому объекту
     /// </summary>
     /// <param name="attacker"></param>
     public abstract void TakeDamage(int damage);
+
     /// <summary>
     /// Выполняется, когда на клетку с этим объектом встает фигура
     /// </summary>
     /// <param name="visitor"></param>
     public abstract void Visit(BattleFieldFigure visitor);
+
     /// <summary>
     /// Выполняется каждый ход
     /// </summary>
