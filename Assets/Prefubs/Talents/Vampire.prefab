@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 7258157851409736167}
   - component: {fileID: 9154288877068398348}
-  - component: {fileID: 5739026480940346442}
+  - component: {fileID: 2721458071759752177}
   m_Layer: 0
-  m_Name: Morale
+  m_Name: Vampire
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -128,7 +128,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &5739026480940346442
+--- !u!114 &2721458071759752177
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -137,8 +137,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 4451160320274389103}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e8515026a762521458efba506d5c0f99, type: 3}
+  m_Script: {fileID: 11500000, guid: 738b75f6a85b0ec42be130dd9699de62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _name: Morale
-  _moraleChance: 15
+  _name: Vampire
+  _heal: 20

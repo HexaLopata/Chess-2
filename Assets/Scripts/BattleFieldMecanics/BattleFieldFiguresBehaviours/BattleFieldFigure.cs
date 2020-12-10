@@ -27,7 +27,15 @@ public abstract class BattleFieldFigure : MonoFigure
         }
     }
     public int Defence => _defence;
-    public int Damage => _damage;
+    public int Damage
+    {
+        get => _damage;
+        set
+        {
+            if(value >= 0)
+                _damage = value;
+        }
+    }
     public override FigureData Data
     {
         get
