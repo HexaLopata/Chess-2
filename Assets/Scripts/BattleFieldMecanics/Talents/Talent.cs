@@ -30,7 +30,9 @@ public abstract class Talent : MonoBehaviour
     public void Execute()
     {
         if (_controller.CurrentTurn != _owner.Data.Team)
+        {
             TalentAction();
+        }
     }
 
     /// <summary>

@@ -9,19 +9,20 @@ using UnityEngine.SceneManagement;
 public class BattleController : MonoBehaviour
 {
     public UnityEvent onSwitchTurn;
-    public Team CurrentTurn 
-    { 
+    public Team CurrentTurn
+    {
         get
         {
             if (_fightingLoopIsActive)
                 return _currentTurn;
             return Team.No;
-        } 
+        }
         private set
         {
             _currentTurn = value;
-        } 
+        }
     }
+
     public BattleFieldFigure CurrentFigure => _currentFigure;
     public BattleInfo BattleInfo => _battleInfo;
     public BattleField BattleField => _field;
@@ -30,7 +31,10 @@ public class BattleController : MonoBehaviour
         get => _turnCount;
         set
         {
-            if (_turnCount >= _maxTurnCount)
+            if (_turnCount == _maxTurnCount)
+                _playSuddenDeath = true;
+
+            if (_playSuddenDeath)
             {
                 StartCoroutine(SuddenDeathRoutine());
             }
@@ -45,10 +49,10 @@ public class BattleController : MonoBehaviour
     private int _turnCount;
     private Team _currentTurn = Team.No;
     private bool _fightingLoopIsActive = true;
-    private BattleFieldCell[] _currentActiveCells;
 
     [SerializeField] private int _suddenDeathDamage = 30;
-    [SerializeField] private int _maxTurnCount = 20; 
+    [SerializeField] private int _maxTurnCount = 20;
+    [SerializeField] private bool _playSuddenDeath = false;
     [SerializeField] private BattleField _field;
     [SerializeField] private SceneTransition _sceneTransition;
     [SerializeField] private Chess2Text _suddenDeathMessage1;
@@ -61,7 +65,7 @@ public class BattleController : MonoBehaviour
     }
 
     /// <summary>
-    /// Передает ход переданной команде
+    /// Дает ход переданной команде
     /// </summary>
     /// <param name="team"></param>
     public void SwitchTurn(Team team)
@@ -99,7 +103,6 @@ public class BattleController : MonoBehaviour
     /// <param name="battleFieldCells"></param>
     public void ActivateAllCells(BattleFieldCell[] battleFieldCells)
     {
-        _currentActiveCells = battleFieldCells;
         if (_fightingLoopIsActive)
         {
             DeactivateAllCells();
@@ -140,7 +143,7 @@ public class BattleController : MonoBehaviour
             SwitchTurn(Team.Black);
         }
     }
-    
+
     /// <summary>
     /// Останавливает цикл ходов
     /// </summary>
@@ -165,7 +168,7 @@ public class BattleController : MonoBehaviour
     /// <param name="team">Победитель</param>
     public void SetBattleResult(Team team)
     {
-        if(_settingBattleResult == null)
+        if (_settingBattleResult == null)
             _settingBattleResult = StartCoroutine(SetBattleResultWithAnimation(team));
     }
 
@@ -179,7 +182,7 @@ public class BattleController : MonoBehaviour
         {
             cell.TakeDamage(figureFirst);
         }
-        
+
         SwitchTurn(figureFirst.Data.Team);
     }
 
@@ -192,14 +195,14 @@ public class BattleController : MonoBehaviour
         StopRequest();
         _suddenDeathMessage1.gameObject.SetActive(true);
         _suddenDeathMessage2.gameObject.SetActive(true);
-        
+
         yield return new WaitForSeconds(1);
-        
+
         _suddenDeathMessage1.gameObject.SetActive(false);
         _suddenDeathMessage2.gameObject.SetActive(false);
-        
+
         yield return new WaitForSeconds(0.5f);
-        
+
         foreach (var cell in BattleField.BattleFieldCells)
         {
             cell.TakeDamage(_suddenDeathDamage);
@@ -207,7 +210,7 @@ public class BattleController : MonoBehaviour
 
         StartRequest();
     }
-    
+
     /// <summary>
     /// Вспомогательный метод для завершения битвы
     /// </summary>

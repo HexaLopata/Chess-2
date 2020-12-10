@@ -153,6 +153,7 @@ public class MainFieldTurnManager : MonoBehaviour
                 StartCoroutine(Core.BattleInfo.Winner.MainFieldFigureInstance.MoveToAnotherCellWithAnimation(cell));
         }
         Core.BattleInfo.BattleEnd -= EndBattle;
+        Camera.main.GetComponent<AudioListener>().enabled = true;
     }
 
     /// <summary>

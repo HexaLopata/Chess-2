@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _name: Morale
-  _moraleChance: 7
+  _moraleChance: 50
 --- !u!82 &9154288877068398348
 AudioSource:
   m_ObjectHideFlags: 0

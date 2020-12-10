@@ -50,9 +50,14 @@ public class BattleFieldUIManager : MonoBehaviour
             _yourTurnText1.gameObject.SetActive(false);
             _yourTurnText2.gameObject.SetActive(true);
         }
-        else
+        else if (_battleController.CurrentTurn == Team.White)
         {
             _yourTurnText1.gameObject.SetActive(true);
+            _yourTurnText2.gameObject.SetActive(false);
+        }
+        else
+        {
+            _yourTurnText1.gameObject.SetActive(false);
             _yourTurnText2.gameObject.SetActive(false);
         }
     }
