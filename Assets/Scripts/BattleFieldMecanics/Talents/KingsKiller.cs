@@ -2,7 +2,7 @@
 
 public class KingsKiller : Talent
 {
-    private int _baseOwnerDamage = -1;
+    private int _baseOwnerDamage = -1; // -1 если еще не выставлено
 
     [SerializeField] private float _damageMultiply = 1.5f;
 

@@ -2,7 +2,8 @@
 
 public class Bloodlust : Talent
 {
-    private int _baseOwnerDamage = -1;
+    private int _baseOwnerDamage = -1; // -1 если еще не выставлено
+
     [SerializeField] private float _multiply = 1;
 
     protected override void TalentAction()

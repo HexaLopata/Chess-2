@@ -23,6 +23,10 @@ public class MainFieldUIManager : MonoBehaviour
     [SerializeField] private Chess2Text _blackTalentName;
     [SerializeField] private Image _whiteInfoBorder;
     [SerializeField] private Image _blackInfoBorder;
+    [SerializeField] private Image _whiteSkillIcon;
+    [SerializeField] private Image _blackSkillIcon;
+    [SerializeField] private Image _whiteTalentIcon;
+    [SerializeField] private Image _blackTalentIcon;
 
     private void Start()
     {
@@ -100,10 +104,16 @@ public class MainFieldUIManager : MonoBehaviour
         _blackSkillName.gameObject.SetActive(false);
         _whiteTalentName.gameObject.SetActive(false);
         _blackTalentName.gameObject.SetActive(false);
+        _whiteSkillIcon.enabled = false;
+        _blackSkillIcon.enabled = false;
+        _whiteTalentIcon.enabled = false;
+        _blackTalentIcon.enabled = false;
     }
 
     private void EnableAllWhiteBorderInfo()
     {
+        _whiteTalentIcon.enabled = true;
+        _whiteSkillIcon.enabled = true;
         _whiteIcon.enabled = true;
         _whiteName.gameObject.SetActive(true);
         _whiteHP.gameObject.SetActive(true);
@@ -114,6 +124,8 @@ public class MainFieldUIManager : MonoBehaviour
     private void EnableAllBlackBorderInfo()
     {
         _blackIcon.enabled = true;
+        _blackTalentIcon.enabled = true;
+        _blackSkillIcon.enabled = true;
         _blackName.gameObject.SetActive(true);
         _blackHP.gameObject.SetActive(true);
         _blackSkillName.gameObject.SetActive(true);

@@ -35,7 +35,9 @@ public class SceneTransition : MonoBehaviour
     private void Awake()
     {
         _rectTransform = GetComponent<RectTransform>();
-        GetComponent<Image>().color = Color.black;
+        var image = GetComponent<Image>();
+        image.enabled = true;
+        image.color = Color.black;
         if(_autoPlay)
             PlayOpen();
     }
