@@ -7,6 +7,10 @@
         GetEndlessDistanceMoves(-1, 1, false);
         GetEndlessDistanceMoves(1, -1, false);
         GetEndlessDistanceMoves(-1, -1, false);
+        if(_battleField.IsCellExists(OnBoardPosition.x, OnBoardPosition.y, -1, 0))
+            CheckCellAndAdd(-1, 0, false);
+        if (_battleField.IsCellExists(OnBoardPosition.x, OnBoardPosition.y, 1, 0))
+            CheckCellAndAdd(1, 0, false);
         return _turns.ToArray();
     }
 

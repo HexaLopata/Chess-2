@@ -46,6 +46,9 @@ MonoBehaviour:
   activateOrDisactivate:
     m_PersistentCalls:
       m_Calls: []
+  onChangeDelay:
+    m_PersistentCalls:
+      m_Calls: []
   _maxDelay: 3
   _name: Hunter
   _battleFieldObject: {fileID: -5508046774929977376, guid: 80e3805b3b2662e50954d56c33c1439f,

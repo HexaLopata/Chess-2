@@ -46,7 +46,10 @@ MonoBehaviour:
   activateOrDisactivate:
     m_PersistentCalls:
       m_Calls: []
-  _maxDelay: 0
+  onChangeDelay:
+    m_PersistentCalls:
+      m_Calls: []
+  _maxDelay: 1
   _name: Invader
   _battleFieldObject: {fileID: -7462228662124645256, guid: f7b2edaa125d5dae0b34b51aac5d930e,
     type: 3}

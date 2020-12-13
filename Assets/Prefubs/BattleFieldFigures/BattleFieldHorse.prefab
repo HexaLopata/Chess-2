@@ -58,7 +58,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   _damage: 40
-  _defence: 10
+  _defence: 15
 --- !u!222 &7179311386511601563
 CanvasRenderer:
   m_ObjectHideFlags: 0

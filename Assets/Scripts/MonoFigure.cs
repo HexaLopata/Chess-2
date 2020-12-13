@@ -72,7 +72,7 @@ public abstract class MonoFigure : MonoBehaviour
     /// </summary>
     /// <param name="cellBase"></param>
     /// <returns></returns>
-    public IEnumerator MoveToAnotherCellWithAnimation(CellBase cellBase)
+    public virtual IEnumerator MoveToAnotherCellWithAnimation(CellBase cellBase)
     {
         MoveToAnotherCell(cellBase);
         var rectTransform = GetComponent<RectTransform>();
