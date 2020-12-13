@@ -10,7 +10,8 @@ using UnityEngine.UI;
 public class MainFieldFigure : MonoFigure, IPointerClickHandler
 {
     public string FigureName => _figureName;
-    
+    public MainField Field => _field;
+
     [SerializeField] private string _figureName;
 
     protected List<CellBase> _turns = new List<CellBase>();

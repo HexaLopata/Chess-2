@@ -33,6 +33,5 @@
         if (y > 0 && _battleFieldCells.GetLength(0) > x + 2)
             CheckCellAndAdd(2, -1, isAttack);
         return _turns.ToArray();
-
     }
 }

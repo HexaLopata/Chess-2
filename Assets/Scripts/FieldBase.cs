@@ -77,4 +77,40 @@ public abstract class FieldBase : MonoBehaviour
             GetComponent<RectTransform>().localPosition = new Vector2(GetComponent<RectTransform>().localPosition.x, GetComponent<RectTransform>().localPosition.y - _cellHeight / 2);
         }
     }
+
+    /// <summary>
+    /// Вспомогательный метод для определения, существует ли клетка в заданном направлении
+    /// </summary>
+    /// <param name="xOffset">Смещение от стартового x</param>
+    /// <param name="yOffset">Смещение от стартового y</param>
+    /// <param name="localX">Стартовый x</param>
+    /// <param name="localY">Стартовый y</param>
+    /// <returns></returns>
+    public bool IsCellExists(int localX, int localY, int xOffset, int yOffset)
+    {
+        bool result;
+        if (xOffset > 0)
+            result = Cells.GetLength(0) > localX + xOffset;
+        else if (xOffset < 0)
+            result = localX > 0;
+        else
+            result = true;
+
+        if (yOffset > 0)
+            result = result && Cells.GetLength(1) > localY + yOffset;
+        else if (yOffset < 0)
+            result = result && localY > 0;
+        return result;
+    }
+
+    /// <summary>
+    /// Вспомогательный метод для определения, существует ли клетка в заданной точке
+    /// </summary>
+    /// <param name="x"></param>
+    /// <param name="y"></param>
+    /// <returns></returns>
+    public bool IsCellExists(int x, int y)
+    {
+        return (x >= 0) && (x < Cells.GetLength(0)) && (y >= 0) && (y < Cells.GetLength(1));
+    }
 }

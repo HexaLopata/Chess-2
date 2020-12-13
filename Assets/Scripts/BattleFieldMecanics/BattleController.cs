@@ -83,7 +83,7 @@ public class BattleController : MonoBehaviour
         onSwitchTurn.Invoke();
 
         DeactivateAllCells();
-        if (_currentFigure.Data.Health > 0)
+        if (_currentFigure.enabled)
         {
             var turns = _currentFigure.GetRelevantMoves();
 
@@ -180,6 +180,8 @@ public class BattleController : MonoBehaviour
         var figureFirst = Core.BattleInfo.FirstFigure.BattleFieldFigureInstance;
         foreach (var cell in BattleField.BattleFieldCells)
         {
+            if (cell == null)
+                Debug.Log("cell is null");
             cell.TakeDamage(figureFirst);
         }
 

@@ -44,4 +44,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _name: Bloodlust
+  _inEachTurn: 1
+  _inEnemyTurn: 0
   _multiply: 0.7

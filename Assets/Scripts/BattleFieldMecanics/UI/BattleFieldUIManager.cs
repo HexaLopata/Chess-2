@@ -75,7 +75,7 @@ public class BattleFieldUIManager : MonoBehaviour
                 _skill1Recovery.Text = "";
         }
 
-        if (_battleController.BattleField.FirstFigure != null)
+        if (_battleController.BattleField.SecondFigure != null)
         {
             if (_battleController.BattleField.SecondFigure.Skill.Delay > 0.5f)
                 _skill2Recovery.Text = Math.Floor(_battleController.BattleField.SecondFigure.Skill.Delay).ToString();

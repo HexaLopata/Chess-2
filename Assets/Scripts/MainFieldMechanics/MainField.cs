@@ -13,7 +13,10 @@ public class MainField : FieldBase
     }
     public List<MonoFigure> WhiteKings => _whiteKings;
     public List<MonoFigure> BlackKings => _blackKings;
+    public List<MonoFigure> WhiteFiguresList => _whiteFiguresList;
+    public List<MonoFigure> BlackFiguresList => _blackFiguresList;
     public Camera CurrentCamera => _currentCamera;
+    public const int figureCount = 32;
 
     [SerializeField] SceneTransition sceneTransition;
     [SerializeField] private Camera _currentCamera;
@@ -21,7 +24,9 @@ public class MainField : FieldBase
     private readonly List<KeyValuePair<Vector2Int, FigureData>> _figuresForInit = new List<KeyValuePair<Vector2Int, FigureData>>();
     private List<MonoFigure> _whiteKings = new List<MonoFigure>();
     private List<MonoFigure> _blackKings = new List<MonoFigure>();
-    
+    private List<MonoFigure> _whiteFiguresList = new List<MonoFigure>();
+    private List<MonoFigure> _blackFiguresList = new List<MonoFigure>();
+
     protected override void AdditionalStartInit()
     {
         for (int i = 0; i < _figuresForInit.Count; i++)
@@ -89,9 +94,10 @@ public class MainField : FieldBase
         MainFieldFigure figure = Instantiate(data.MainFieldFigurePrefub, transform);
         figure.Data = data;
         figure.Data.MainFieldFigureInstance = figure;
+        var team = figure.Data.Team;
         if (figure.King)
         {
-            if(figure.Data.Team == Team.Black)
+            if(team == Team.Black)
                 _blackKings.Add(figure);
             else
                 _whiteKings.Add(figure);
@@ -103,6 +109,10 @@ public class MainField : FieldBase
             {
                 ((MainFieldPawn)figure).IsFirstTurn = true;
             }
+            if (team == Team.Black)
+                _blackFiguresList.Add(figure);
+            else
+                _whiteFiguresList.Add(figure);
         }
         else
             throw new System.Exception("Фигура не может выходить за границы поля");

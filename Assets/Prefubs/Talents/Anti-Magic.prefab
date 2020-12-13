@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7258157851409736167}
-  - component: {fileID: 3871751221002127207}
+  - component: {fileID: 6459656967280085121}
   m_Layer: 0
-  m_Name: Kings Killer
+  m_Name: Anti-Magic
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -31,7 +31,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3871751221002127207
+--- !u!114 &6459656967280085121
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -40,10 +40,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 4451160320274389103}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fdaca02ffd5b30449b210d305bf77135, type: 3}
+  m_Script: {fileID: 11500000, guid: 7e8e858f07ff0ed4cbcb1f1b17f3d5b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _name: Kings Killer
-  _inEachTurn: 1
+  _name: AntiMagic
+  _inEachTurn: 0
   _inEnemyTurn: 0
-  _damageMultiply: 1.5

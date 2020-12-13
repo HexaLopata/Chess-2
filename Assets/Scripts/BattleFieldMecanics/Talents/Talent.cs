@@ -19,6 +19,8 @@ public abstract class Talent : MonoBehaviour
     public string Name => _name;
 
     [SerializeField] private string _name = "Talent";
+    [SerializeField] private bool _inEachTurn = false;
+    [SerializeField] private bool _inEnemyTurn = false;
 
     protected Team _team;
     protected BattleFieldFigure _owner;
@@ -29,9 +31,23 @@ public abstract class Talent : MonoBehaviour
     /// </summary>
     public void Execute()
     {
-        if (_controller.CurrentTurn != _owner.Data.Team)
+        if (_inEachTurn)
         {
             TalentAction();
+        }
+        else
+        {
+            if (_inEnemyTurn)
+            {
+                if (_controller.CurrentTurn == _owner.Data.Team)
+                {
+                    TalentAction();
+                }
+            }
+            else if (_controller.CurrentTurn != _owner.Data.Team)
+            {
+                TalentAction();
+            }
         }
     }
 

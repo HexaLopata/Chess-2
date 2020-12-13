@@ -21,6 +21,7 @@ public class BattleField : FieldBase
                 Width = value.GetLength(0);
                 Height = value.GetLength(1);
                 _battleFieldCells = value;
+                Cells = _battleFieldCells;
             }
         }
     }
@@ -83,15 +84,20 @@ public class BattleField : FieldBase
 
         StartCoroutine(SecondFigure.MoveToAnotherCellWithAnimation(Cells[0, Height - 1]));
 
-        BattleFieldCells = new BattleFieldCell[Cells.GetLength(0), Cells.GetLength(1)];
+        DownCastCells();
+
+        GetComponentInParent<Image>().rectTransform.sizeDelta = new Vector2((Width + 2) * _cellWidth, (Height + 2) * _cellHeight);
+    }
+    
+    private void DownCastCells()
+    {
+        _battleFieldCells = new BattleFieldCell[Cells.GetLength(0), Cells.GetLength(1)];
         for (int x = 0; x < BattleFieldCells.GetLength(0); x++)
         {
             for (int y = 0; y < BattleFieldCells.GetLength(1); y++)
             {
-                BattleFieldCells[x, y] = (BattleFieldCell)Cells[x, y];
+                _battleFieldCells[x, y] = (BattleFieldCell)Cells[x, y];
             }
         }
-
-        GetComponentInParent<Image>().rectTransform.sizeDelta = new Vector2((Width + 2) * _cellWidth, (Height + 2) * _cellHeight);
     }
 }

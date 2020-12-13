@@ -14,18 +14,29 @@ public abstract class BattleFieldFigure : MonoFigure
         get => _health;
         set
         {
-            _health = value;
+            if (value <= maxHealth)
+                _health = value;
+            else
+                _health = maxHealth;
+
+            if (value < 0)
+                _health = 0;
+
             if (Data != null)
             {
-                Data.Health = value;
-                if (Health <= 0 && Data.MainFieldFigureInstance != null)
+                Data.Health = _health;
+                if (!IsInvulnerable)
                 {
-                    Data.MainFieldFigureInstance.DestroyThisFigure();
-                    DestroyThisFigure();
+                    if (Health <= 0 && Data.MainFieldFigureInstance != null)
+                    {
+                        Data.MainFieldFigureInstance.DestroyThisFigure();
+                        DestroyThisFigure();
+                    }
                 }
             }
         }
     }
+    public bool IsInvulnerable { get; set; } = false;
     public int Defence => _defence;
     public int Damage
     {
@@ -60,6 +71,7 @@ public abstract class BattleFieldFigure : MonoFigure
         }
     }
     public UnityEvent onTakeDamage;
+    public const int maxHealth = 100;
 
     private int _health = -1;
     private Coroutine MoveAnimation;
@@ -223,15 +235,22 @@ public abstract class BattleFieldFigure : MonoFigure
     /// <param name="damage"></param>
     public void TakeDamage(int damage)
     {
-        StartCoroutine(DamageAnimation());
-        Health -= (damage - Defence);
-        onTakeDamage.Invoke();
-        if (Health <= 0)
+        var harm = damage - Defence;
+        if (harm > 0)
         {
-            if(Data.Team == Team.Black)
-                _battleField.BattleController.SetBattleResult(Team.White);
-            else
-                _battleField.BattleController.SetBattleResult(Team.Black);
+            StartCoroutine(DamageAnimation());
+            Health -= harm;
+            onTakeDamage.Invoke();
+            if (!IsInvulnerable)
+            {
+                if (Health <= 0)
+                {
+                    if (Data.Team == Team.Black)
+                        _battleField.BattleController.SetBattleResult(Team.White);
+                    else
+                        _battleField.BattleController.SetBattleResult(Team.Black);
+                }
+            }
         }
     }
 

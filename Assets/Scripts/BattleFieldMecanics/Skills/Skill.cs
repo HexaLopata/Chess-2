@@ -26,6 +26,7 @@ public abstract class Skill : MonoBehaviour
             onChangeDelay.Invoke();
         }
     }
+    public float MaxDelay => _maxDelay;
     public string Name => _name;
 
     protected BattleController _controller;

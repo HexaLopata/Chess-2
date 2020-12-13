@@ -14,7 +14,7 @@ public abstract class EndLessDistanceFigure : BattleFieldFigure
         var localX = OnBoardPosition.x;
         var localY = OnBoardPosition.y;
 
-        bool isCellExists = IsCellExists(cellX, cellY, localX, localY);
+        bool isCellExists = _battleField.IsCellExists(localX, localY, cellX, cellY);
 
         while (isCellExists)
         {
@@ -61,31 +61,7 @@ public abstract class EndLessDistanceFigure : BattleFieldFigure
             localX += cellX;
             localY += cellY;
 
-            isCellExists = IsCellExists(cellX, cellY, localX, localY);
+            isCellExists = _battleField.IsCellExists(localX, localY, cellX, cellY);
         }
-    }
-
-    /// <summary>
-    /// Вспомогательный метод для определения, существует ли клетка в заданном направлении
-    /// </summary>
-    /// <param name="cellX"></param>
-    /// <param name="cellY"></param>
-    /// <param name="localX"></param>
-    /// <param name="localY"></param>
-    /// <returns></returns>
-    private bool IsCellExists(int cellX, int cellY, int localX, int localY)
-    {
-        bool result;
-        if (cellX > 0)
-            result = _battleFieldCells.GetLength(0) > localX + cellX;
-        else if (cellX < 0)
-            result = localX > 0;
-        else
-            result = true;
-        if (cellY > 0)
-            result = result && _battleFieldCells.GetLength(1) > localY + cellY;
-        else if (cellY < 0)
-            result = result && localY > 0;
-        return result;
     }
 }

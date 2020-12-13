@@ -10,6 +10,6 @@ public class Bloodlust : Talent
     {
         if (_baseOwnerDamage == -1)
             _baseOwnerDamage = _owner.Damage;
-        _owner.Damage = (int)(_baseOwnerDamage + _baseOwnerDamage * ((100 - _owner.Health) * 0.01f) * _multiply);
+        _owner.Damage = (int)(_baseOwnerDamage + _baseOwnerDamage * ((BattleFieldFigure.maxHealth - _owner.Health) * 0.01f) * _multiply);
     }
 }

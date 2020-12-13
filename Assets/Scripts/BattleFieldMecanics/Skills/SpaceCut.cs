@@ -1,3 +1,5 @@
+using UnityEngine;
+
 public class SpaceCut : Skill
 {
     protected override void SkillAction(BattleFieldFigure figure, BattleFieldCell cell)
@@ -41,7 +43,7 @@ public class SpaceCut : Skill
             {
                 for(int y = 0; y < rawField.GetLength(1); y++)
                 {
-                    if (canBeCutFromTheTop && x >= newField.GetLength(0) || canBeCutFromTheTop && y >= newField.GetLength(1))
+                    if (canBeCutFromTheRight && x >= newField.GetLength(0) || canBeCutFromTheTop && y >= newField.GetLength(1))
                         Destroy(rawField[x, y].gameObject);
                     else
                     {
