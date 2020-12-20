@@ -134,7 +134,7 @@ public class BattleController : MonoBehaviour
     /// </summary>
     public void SwitchTurn()
     {
-        if (CurrentTurn == Team.Black)
+        if (_currentTurn == Team.Black)
         {
             SwitchTurn(Team.White);
         }
@@ -156,10 +156,11 @@ public class BattleController : MonoBehaviour
     /// <summary>
     /// Возобновляет цикл ходов
     /// </summary>
-    public void StartRequest()
+    public void StartRequest(bool activateCells = true)
     {
         _fightingLoopIsActive = true;
-        ActivateAllCells(_currentFigure.GetRelevantMoves());
+        if(activateCells)
+            ActivateAllCells(_currentFigure.GetRelevantMoves());
     }
 
     /// <summary>
@@ -178,14 +179,13 @@ public class BattleController : MonoBehaviour
     private void OnStartBattle()
     {
         var figureFirst = Core.BattleInfo.FirstFigure.BattleFieldFigureInstance;
+        SwitchTurn(figureFirst.Data.Team);
         foreach (var cell in BattleField.BattleFieldCells)
         {
             if (cell == null)
                 Debug.Log("cell is null");
             cell.TakeDamage(figureFirst);
         }
-
-        SwitchTurn(figureFirst.Data.Team);
     }
 
     /// <summary>

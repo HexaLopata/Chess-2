@@ -143,4 +143,4 @@ MonoBehaviour:
   _name: Manipulator
   _inEachTurn: 0
   _inEnemyTurn: 0
-  _manipulationChance: 7
+  _manipulationChance: 15

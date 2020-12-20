@@ -186,10 +186,12 @@ public abstract class BattleFieldFigure : MonoFigure
     /// <returns></returns>
     public IEnumerator TurnWithAnimation(BattleFieldCell selectedCell)
     {
+        _battleField.BattleController.StopRequest();
         yield return StartCoroutine(MoveToAnotherCellWithAnimation(selectedCell));
         LaunchAnAttack();
         selectedCell.BattleField.BattleController.SwitchTurn();
         MoveAnimation = null;
+        _battleField.BattleController.StartRequest();
     }
 
     public override void MoveToAnotherCell(CellBase cellBase)

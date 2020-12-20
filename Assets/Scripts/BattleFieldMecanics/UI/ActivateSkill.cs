@@ -28,7 +28,7 @@ public class ActivateSkill : MonoBehaviour
     /// </summary>
     private void Activate()
     {
-        if (_field.BattleController.CurrentTurn == _figure.Data.Team)
+        if (_field.BattleController.CurrentFigure.isActiveAndEnabled && _field.BattleController.CurrentTurn == _figure.Data.Team)
         {
             if (_figure.Skill != null)
                 _figure.Skill.Activate(_figure);

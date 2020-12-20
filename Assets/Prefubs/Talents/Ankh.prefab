@@ -141,5 +141,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _name: Ankh
-  _inEachTurn: 0
+  _inEachTurn: 1
   _inEnemyTurn: 1
+  _healAmount: 30

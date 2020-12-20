@@ -10,7 +10,7 @@ public class SceneSwitcher : MonoBehaviour
     {
         var loadOperation = SceneManager.LoadSceneAsync(sceneId, LoadSceneMode.Additive);
         loadOperation.completed += (operation) => {
-            SceneManager.SetActiveScene(SceneManager.GetSceneAt(sceneId));
+            SceneManager.SetActiveScene(SceneManager.GetSceneByBuildIndex(sceneId));
             SceneManager.UnloadSceneAsync(gameObject.scene);
         };
     }

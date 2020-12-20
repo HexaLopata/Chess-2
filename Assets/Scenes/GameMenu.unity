@@ -715,17 +715,17 @@ PrefabInstance:
     - target: {fileID: 1099355405119509961, guid: 4b3c84ebee0fe78428bd6c56b937bc7e,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.81839484
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1099355405119509961, guid: 4b3c84ebee0fe78428bd6c56b937bc7e,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.045334335
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1099355405119509961, guid: 4b3c84ebee0fe78428bd6c56b937bc7e,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.41701317
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1099355405119509961, guid: 4b3c84ebee0fe78428bd6c56b937bc7e,
         type: 3}
@@ -1701,7 +1701,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 2
+          m_IntArgument: 5
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
