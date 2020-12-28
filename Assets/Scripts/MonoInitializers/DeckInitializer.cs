@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using Random = UnityEngine.Random;
 
 /// <summary>
@@ -19,10 +18,7 @@ public class DeckInitializer : MonoBehaviour
     [SerializeField] private List<Talent> _talents = new List<Talent>();
 
     private void Start()
-    {
-        var currentScene = SceneManager.GetActiveScene();
-        DestroyAllPreviousFigures();
-        
+    {       
         Core.FirstPlayerData.Deck = new Deck()
         {
             Pawn = _pawnFactory.GetFigure(Team.White, GetRandomSkill(), GetRandomTalent()),
@@ -42,20 +38,6 @@ public class DeckInitializer : MonoBehaviour
             Rook = _rookFactory.GetFigure(Team.Black, GetRandomSkill(), GetRandomTalent()),
             Horse = _horseFactory.GetFigure(Team.Black, GetRandomSkill(), GetRandomTalent())
         };
-        
-        if(currentScene.isLoaded)
-            SceneManager.SetActiveScene(currentScene);
-    }
-
-    private void DestroyAllPreviousFigures()
-    {
-        SceneManager.SetActiveScene(SceneManager.GetSceneByBuildIndex(0));
-
-        var currentFigures = FindObjectsOfType<MonoFigure>();
-        foreach (var figure in currentFigures)
-        {
-            Destroy(figure.gameObject);
-        }
     }
 
     private Skill GetRandomSkill()

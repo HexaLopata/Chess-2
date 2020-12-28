@@ -46,7 +46,7 @@ public abstract class Skill : MonoBehaviour
     {
         if (_controller == null)
             SubscribeOnSwitchTurn(figure.BattleField.BattleController);
-        if (_delay <= 0)
+        if (_delay <= 0 && figure.enabled)
         {
             _delay = _maxDelay;
             SkillAction(figure, cell);

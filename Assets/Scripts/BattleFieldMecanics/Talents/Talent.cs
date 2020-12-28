@@ -31,22 +31,25 @@ public abstract class Talent : MonoBehaviour
     /// </summary>
     public void Execute()
     {
-        if (_inEachTurn)
+        if (_owner.enabled)
         {
-            TalentAction();
-        }
-        else
-        {
-            if (_inEnemyTurn)
+            if (_inEachTurn)
             {
-                if (_controller.CurrentTurn == _owner.Data.Team)
+                TalentAction();
+            }
+            else
+            {
+                if (_inEnemyTurn)
+                {
+                    if (_controller.CurrentTurn == _owner.Data.Team)
+                    {
+                        TalentAction();
+                    }
+                }
+                else if (_controller.CurrentTurn != _owner.Data.Team)
                 {
                     TalentAction();
                 }
-            }
-            else if (_controller.CurrentTurn != _owner.Data.Team)
-            {
-                TalentAction();
             }
         }
     }

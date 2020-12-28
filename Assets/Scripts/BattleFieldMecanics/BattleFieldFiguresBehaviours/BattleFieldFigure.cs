@@ -189,9 +189,9 @@ public abstract class BattleFieldFigure : MonoFigure
         _battleField.BattleController.StopRequest();
         yield return StartCoroutine(MoveToAnotherCellWithAnimation(selectedCell));
         LaunchAnAttack();
+        _battleField.BattleController.StartRequest(false);
         selectedCell.BattleField.BattleController.SwitchTurn();
         MoveAnimation = null;
-        _battleField.BattleController.StartRequest();
     }
 
     public override void MoveToAnotherCell(CellBase cellBase)
