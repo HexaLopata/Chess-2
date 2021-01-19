@@ -13,9 +13,13 @@ public class CounterAttack : Skill
 
     private IEnumerator DoubleAttack(BattleFieldFigure figure)
     {
+        if(_controller != null && _controller.IsAnimationPlaying)
+            yield return new WaitForSeconds(BattleController.animationDelay); 
+        _controller.IsAnimationPlaying = true;
         figure.LaunchAnAttack();
         yield return new WaitForSeconds(0.5f);
         figure.LaunchAnAttack();
+        _controller.IsAnimationPlaying = false;
         _controller.SwitchTurn();
         _attack = null;
     }

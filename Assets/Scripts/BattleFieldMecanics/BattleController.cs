@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
@@ -42,6 +43,8 @@ public class BattleController : MonoBehaviour
             _turnCount = value;
         }
     }
+    public bool IsAnimationPlaying { get; set; } = false;
+    public const float animationDelay = 0.07f;
 
     private BattleInfo _battleInfo;
     private BattleFieldFigure _currentFigure;
@@ -194,6 +197,9 @@ public class BattleController : MonoBehaviour
     /// <returns></returns>
     private IEnumerator SuddenDeathRoutine()
     {
+        if(IsAnimationPlaying)
+            yield return new WaitForSeconds(BattleController.animationDelay); 
+        IsAnimationPlaying = true;
         StopRequest();
         _suddenDeathMessage1.gameObject.SetActive(true);
         _suddenDeathMessage2.gameObject.SetActive(true);
@@ -210,6 +216,7 @@ public class BattleController : MonoBehaviour
             cell.TakeDamage(_suddenDeathDamage);
         }
 
+        IsAnimationPlaying = false;
         StartRequest();
     }
 

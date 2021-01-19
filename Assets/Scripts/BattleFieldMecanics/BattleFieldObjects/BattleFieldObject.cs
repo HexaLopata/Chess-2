@@ -132,9 +132,10 @@ public abstract class BattleFieldObject : MonoBehaviour, IPointerClickHandler
     /// <returns></returns>
     public IEnumerator MoveToAnotherCellWithAnimation(BattleFieldCell cell)
     {
-        if(_isMoving)
-            yield return new WaitForSeconds(_moveTime); 
+        if(_controller != null && _controller.IsAnimationPlaying)
+            yield return new WaitForSeconds(BattleController.animationDelay);  
 
+        _controller.IsAnimationPlaying = true;
         _isMoving = true;
 
         _controller.BattleField.BattleController.StopRequest();
@@ -156,6 +157,7 @@ public abstract class BattleFieldObject : MonoBehaviour, IPointerClickHandler
 
         MoveToAnotherCell(cell);
         _controller.StartRequest();
+        _controller.IsAnimationPlaying = false;
         _isMoving = false;
     }
 

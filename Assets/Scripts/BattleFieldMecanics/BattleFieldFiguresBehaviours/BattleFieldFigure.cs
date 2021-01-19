@@ -186,10 +186,20 @@ public abstract class BattleFieldFigure : MonoFigure
     /// <returns></returns>
     public IEnumerator TurnWithAnimation(BattleFieldCell selectedCell)
     {
+        if(_battleField != null && _battleField.BattleController != null &&_battleField.BattleController.IsAnimationPlaying)
+            yield return new WaitForSeconds(BattleController.animationDelay); 
+
+        if(_battleField != null && _battleField.BattleController != null)
+            _battleField.BattleController.IsAnimationPlaying = true;
+
         _battleField.BattleController.StopRequest();
         yield return StartCoroutine(MoveToAnotherCellWithAnimation(selectedCell));
         LaunchAnAttack();
         _battleField.BattleController.StartRequest(false);
+
+        if(_battleField != null && _battleField.BattleController != null)
+            _battleField.BattleController.IsAnimationPlaying = false;
+            
         selectedCell.BattleField.BattleController.SwitchTurn();
         MoveAnimation = null;
     }
@@ -217,6 +227,18 @@ public abstract class BattleFieldFigure : MonoFigure
         }
         else
             throw new Exception("Фигура этого типа должна быть перемещена на клетку типа BattleFieldCell");
+    }
+
+    public override IEnumerator MoveToAnotherCellWithAnimation(CellBase cellBase)
+    {
+        if(_battleField != null && _battleField.BattleController != null &&_battleField.BattleController.IsAnimationPlaying)
+            yield return new WaitForSeconds(BattleController.animationDelay); 
+
+        if(_battleField != null && _battleField.BattleController != null)
+            _battleField.BattleController.IsAnimationPlaying = true;
+        yield return base.MoveToAnotherCellWithAnimation(cellBase);
+        if(_battleField != null && _battleField.BattleController != null)
+            _battleField.BattleController.IsAnimationPlaying = false;
     }
 
     /// <summary>

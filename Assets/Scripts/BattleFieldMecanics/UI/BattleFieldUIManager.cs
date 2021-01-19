@@ -92,10 +92,21 @@ public class BattleFieldUIManager : MonoBehaviour
     /// <returns></returns>
     private IEnumerator HPDecreaseAnimation(Image healthBar, float targetHP)
     {
-        while (healthBar.fillAmount > targetHP)
+        if(healthBar.fillAmount > targetHP)
         {
-            healthBar.fillAmount -= 0.01f;
-            yield return new WaitForSeconds(0.03f);
+            while (healthBar.fillAmount > targetHP)
+            {
+                healthBar.fillAmount -= 0.01f;
+                yield return new WaitForSeconds(0.03f);
+            }
+        }
+        else
+        {
+            while (healthBar.fillAmount < targetHP)
+            {
+                healthBar.fillAmount += 0.01f;
+                yield return new WaitForSeconds(0.03f);
+            }
         }
     }
 }
