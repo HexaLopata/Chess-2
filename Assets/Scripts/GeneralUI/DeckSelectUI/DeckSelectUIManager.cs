@@ -40,11 +40,13 @@ public class DeckSelectUIManager : MonoBehaviour
 
     public void ShowTalentMenu()
     {
+    	HideSkillMenu();
         _talentScrollView.SetActive(true);
     }
 
     public void ShowSkillMenu()
     {
+    	HideTalentMenu();
         _skillScrollView.SetActive(true);
     }
 

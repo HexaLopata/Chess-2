@@ -62,6 +62,7 @@ public abstract class BattleFieldObject : MonoBehaviour, IPointerClickHandler
 
     [SerializeField] private Sprite _whiteSkin;
     [SerializeField] private Sprite _blackSkin;
+    [SerializeField] private const float _moveTime = 0.25f; 
 
     /// <summary>
     /// Может ли фигура встать на клетку с этим объектом
@@ -131,23 +132,28 @@ public abstract class BattleFieldObject : MonoBehaviour, IPointerClickHandler
     /// <returns></returns>
     public IEnumerator MoveToAnotherCellWithAnimation(BattleFieldCell cell)
     {
+        if(_isMoving)
+            yield return new WaitForSeconds(_moveTime); 
+
         _isMoving = true;
+
         _controller.BattleField.BattleController.StopRequest();
         var rectTransform = GetComponent<RectTransform>();
-        var startPoint = rectTransform.localPosition;
-        var endPoint = new Vector2(cell.RectTransform.localPosition.x + cell.RectTransform.rect.width / 2,
+        var startPosition = rectTransform.localPosition;
+        var targetPosition = new Vector2(cell.RectTransform.localPosition.x + cell.RectTransform.rect.width / 2,
                                     cell.RectTransform.localPosition.y + cell.RectTransform.rect.height / 2);
-        var direction = new Vector2(endPoint.x - startPoint.x, endPoint.y - startPoint.y);
-        var roundedEndPoint = new Vector2Int(Convert.ToInt32(endPoint.x), Convert.ToInt32(endPoint.y));
 
-        while (Convert.ToInt32(rectTransform.localPosition.x) != roundedEndPoint.x ||
-               Convert.ToInt32(rectTransform.localPosition.y) != roundedEndPoint.y)
+
+        float startTime = Time.realtimeSinceStartup;
+        float fraction = 0f;
+
+        while(fraction < 1f) 
         {
-            var x = rectTransform.localPosition.x;
-            var y = rectTransform.localPosition.y;
-            rectTransform.localPosition = new Vector2(x + direction.x / 15, y + direction.y / 15);
-            yield return new WaitForSeconds(0.01f);
-        }
+            fraction = Mathf.Clamp01((Time.realtimeSinceStartup - startTime) / _moveTime); 
+            rectTransform.localPosition = Vector2.Lerp(startPosition, targetPosition, fraction);
+            yield return null; 
+        }                          
+
         MoveToAnotherCell(cell);
         _controller.StartRequest();
         _isMoving = false;

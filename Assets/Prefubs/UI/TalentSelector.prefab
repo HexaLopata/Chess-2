@@ -37,7 +37,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 25, y: 25}
+  m_SizeDelta: {x: 50, y: 25}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2445712988692139368
 CanvasRenderer:
@@ -66,7 +66,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 608ed51184e45489189b564bbc1011c4, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ab6880d197573157ab259fc278c6be01, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -111,7 +111,7 @@ PrefabInstance:
     - target: {fileID: -1082673277885826980, guid: ad9949047a21487228e7aaef5ea5ac1f,
         type: 3}
       propertyPath: _fontSize
-      value: 0.45
+      value: 0.9
       objectReference: {fileID: 0}
     - target: {fileID: -1082673277885826980, guid: ad9949047a21487228e7aaef5ea5ac1f,
         type: 3}

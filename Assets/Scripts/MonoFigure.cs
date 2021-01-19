@@ -39,10 +39,12 @@ public abstract class MonoFigure : MonoBehaviour
     private RectTransform _rectTransform;
     private AudioSource _movementSound;
     private bool _isFirstMovement = true;
+    private bool _isMoving = false;
 
     [SerializeField] private Sprite _whiteSkin;
     [SerializeField] private Sprite _blackSkin;
     [SerializeField] private bool _king;
+    [SerializeField] private const float _moveTime = 0.25f;
 
     protected FigureData _data;
     protected Image _image;
@@ -74,32 +76,31 @@ public abstract class MonoFigure : MonoBehaviour
     /// <returns></returns>
     public virtual IEnumerator MoveToAnotherCellWithAnimation(CellBase cellBase)
     {
+        if(_isMoving)
+            yield return new WaitForSeconds(_moveTime); 
+
+        _isMoving = true;
         MoveToAnotherCell(cellBase);
         var rectTransform = GetComponent<RectTransform>();
-        var startPoint = rectTransform.localPosition;
-        var endPoint = new Vector2(cellBase.RectTransform.localPosition.x + cellBase.RectTransform.rect.width / 2,
+        var startPosition = rectTransform.localPosition;
+        var targetPosition = new Vector2(cellBase.RectTransform.localPosition.x + cellBase.RectTransform.rect.width / 2,
                                     cellBase.RectTransform.localPosition.y + cellBase.RectTransform.rect.height / 2);
-        var direction = new Vector2(endPoint.x - startPoint.x, endPoint.y - startPoint.y);
-        var roundedEndPoint = new Vector2Int(Convert.ToInt32(endPoint.x), Convert.ToInt32(endPoint.y));
 
-        while (Convert.ToInt32(rectTransform.localPosition.x) != roundedEndPoint.x ||
-               Convert.ToInt32(rectTransform.localPosition.y) != roundedEndPoint.y )
+        float startTime = Time.realtimeSinceStartup;
+        float fraction = 0f;
+        while(fraction < 1f) 
         {
-            var x = rectTransform.localPosition.x;
-            var y = rectTransform.localPosition.y;
-            rectTransform.localPosition = new Vector2(x + direction.x / 15, y + direction.y / 15);
-            yield return new WaitForSeconds(0.01f);
+            fraction = Mathf.Clamp01((Time.realtimeSinceStartup - startTime) / _moveTime); 
+            rectTransform.localPosition = Vector2.Lerp(startPosition, targetPosition, fraction);
+            yield return null; 
         }
-        var cellPosition = CellBase.RectTransform.localPosition;
-        // Переносим и выравниваем
-        Vector2 newPosition = new Vector2(cellPosition.x + CellBase.RectTransform.rect.width / 2,
-            cellPosition.y + CellBase.RectTransform.rect.height / 2);
-        GetComponent<RectTransform>().localPosition = newPosition;
+
         if (!_isFirstMovement)
         {
             _movementSound.Play();
         }
         _isFirstMovement = false;
+        _isMoving = false;
     }
 
     /// <summary>
