@@ -27,6 +27,8 @@ public class MainFieldUIManager : MonoBehaviour
     [SerializeField] private Image _blackSkillIcon;
     [SerializeField] private Image _whiteTalentIcon;
     [SerializeField] private Image _blackTalentIcon;
+    [SerializeField] private Image _whiteBorder;
+    [SerializeField] private Image _blackBorder;
 
     private void Start()
     {
@@ -46,11 +48,15 @@ public class MainFieldUIManager : MonoBehaviour
     {
         if (_turnManager.CurrentTurn == Team.Black)
         {
+            _whiteBorder.enabled = false;
+            _blackBorder.enabled = true;
             _yourTurnText1.gameObject.SetActive(false);
             _yourTurnText2.gameObject.SetActive(true);
         }
         else
         {
+            _whiteBorder.enabled = true;
+            _blackBorder.enabled = false;
             _yourTurnText1.gameObject.SetActive(true);
             _yourTurnText2.gameObject.SetActive(false);
         }

@@ -76,7 +76,7 @@ public abstract class MonoFigure : MonoBehaviour
     /// <returns></returns>
     public virtual IEnumerator MoveToAnotherCellWithAnimation(CellBase cellBase)
     {
-        if(_isMoving)
+        while(_isMoving)
             yield return new WaitForSeconds(_moveTime); 
 
         _isMoving = true;

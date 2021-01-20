@@ -132,7 +132,7 @@ public abstract class BattleFieldObject : MonoBehaviour, IPointerClickHandler
     /// <returns></returns>
     public IEnumerator MoveToAnotherCellWithAnimation(BattleFieldCell cell)
     {
-        if(_controller != null && _controller.IsAnimationPlaying)
+        while(_controller != null && _controller.IsAnimationPlaying)
             yield return new WaitForSeconds(BattleController.animationDelay);  
 
         _controller.IsAnimationPlaying = true;

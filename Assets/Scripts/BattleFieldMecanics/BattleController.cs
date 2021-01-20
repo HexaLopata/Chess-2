@@ -43,7 +43,7 @@ public class BattleController : MonoBehaviour
             _turnCount = value;
         }
     }
-    public bool IsAnimationPlaying { get; set; } = false;
+    public bool IsAnimationPlaying = false;
     public const float animationDelay = 0.07f;
 
     private BattleInfo _battleInfo;
@@ -197,7 +197,7 @@ public class BattleController : MonoBehaviour
     /// <returns></returns>
     private IEnumerator SuddenDeathRoutine()
     {
-        if(IsAnimationPlaying)
+        while(IsAnimationPlaying)
             yield return new WaitForSeconds(BattleController.animationDelay); 
         IsAnimationPlaying = true;
         StopRequest();
