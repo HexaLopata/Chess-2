@@ -46,4 +46,4 @@ MonoBehaviour:
   _name: Bloodlust
   _inEachTurn: 1
   _inEnemyTurn: 0
-  _multiply: 0.7
+  _multiply: 1

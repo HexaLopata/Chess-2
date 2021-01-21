@@ -141,4 +141,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _name: Inspiration
-  _inspirationChance: 15
+  _inEachTurn: 0
+  _inEnemyTurn: 0
+  _inspirationChance: 25

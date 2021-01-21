@@ -35,6 +35,7 @@ public abstract class MonoFigure : MonoBehaviour
     public CellBase CellBase { get; set; }
     public Vector2Int OnBoardPosition { get; set; }
     public bool King => _king;
+    public FigureType FigureType => _figureType;
 
     private RectTransform _rectTransform;
     private AudioSource _movementSound;
@@ -44,6 +45,7 @@ public abstract class MonoFigure : MonoBehaviour
     [SerializeField] private Sprite _whiteSkin;
     [SerializeField] private Sprite _blackSkin;
     [SerializeField] private bool _king;
+    [SerializeField] private FigureType _figureType;
     [SerializeField] private const float _moveTime = 0.25f;
 
     protected FigureData _data;

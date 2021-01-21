@@ -21,6 +21,7 @@ public abstract class BattleFieldFigure : MonoFigure
 
             if (value < 0)
                 _health = 0;
+            onHealthChanged.Invoke();
 
             if (Data != null)
             {
@@ -70,12 +71,12 @@ public abstract class BattleFieldFigure : MonoFigure
             _talent = value;
         }
     }
-    public UnityEvent onTakeDamage;
+    public UnityEvent onHealthChanged;
     public const int maxHealth = 100;
 
-    private int _health = -1;
     private Coroutine MoveAnimation;
 
+    [SerializeField] private int _health = -1;
     [SerializeField] private int _damage = 30;
     [SerializeField] private int _defence = 15;
 
@@ -255,7 +256,6 @@ public abstract class BattleFieldFigure : MonoFigure
         {
             StartCoroutine(DamageAnimation());
             Health -= harm;
-            onTakeDamage.Invoke();
             if (!IsInvulnerable)
             {
                 if (Health <= 0)

@@ -91,9 +91,11 @@ MonoBehaviour:
   _whiteSkin: {fileID: 21300000, guid: 35489425401765f419ae2e2df97e485b, type: 3}
   _blackSkin: {fileID: 21300000, guid: f22d030e45942ce43acbbe5c67aaae15, type: 3}
   _king: 0
-  onTakeDamage:
+  _figureType: 0
+  onHealthChanged:
     m_PersistentCalls:
       m_Calls: []
+  _health: -1
   _damage: 40
   _defence: 0
 --- !u!82 &-2693473521511474511

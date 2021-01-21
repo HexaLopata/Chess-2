@@ -91,6 +91,7 @@ MonoBehaviour:
   _whiteSkin: {fileID: 21300000, guid: 276409fdc7c0bbe46b0ea7b7bd535e8d, type: 3}
   _blackSkin: {fileID: 21300000, guid: e3c8ccb89ee601f4e9d7a470767b1e5f, type: 3}
   _king: 0
+  _figureType: 1
   _figureName: Horse
 --- !u!82 &8642722175416977459
 AudioSource:

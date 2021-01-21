@@ -8,9 +8,13 @@ public class KingsKiller : Talent
 
     protected override void TalentAction()
     {
+        var enemy = _controller.BattleInfo.FirstFigure.BattleFieldFigureInstance;
+        if(object.ReferenceEquals(enemy, _owner))
+            enemy = _controller.BattleInfo.SecondFigure.BattleFieldFigureInstance;
+
         if (_baseOwnerDamage == -1)
             _baseOwnerDamage = _owner.Damage;
-        if (_controller.CurrentFigure.Data.MainFieldFigurePrefub.King)
+        if (enemy.FigureType == FigureType.King || enemy.FigureType == FigureType.Queen)
             _owner.Damage = (int)(_baseOwnerDamage * _damageMultiply);
     }
 }

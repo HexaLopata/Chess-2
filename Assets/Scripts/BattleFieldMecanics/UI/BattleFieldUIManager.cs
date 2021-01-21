@@ -17,13 +17,15 @@ public class BattleFieldUIManager : MonoBehaviour
     [SerializeField] private BattleController _battleController;
     private BattleFieldFigure _firstFigure;
     private BattleFieldFigure _secondFigure;
-    
+    private Coroutine _firstHPBarAnimation;
+    private Coroutine _secondHPBarAnimation;
+
     private void Start()
     {
         _firstFigure = _battleController.BattleField.FirstFigure;
         _secondFigure = _battleController.BattleField.SecondFigure;
-        _firstFigure.onTakeDamage.AddListener(UpdateHealthBars);
-        _secondFigure.onTakeDamage.AddListener(UpdateHealthBars);
+        _firstFigure.onHealthChanged.AddListener(UpdateHealthBars);
+        _secondFigure.onHealthChanged.AddListener(UpdateHealthBars);
         _battleController.onSwitchTurn.AddListener(ShowCurrentTurn);
         _battleController.BattleField.FirstFigure.Skill.onChangeDelay.AddListener(ShowSkillDelay);
         _battleController.BattleField.SecondFigure.Skill.onChangeDelay.AddListener(ShowSkillDelay);
@@ -36,8 +38,13 @@ public class BattleFieldUIManager : MonoBehaviour
     /// </summary>
     private void UpdateHealthBars()
     {
-        StartCoroutine(HPDecreaseAnimation(_firstHealthBar, (float)_firstFigure.Health / 100));
-        StartCoroutine(HPDecreaseAnimation(_secondHealthBar, (float)_secondFigure.Health / 100));
+        if(_firstHPBarAnimation != null)
+            StopCoroutine(_firstHPBarAnimation);
+        if(_secondHPBarAnimation != null)
+            StopCoroutine(_secondHPBarAnimation);
+
+        _firstHPBarAnimation = StartCoroutine(HPChangeAnimation(_firstHealthBar, (float)_firstFigure.Health / 100));
+        _secondHPBarAnimation = StartCoroutine(HPChangeAnimation(_secondHealthBar, (float)_secondFigure.Health / 100));
     }
     
     /// <summary>
@@ -85,12 +92,12 @@ public class BattleFieldUIManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Анимирует уменьшение жизней в шкале здоровья
+    /// Анимирует изменение жизней в шкале здоровья
     /// </summary>
     /// <param name="healthBar"></param>
     /// <param name="targetHP"></param>
     /// <returns></returns>
-    private IEnumerator HPDecreaseAnimation(Image healthBar, float targetHP)
+    private IEnumerator HPChangeAnimation(Image healthBar, float targetHP)
     {
         if(healthBar.fillAmount > targetHP)
         {

@@ -43,7 +43,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fdaca02ffd5b30449b210d305bf77135, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _name: Kings Killer
+  _name: Royal Killer
   _inEachTurn: 1
   _inEnemyTurn: 0
   _damageMultiply: 1.5

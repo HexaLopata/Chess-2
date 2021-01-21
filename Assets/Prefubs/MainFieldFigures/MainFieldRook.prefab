@@ -91,6 +91,7 @@ MonoBehaviour:
   _whiteSkin: {fileID: 21300000, guid: 05e61393a10171748bb8f518759ea711, type: 3}
   _blackSkin: {fileID: 21300000, guid: 171678d0b551e8e4cb86bca3b916d558, type: 3}
   _king: 0
+  _figureType: 3
   _figureName: Rook
 --- !u!82 &5858421356407648327
 AudioSource:
