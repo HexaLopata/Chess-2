@@ -44,7 +44,7 @@ public class BattleController : MonoBehaviour
         }
     }
     public bool IsAnimationPlaying = false;
-    public const float animationDelay = 0.07f;
+    public const float animationDelay = 0.7f;
 
     private BattleInfo _battleInfo;
     private BattleFieldFigure _currentFigure;

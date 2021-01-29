@@ -39,15 +39,17 @@ public abstract class Talent : MonoBehaviour
             }
             else
             {
-                if (_inEnemyTurn && object.ReferenceEquals(_controller.CurrentFigure.Talent, this))
+                if (_inEnemyTurn)
                 {
                     if (_controller.CurrentTurn == _owner.Data.Team)
                     {
+                        Debug.Log("In enemy turn "  + _owner.Data.Team);
                         TalentAction();
                     }
                 }
                 else if (_controller.CurrentTurn != _owner.Data.Team && !object.ReferenceEquals(_controller.CurrentFigure.Talent, this))
                 {
+                    Debug.Log("In my turn " + _owner.Data.Team);
                     TalentAction();
                 }
             }
