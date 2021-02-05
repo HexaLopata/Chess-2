@@ -194,6 +194,58 @@ PrefabInstance:
       value: 
       objectReference: {fileID: -2341372308914507766, guid: 4eb0c763ca7dae66983824b106ca029a,
         type: 3}
+    - target: {fileID: 4251546590968637878, guid: 4b3c84ebee0fe78428bd6c56b937bc7e,
+        type: 3}
+      propertyPath: _skills.Array.size
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 4251546590968637878, guid: 4b3c84ebee0fe78428bd6c56b937bc7e,
+        type: 3}
+      propertyPath: _talents.Array.size
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 4251546590968637878, guid: 4b3c84ebee0fe78428bd6c56b937bc7e,
+        type: 3}
+      propertyPath: _skills.Array.data[12]
+      value: 
+      objectReference: {fileID: 7798042514363665946, guid: 36cea83775ade775895d8eae709e9c39,
+        type: 3}
+    - target: {fileID: 4251546590968637878, guid: 4b3c84ebee0fe78428bd6c56b937bc7e,
+        type: 3}
+      propertyPath: _skills.Array.data[13]
+      value: 
+      objectReference: {fileID: 3406996285613888386, guid: 49117f7c0cff39c738898b2cf1068b37,
+        type: 3}
+    - target: {fileID: 4251546590968637878, guid: 4b3c84ebee0fe78428bd6c56b937bc7e,
+        type: 3}
+      propertyPath: _skills.Array.data[14]
+      value: 
+      objectReference: {fileID: -2341372308914507766, guid: dcbd9e75888f5551fb2b7ace0705595c,
+        type: 3}
+    - target: {fileID: 4251546590968637878, guid: 4b3c84ebee0fe78428bd6c56b937bc7e,
+        type: 3}
+      propertyPath: _talents.Array.data[10]
+      value: 
+      objectReference: {fileID: 2375658194927580500, guid: 6a6fab5939115dad48c9e335e19a6125,
+        type: 3}
+    - target: {fileID: 4251546590968637878, guid: 4b3c84ebee0fe78428bd6c56b937bc7e,
+        type: 3}
+      propertyPath: _talents.Array.data[11]
+      value: 
+      objectReference: {fileID: 1797692598846786437, guid: 65459f10e328ba298871e79aaaec724a,
+        type: 3}
+    - target: {fileID: 4251546590968637878, guid: 4b3c84ebee0fe78428bd6c56b937bc7e,
+        type: 3}
+      propertyPath: _talents.Array.data[12]
+      value: 
+      objectReference: {fileID: -6424965408283944844, guid: e6322eb21bc69d5b5a50556a01d32356,
+        type: 3}
+    - target: {fileID: 4251546590968637878, guid: 4b3c84ebee0fe78428bd6c56b937bc7e,
+        type: 3}
+      propertyPath: _talents.Array.data[13]
+      value: 
+      objectReference: {fileID: 7827329695452193891, guid: 46c4943ff7a6f968680a430fbe24244c,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4b3c84ebee0fe78428bd6c56b937bc7e, type: 3}
 --- !u!1001 &1558496487

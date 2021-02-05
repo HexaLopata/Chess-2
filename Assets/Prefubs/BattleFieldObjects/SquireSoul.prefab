@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 2304870059562006626}
   - component: {fileID: -6394968117478579807}
   - component: {fileID: -40864157029629429}
-  - component: {fileID: -2771007223784719237}
+  - component: {fileID: 1973365743994434087}
   m_Layer: 5
-  m_Name: Shield
+  m_Name: SquireSoul
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -35,7 +35,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 2.3999977, y: 12.600002}
   m_SizeDelta: {x: 60, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &-6394968117478579807
@@ -59,7 +59,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.057671785, g: 0.6670089, b: 0.6792453, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -75,7 +75,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &-2771007223784719237
+--- !u!114 &1973365743994434087
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -84,9 +84,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1833931107443260244}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0b94c67878414ef0b440b8142b75ff90, type: 3}
+  m_Script: {fileID: 11500000, guid: 870b73918de8a137082d49bd0950979b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _whiteSkin: {fileID: 21300000, guid: f0ae3f7bdb0be797999e8fa4e1ea7901, type: 3}
-  _blackSkin: {fileID: 21300000, guid: efa617ac72da57372846517404915d11, type: 3}
-  _turnRemains: 7
+  _whiteSkin: {fileID: 21300000, guid: 35489425401765f419ae2e2df97e485b, type: 3}
+  _blackSkin: {fileID: 21300000, guid: f22d030e45942ce43acbbe5c67aaae15, type: 3}
+  _turnRemains: 5
+  _damage: 30

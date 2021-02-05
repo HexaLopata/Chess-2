@@ -38,7 +38,11 @@ public abstract class BattleFieldFigure : MonoFigure
         }
     }
     public bool IsInvulnerable { get; set; } = false;
-    public int Defence => _defence;
+    public int Defence 
+    {
+        get => _defence;
+        set => _defence = value;
+    }
     public int Damage
     {
         get => _damage;
