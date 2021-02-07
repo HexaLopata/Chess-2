@@ -43,8 +43,8 @@ public class BattleController : MonoBehaviour
             _turnCount = value;
         }
     }
-    public bool IsAnimationPlaying = false;
-    public const float animationDelay = 0.7f;
+    public bool IsAnimationPlaying { get; set; } = false;
+    public const float animationDelay = 0.2f;
 
     private BattleInfo _battleInfo;
     private BattleFieldFigure _currentFigure;

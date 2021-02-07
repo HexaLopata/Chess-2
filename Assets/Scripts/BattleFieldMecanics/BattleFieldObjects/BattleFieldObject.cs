@@ -55,7 +55,7 @@ public abstract class BattleFieldObject : MonoBehaviour, IPointerClickHandler
     
     private BattleFieldCell _cell;
     private Team _team;
-    private BattleController _controller;
+    protected BattleController _controller;
     private RectTransform _rectTransform;
     private bool _isMoving;
     protected Image _image;
@@ -133,7 +133,10 @@ public abstract class BattleFieldObject : MonoBehaviour, IPointerClickHandler
     public IEnumerator MoveToAnotherCellWithAnimation(BattleFieldCell cell)
     {
         while(_controller != null && _controller.IsAnimationPlaying)
+        {
             yield return new WaitForSeconds(BattleController.animationDelay);  
+            Debug.Log("Delay");
+        }
 
         _controller.IsAnimationPlaying = true;
         _isMoving = true;
@@ -168,8 +171,11 @@ public abstract class BattleFieldObject : MonoBehaviour, IPointerClickHandler
     {
         if(_cell != null)
             _cell.BattleFieldObject = null;
-        if (_isMoving)
+        if (_isMoving || _controller.IsAnimationPlaying)
+        {
+            _controller.IsAnimationPlaying = false;
             _controller.StartRequest();
+        }
         Destroy(gameObject);
     }
 

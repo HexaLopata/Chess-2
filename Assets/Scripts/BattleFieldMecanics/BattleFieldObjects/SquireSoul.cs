@@ -1,3 +1,4 @@
+using System.Runtime.CompilerServices;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -19,7 +20,7 @@ public class SquireSoul : TimeLimitedObject
     public override void Execute()
     {
         base.Execute();
-        if (BattleField.BattleController.CurrentTurn != Team && BattleField.BattleController.CurrentTurn != Team.No)
+        if (BattleField.BattleController.CurrentTurn != Team)
         {
             if (_turnRemains > 0)
             {
@@ -30,6 +31,13 @@ public class SquireSoul : TimeLimitedObject
 
     private IEnumerator Turn()
     {
+        Debug.Log("Turn");
+        while(_controller != null && _controller.IsAnimationPlaying)
+        {
+            yield return new WaitForSeconds(BattleController.animationDelay);  
+            Debug.Log("Delay");
+        }
+
         var cells = GetRelevantTurns(false);
         if(cells.Length != 0)
         {
@@ -72,7 +80,8 @@ public class SquireSoul : TimeLimitedObject
         {
             if (cell.BattleFieldFigure == null || isAttack)
             {
-                turns.Add(cell);
+                if(cell.BattleFieldObject == null || !(cell.BattleFieldObject is SquireSoul))
+                    turns.Add(cell);
             }
         }
     }

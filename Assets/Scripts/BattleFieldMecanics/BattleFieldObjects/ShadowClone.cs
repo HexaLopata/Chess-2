@@ -33,7 +33,7 @@ public class ShadowClone : TimeLimitedObject
     public override void Execute()
     {
         base.Execute();
-        if (BattleField.BattleController.CurrentTurn != _owner.Data.Team)
+        if (_controller.CurrentTurn != _owner.Data.Team)
         {
             if (_turnRemains > 0)
             {

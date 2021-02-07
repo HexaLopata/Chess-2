@@ -7,24 +7,29 @@ public class MirrorWalk : Talent
     protected override void TalentAction()
     {
         BattleFieldCell cell;
-        if(_owner.Data.Team != _controller.BattleInfo.FirstFigure.Team)
+        BattleFieldFigure enemy;
+        if(_owner.Data.Team == _controller.BattleInfo.FirstFigure.Team)
         {
+            enemy = _controller.BattleInfo.SecondFigure.BattleFieldFigureInstance;
             cell = GetMirrorCell(_controller.BattleInfo.FirstFigure.BattleFieldFigureInstance);
         }
         else
+        {
+            enemy = _controller.BattleInfo.FirstFigure.BattleFieldFigureInstance;
             cell = GetMirrorCell(_controller.BattleInfo.SecondFigure.BattleFieldFigureInstance);
+        }
 
         if(cell.Figure == null)
         {
             if(cell.BattleFieldObject != null)
             {
-                if(cell.BattleFieldObject.CanThisFigureToCross(_owner) != BarrierType.Impassable)
+                if(cell.BattleFieldObject.CanThisFigureToCross(enemy) != BarrierType.Impassable)
                 {
-                    StartCoroutine(_owner.MoveToAnotherCellWithAnimation(cell));
+                    StartCoroutine(enemy.MoveToAnotherCellWithAnimation(cell));
                 }
             }
             else
-                StartCoroutine(_owner.MoveToAnotherCellWithAnimation(cell));
+                StartCoroutine(enemy.MoveToAnotherCellWithAnimation(cell));
         }
     }
 

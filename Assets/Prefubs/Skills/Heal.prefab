@@ -49,6 +49,6 @@ MonoBehaviour:
   onChangeDelay:
     m_PersistentCalls:
       m_Calls: []
-  _maxDelay: 2
+  _maxDelay: 6
   _name: Heal
-  _healAmount: 7
+  _healAmount: 25

@@ -49,7 +49,7 @@ MonoBehaviour:
   onChangeDelay:
     m_PersistentCalls:
       m_Calls: []
-  _maxDelay: 4
+  _maxDelay: 2
   _name: Squire Soul
   _battleFieldObject: {fileID: 1973365743994434087, guid: 8487ff6b4edb30037b8f779f4e39a548,
     type: 3}
