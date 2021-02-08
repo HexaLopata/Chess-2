@@ -167,7 +167,7 @@ public abstract class BattleFieldObject : MonoBehaviour, IPointerClickHandler
     /// <summary>
     /// Уничтожает этот объект и обновляет информацию о себе у клетки
     /// </summary>
-    public void DestroyThisBattleFieldObject()
+    public virtual void DestroyThisBattleFieldObject()
     {
         if(_cell != null)
             _cell.BattleFieldObject = null;

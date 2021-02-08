@@ -2512,6 +2512,7 @@ MonoBehaviour:
   - {fileID: 1797692598846786437, guid: 65459f10e328ba298871e79aaaec724a, type: 3}
   - {fileID: -6424965408283944844, guid: e6322eb21bc69d5b5a50556a01d32356, type: 3}
   - {fileID: 7827329695452193891, guid: 46c4943ff7a6f968680a430fbe24244c, type: 3}
+  - {fileID: 8997645282890985445, guid: 100e2b7b7cdcde7399e9790a14136987, type: 3}
   _deckManager: {fileID: 1636493380}
   _uIManager: {fileID: 1292404398}
 --- !u!1 &821283518
@@ -5611,6 +5612,7 @@ MonoBehaviour:
   - {fileID: 7798042514363665946, guid: 36cea83775ade775895d8eae709e9c39, type: 3}
   - {fileID: 3406996285613888386, guid: 49117f7c0cff39c738898b2cf1068b37, type: 3}
   - {fileID: -2341372308914507766, guid: dcbd9e75888f5551fb2b7ace0705595c, type: 3}
+  - {fileID: -2341372308914507766, guid: a18f24872cdea28ebb167a94aeed15fd, type: 3}
   _deckManager: {fileID: 1636493380}
   _uIManager: {fileID: 637704930}
 --- !u!114 &1917719991
@@ -6401,6 +6403,7 @@ MonoBehaviour:
   - {fileID: 7798042514363665946, guid: 36cea83775ade775895d8eae709e9c39, type: 3}
   - {fileID: 3406996285613888386, guid: 49117f7c0cff39c738898b2cf1068b37, type: 3}
   - {fileID: -2341372308914507766, guid: dcbd9e75888f5551fb2b7ace0705595c, type: 3}
+  - {fileID: -2341372308914507766, guid: a18f24872cdea28ebb167a94aeed15fd, type: 3}
   _deckManager: {fileID: 1636493380}
   _uIManager: {fileID: 1292404398}
 --- !u!114 &2135507735

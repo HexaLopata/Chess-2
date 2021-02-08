@@ -143,4 +143,4 @@ MonoBehaviour:
   _name: Achilles Heel
   _inEachTurn: 0
   _inEnemyTurn: 0
-  _doubleDamageChance: 15
+  _doubleDamageChance: 100

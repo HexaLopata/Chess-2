@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7258157851409736167}
-  - component: {fileID: 2375658194927580500}
+  - component: {fileID: -2341372308914507766}
   m_Layer: 0
-  m_Name: Curse
+  m_Name: PlaceBombSkill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -31,7 +31,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2375658194927580500
+--- !u!114 &-2341372308914507766
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -40,10 +40,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 4451160320274389103}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: da0031d92b2075f65aea5979dfa804ce, type: 3}
+  m_Script: {fileID: 11500000, guid: c8680098f5db4f059a0e70ebc6cf73ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _name: Curse
-  _inEachTurn: 0
-  _inEnemyTurn: 1
-  _damage: 3
+  activateOrDisactivate:
+    m_PersistentCalls:
+      m_Calls: []
+  onChangeDelay:
+    m_PersistentCalls:
+      m_Calls: []
+  _maxDelay: 4
+  _name: BomberMan
+  _battleFieldObject: {fileID: 3364146585233301668, guid: a825b44a697f7f35ab25f957c6ecbfd5,
+    type: 3}
+  _continueTurn: 1

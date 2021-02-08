@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,8 +7,6 @@ public class AchillesHeel : Talent
     private int _ownerBaseDamage = -1;
     private AudioSource _onActionSound;
     [SerializeField] private int _doubleDamageChance = 10;
-
-
     private void Start()
     {
         _onActionSound = GetComponent<AudioSource>();
