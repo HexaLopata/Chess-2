@@ -6,7 +6,7 @@ public class Freeze : Skill
 {
     [SerializeField] private float _freezeTime = 3;
     [SerializeField] private Image _iceImage;
-    
+
     private Image _iceImageInstance;
     private float _currentFreezeTime = 0;
     private bool _freezing;
@@ -14,7 +14,7 @@ public class Freeze : Skill
     protected override void SkillAction(BattleFieldFigure figure, BattleFieldCell cell)
     {
         // Если противник заморожен, то умение будет активно еще ход
-        if(_freezing)
+        if (_freezing)
             IsActive = true;
 
         // Если откат прошел и умение еще не активно
@@ -63,8 +63,10 @@ public class Freeze : Skill
 
     public override void Activate(BattleFieldFigure figure)
     {
+        if (_controller == null)
+            SubscribeOnSwitchTurn(figure.BattleField.BattleController);
         IsActive = false;
-        if(_delay <= 0)
+        if (_delay <= 0)
             SkillAction(figure, null);
     }
 }

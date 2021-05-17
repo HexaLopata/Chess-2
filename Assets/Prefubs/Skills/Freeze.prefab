@@ -46,6 +46,10 @@ MonoBehaviour:
   activateOrDisactivate:
     m_PersistentCalls:
       m_Calls: []
+  onChangeDelay:
+    m_PersistentCalls:
+      m_Calls: []
+  _delay: 4
   _maxDelay: 7
   _name: Freeze
   _freezeTime: 3

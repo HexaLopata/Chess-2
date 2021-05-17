@@ -76,10 +76,7 @@ public class BattleFieldCell : CellBase
 
         if (BattleFieldObject != null)
         {
-            if (BattleFieldObject.Team != attacker.Data.Team)
-            {
-                BattleFieldObject.TakeDamage(attacker);
-            }
+            BattleFieldObject.TakeDamage(attacker);
         }
     }
 

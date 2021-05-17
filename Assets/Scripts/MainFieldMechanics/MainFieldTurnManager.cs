@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
-
+using UnityEngine.EventSystems;
 /// <summary>
 /// Этот класс отвечает за проведение ходов на главном поле
 /// </summary>
@@ -26,6 +26,7 @@ public class MainFieldTurnManager : MonoBehaviour
     public Team CurrentTurn { get; private set; } = Team.White;
 
     [SerializeField] private MainField _mainField;
+    [SerializeField] private EventSystem _eventSystem; 
 
     private MainFieldFigure _selectedFigure;
 
@@ -121,6 +122,7 @@ public class MainFieldTurnManager : MonoBehaviour
     private void StartBattle()
     {
         Camera.main.GetComponent<AudioListener>().enabled = false;
+        _eventSystem.enabled = false;
         SceneManager.LoadSceneAsync(3, LoadSceneMode.Additive);
         _mainField.CurrentCamera.enabled = false;
         Core.BattleInfo.BattleEnd += EndBattle;
@@ -154,6 +156,7 @@ public class MainFieldTurnManager : MonoBehaviour
         }
         Core.BattleInfo.BattleEnd -= EndBattle;
         Camera.main.GetComponent<AudioListener>().enabled = true;
+        _eventSystem.enabled = true;
     }
 
     /// <summary>

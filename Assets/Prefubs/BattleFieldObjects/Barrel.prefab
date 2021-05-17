@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 2304870059562006626}
   - component: {fileID: -6394968117478579807}
   - component: {fileID: -40864157029629429}
-  - component: {fileID: -2771007223784719237}
+  - component: {fileID: -7727160650884862731}
   m_Layer: 5
-  m_Name: Shield
+  m_Name: Barrel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -36,7 +36,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 60, y: 60}
+  m_SizeDelta: {x: 50, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &-6394968117478579807
 CanvasRenderer:
@@ -66,7 +66,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: f0ae3f7bdb0be797999e8fa4e1ea7901, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ce2c7f5d90fc4dc7fa9998d1a36a94e3, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -76,7 +76,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &-2771007223784719237
+--- !u!114 &-7727160650884862731
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -85,9 +85,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1833931107443260244}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0b94c67878414ef0b440b8142b75ff90, type: 3}
+  m_Script: {fileID: 11500000, guid: e3ed32621b908ab608355652a2e6cfd0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _whiteSkin: {fileID: 21300000, guid: f0ae3f7bdb0be797999e8fa4e1ea7901, type: 3}
-  _blackSkin: {fileID: 21300000, guid: efa617ac72da57372846517404915d11, type: 3}
-  _turnRemains: 7
+  _whiteSkin: {fileID: 21300000, guid: ce2c7f5d90fc4dc7fa9998d1a36a94e3, type: 3}
+  _blackSkin: {fileID: 21300000, guid: cd019ae46cda4ec899da454cbb70ed3d, type: 3}
+  _hp: 3
+  _damage: 35

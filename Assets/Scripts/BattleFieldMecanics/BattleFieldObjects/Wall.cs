@@ -16,7 +16,8 @@ public class Wall : TimeLimitedObject
 
     public override void TakeDamage(BattleFieldFigure attacker)
     {
-        _turnRemains -= 0.5f;
+        if (attacker.Data.Team != Team)
+            _turnRemains -= 0.5f;
     }
 
     public override void TakeDamage(int damage)

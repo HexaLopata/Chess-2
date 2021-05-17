@@ -30,8 +30,7 @@ public abstract class Skill : MonoBehaviour
     public string Name => _name;
 
     protected BattleController _controller;
-    protected float _delay = 0;
-
+    [SerializeField] protected float _delay = 0;
     [SerializeField] protected float _maxDelay = 5;
     [SerializeField] protected string _name;
 
@@ -71,6 +70,7 @@ public abstract class Skill : MonoBehaviour
     /// </summary>
     protected virtual void UpdateDelay()
     {
+        Debug.Log(this.Name);
         Delay -= 0.5f;
     }
 

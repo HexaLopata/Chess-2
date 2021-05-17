@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7258157851409736167}
-  - component: {fileID: -7136503535065063145}
+  - component: {fileID: -2341372308914507766}
   m_Layer: 0
-  m_Name: Counter Strike
+  m_Name: PlaceBarrelSkill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -31,7 +31,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &-7136503535065063145
+--- !u!114 &-2341372308914507766
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -40,7 +40,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4451160320274389103}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eb00afd42b8947c28df0fcef1061eddb, type: 3}
+  m_Script: {fileID: 11500000, guid: c8680098f5db4f059a0e70ebc6cf73ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   activateOrDisactivate:
@@ -49,6 +49,8 @@ MonoBehaviour:
   onChangeDelay:
     m_PersistentCalls:
       m_Calls: []
-  _delay: 0
-  _maxDelay: 5
-  _name: Feint
+  _maxDelay: 3
+  _name: Kong
+  _battleFieldObject: {fileID: -7727160650884862731, guid: c9a64c46dca4c3a94be3e49f5141ec3f,
+    type: 3}
+  _continueTurn: 1
